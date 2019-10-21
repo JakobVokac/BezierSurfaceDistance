@@ -1,0 +1,3 @@
+/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles/HeartValveModel.dir
+/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles/edit_cache.dir
