@@ -260,6 +260,7 @@ double gradientDescent(Model model, vector<double> A, double u, double v, double
 vector<double> NewtonMethod(Model model, vector<double> A, double u, double v, double eps=0.01, double sigma = 0.1){
 
     double dist = model.distanceToTopPoint(u,v,A);
+    double u0 = u, v0 = v;
     double dist_old;
     int iter = 0;
 
@@ -315,7 +316,7 @@ vector<double> NewtonMethod(Model model, vector<double> A, double u, double v, d
 //    plt::plot(us,vs);
 //    plt::show();
 //    cout << "Newton's method iterations: " << iter << " u: " << u << " v: " << v << endl;
-    return {u,v,dist};
+    return {u,v,dist,u0,v0};
 }
 
 
@@ -359,8 +360,8 @@ double NewtonForLinearCG(Model model, vector<double> A, double u, double v, doub
 }
 
 
-vector<double> FletcherReevesCG(Model model, vector<double> A, double u, double v, double eps=0.0001){
-    double dU, dV, alpha, beta, dU2, dV2;
+vector<double> FletcherReevesCG(Model model, vector<double> A, double u, double v, double eps=0.0001, int plot = 0){
+    double dU, dV, alpha, beta, dU2, dV2, u0 = u, v0 = v;
     int iter = 0;
     //cout << "u: " << u << " v: " << v << endl;
 
@@ -377,7 +378,9 @@ vector<double> FletcherReevesCG(Model model, vector<double> A, double u, double 
         alpha = NewtonForLinearCG(model,A,u,v,dU,dV,0.0000001);
 //        cout << "alpha: " << alpha << endl;
 //        cout << "dU: " << dU << " dV: " << dV << endl;
-
+        if(plot){
+            cout << "u: " << u << " v: " << v << " dU: " << dU << " dV: " << dV << " alpha: " << alpha << endl;
+        }
         u += alpha * dU;
         v += alpha * dV;
 
@@ -397,9 +400,11 @@ vector<double> FletcherReevesCG(Model model, vector<double> A, double u, double 
 //        cout << "u: " << u << " v: " << v << endl;
     }while(abs(dU + dV) > eps && iter < 10); // while Grad
 //    cout << "u: " << u << " v: " << v << endl;
-//    plt::plot(xs,ys, "g");
-//    plt::show();
-    return {u,v,model.distanceToTopPoint(u,v,A)};
+    if(plot){
+        plt::plot(xs,ys, "g");
+        plt::show();
+    }
+    return {u,v,model.distanceToTopPoint(u,v,A), u0, v0};
 }
 
 int main() {
@@ -481,21 +486,52 @@ int main() {
             w2.push_back(0);
         }
     }
-    vector<double> usCG, vsCG, VsCG, usN, vsN, VsN;
+    cout << "Rough expected distance: " << min_dist << endl;
+    vector<vector<double>> CGus, CGvs, CGVs;
+    vector<vector<double>> Nus, Nvs, NVs;
+
     for (double i = 0; i < 1; i += 0.05) {
+        vector<double> CGusR, CGvsR, CGVsR;
+        vector<double> NusR, NvsR, NVsR;
         for (double j = 0; j < 1; j += 0.05) {
             vector<double> res;
             res = NewtonMethod(p1,A,j,i,0.00001,.5);
-
+            NusR.push_back(res[3]);
+            NvsR.push_back(res[4]);
+            if(res[0] < 1 && res[0] > 0 && res[1] < 1 && res[1] > 0){
+                NVsR.push_back(0);
+            }else {
+                NVsR.push_back(1);
+            }
             if( res[0] < 1 && res[0] > 0 && res[1] < 1 && res[1] > 0 && res[2] > min_dist){
-                cout << "Newton u: " << res[0] << " v: " << res[1] << " V: " << res[2] << endl;
+                cout << "Newton u: " << res[0] << " v: " << res[1] << " V: " << res[2] << " u0: " << res[3] << " v0: " << res[4] << endl;
+
             }
             res = FletcherReevesCG(p1,A,j,i,0.00001);
-            if( res[0] < 1 && res[0] > 0 && res[1] < 1 && res[1] > 0 && res[2] > min_dist){
-                cout << "CG     u: " << res[0] << " v: " << res[1] << " V: " << res[2] << endl;
+            CGusR.push_back(res[3]);
+            CGvsR.push_back(res[4]);
+            if(res[0] < 1 && res[0] > 0 && res[1] < 1 && res[1] > 0){
+                CGVsR.push_back(0);
+            }else {
+                CGVsR.push_back(1);
+            }
+            if( res[0] < 1 && res[0] > 0 && res[1] < 1 && res[1] > 0 && res[2] > min_dist) {
+                cout << "CG     u: " << res[0] << " v: " << res[1] << " V: " << res[2] << " u0: " << res[3] << " v0: "
+                     << res[4] << endl;
+                FletcherReevesCG(p1, A, j, i, 0.00001, 1);
             }
         }
+        CGus.push_back(CGusR);
+        CGvs.push_back(CGvsR);
+        CGVs.push_back(CGVsR);
+        Nus.push_back(NusR);
+        Nvs.push_back(NvsR);
+        NVs.push_back(NVsR);
     }
+    plt::plot_surface(Nus,Nvs,NVs);
+    plt::show();
+    plt::plot_surface(CGus,CGvs,CGVs);
+    plt::show();
     cout << "Distance via Newton's Method for 2D: " << NewtonMethod(p1,A,0.8,0.2,0.00001,.5)[2] << endl;
     plt::plot_surface_with_vector_field(u,v,dist,x2,y2,z2,u2,v2,w2,0.03);
     plt::show();
