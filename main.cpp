@@ -38,7 +38,6 @@ double bisection(Model model, vector<double> A, double min_u, double min_v, doub
 
     return min_distance;
 }
-
 vector<double> computeInitialUV(Model model, vector<double> A, double step){
     double min_distance = 100;
     double u = 0;
@@ -58,14 +57,12 @@ vector<double> computeInitialUV(Model model, vector<double> A, double step){
     }
     return vector<double>({u_min,v_min});
 }
-
 double distanceToCusp(Model model, vector<double> A, double eps = 0.01){
     double step = 0.025;
 
     vector<double> initUV = computeInitialUV(model,A,step);
     return model.distanceToTopPoint(initUV[0], initUV[1], A);
 }
-
 void drawPart(Model &model, vector<vector<double>> &x, vector<vector<double>> &y, vector<vector<double>> &z) {
     for (double i = 1; i >= 0; i -= 0.1) {
         vector<double> x_row, y_row, z_row;
@@ -96,9 +93,6 @@ void drawPart(Model &model, vector<vector<double>> &x, vector<vector<double>> &y
     }
 }
 
-
-
-
 double f(double x, double y){
     return sin(x)*x*x + sin(y)*y*y;
 }
@@ -117,30 +111,6 @@ double fdydy(double x, double y){
 double fdxdy(double x, double y){
     return 0;
 }
-
-/*double f(double x, double y){
-    return - log(1 - x - y) - log(x) - log(y);
-}
-
-double fdx(double x, double y){
-    return 1/(1-x-y) - 1/x;
-}
-
-double fdy(double x, double y){
-    return 1/(1-x-y) - 1/y;
-}
-
-double fdxdx(double x, double y){
-    return 1/((1-x-y)*(1-x-y)) + 1/(x*x);
-}
-
-double fdydy(double x, double y){
-    return 1/((1-x-y)*(1-x-y)) + 1/(y*y);
-}
-
-double fdxdy(double x, double y){
-    return 1/((1-x-y)*(1-x-y));
-}*/
 
 double NewtonMethodTest(double x, double y, double eps=0.01, double sigma = 0.1){
 
@@ -198,6 +168,7 @@ double funcdx(double x) {
 double funcdxdx(double x){
     return 2 + 6*x;
 };
+
 double NewtonMethodSimpleFunc(double x, double eps){
     double V = func(x);
     double V_old;
@@ -229,6 +200,28 @@ double NewtonMethodSimpleFunc(double x, double eps){
 }
 
 
+double constraintFunc(double u, double v){
+    return pow((u < 0 ? -u : 0),3.0)
+           + pow((u > 1 ? u-1 : 0),3.0)
+           + pow((v < 0 ? -v : 0),3.0)
+           + pow((v > 1 ? v-1 : 0),3.0);
+}
+double constraintFuncdU(double u, double v){
+    return (u > 1 ? 3*pow((u-1),2.0) : 0) + (u < 0 ? -3*pow(u,2.0) : 0);
+}
+double constraintFuncdV(double u, double v){
+    return (v > 1 ? 3 * pow((v - 1), 2.0) : 0) + (v < 0 ? -3 * pow(v, 2.0) : 0);
+}
+double constraintFuncdUdU(double u, double v){
+    return (u > 1 ? 6*(u-1) : 0) + (u < 0 ? -6*u : 0);
+}
+double constraintFuncdVdV(double u, double v){
+    return (u > 1 ? 6*(u-1) : 0) + (u < 0 ? -6*u : 0);
+}
+double constraintFuncdUdV(double u, double v){
+    return 0;
+}
+
 
 double gradientDescent(Model model, vector<double> A, double u, double v, double eps=0.01, double gamma = 0.1){
     double dist = model.distanceToTopPoint(u,v,A);
@@ -257,9 +250,9 @@ double gradientDescent(Model model, vector<double> A, double u, double v, double
     return dist;
 }
 
-vector<double> NewtonMethod(Model model, vector<double> A, double u, double v, double eps=0.01, double sigma = 0.1){
+vector<double> NewtonMethod(Model model, vector<double> A, double u, double v, double eps=0.01, double sigma = 0.1, double lambda = 100, double HModifier = 1600){
 
-    double dist = model.distanceToTopPoint(u,v,A);
+    double dist = model.distanceToTopPoint(u,v,A) + lambda*constraintFunc(u,v);
     double u0 = u, v0 = v;
     double dist_old;
     int iter = 0;
@@ -273,13 +266,13 @@ vector<double> NewtonMethod(Model model, vector<double> A, double u, double v, d
 //        cout << "Distance at iteration " << iter << ": " << dist << " u: " << u << " v: " << v << endl;
         iter++;
 //        cout << "u: " << u << " v: " << v << endl;
-        grad[0] = model.completeDistanceTopDerU(u,v,A);
-        grad[1] = model.completeDistanceTopDerV(u,v,A);
+        grad[0] = model.completeDistanceTopDerU(u,v,A) + lambda*constraintFuncdU(u,v);
+        grad[1] = model.completeDistanceTopDerV(u,v,A) + lambda*constraintFuncdV(u,v);
 //        cout << "du: " << grad[0] << " dv: " << grad[1] << endl;
-        H[0][0] = model.completeDistanceTopDerUU2(u, v, A);
-        H[0][1] = model.completeDistanceTopDerUV2(u, v, A);
-        H[1][0] = model.completeDistanceTopDerUV2(u, v, A);
-        H[1][1] = model.completeDistanceTopDerVV2(u, v, A);
+        H[0][0] = model.completeDistanceTopDerUU2(u, v, A) + lambda*constraintFuncdUdU(u,v);
+        H[0][1] = model.completeDistanceTopDerUV2(u, v, A) + lambda*constraintFuncdUdU(u,v);
+        H[1][0] = model.completeDistanceTopDerUV2(u, v, A) + lambda*constraintFuncdUdU(u,v);
+        H[1][1] = model.completeDistanceTopDerVV2(u, v, A) + lambda*constraintFuncdUdU(u,v);
 
 //        cout << "dudu: " << H[0][0] << " dudv: " << H[0][1] << " dvdv: " << H[1][1] << endl;
         double invConst = 1/(H[0][0] * H[1][1] - H[1][0] * H[0][1]);
@@ -309,20 +302,18 @@ vector<double> NewtonMethod(Model model, vector<double> A, double u, double v, d
             v = 1;
         }
         dist_old = dist;
-        dist = model.distanceToTopPoint(u,v,A);
+        dist = model.distanceToTopPoint(u,v,A) + lambda*constraintFunc(u,v);
         us.push_back(u);
         vs.push_back(v);
+        HModifier /= 2;
     }while(abs(dist_old - dist) > eps);
 //    plt::plot(us,vs);
 //    plt::show();
 //    cout << "Newton's method iterations: " << iter << " u: " << u << " v: " << v << endl;
-    return {u,v,dist,u0,v0};
+    return {u,v,dist,u0,v0,static_cast<double>(iter)};
 }
 
-
-
-
-double NewtonForLinearCG(Model model, vector<double> A, double u, double v, double dU, double dV, double eps){
+double NewtonForLinearCG(Model model, vector<double> A, double u, double v, double dU, double dV, double eps, double HModifier = 0){
     double V = model.distanceToTopPoint(u,v,A);
     double V_old;
     double t = 0;
@@ -359,8 +350,7 @@ double NewtonForLinearCG(Model model, vector<double> A, double u, double v, doub
     return t;
 }
 
-
-vector<double> FletcherReevesCG(Model model, vector<double> A, double u, double v, double eps=0.0001, int plot = 0){
+vector<double> FletcherReevesCG(Model model, vector<double> A, double u, double v, double eps=0.0001, int plot = 0, double HModifier = 0){
     double dU, dV, alpha, beta, dU2, dV2, u0 = u, v0 = v;
     int iter = 0;
     //cout << "u: " << u << " v: " << v << endl;
@@ -407,6 +397,40 @@ vector<double> FletcherReevesCG(Model model, vector<double> A, double u, double 
     return {u,v,model.distanceToTopPoint(u,v,A), u0, v0};
 }
 
+vector<double> findStartingPoint(Model model, vector<double> A){
+    double ul = 0, ur = 1, vl = 0, vr = 1;
+    double dist = model.distanceToTopPoint(0.5,0.5,A);
+    double um, vm;
+    for (int i = 0; i < 12; ++i) {
+        if( i % 2 == 0 ) {
+            um = (ul+ur)/2;
+            vm = (vl+vr)/2;
+            double u1 = (ul+um)/2;
+            double u2 = (ur+um)/2;
+            double dist1 = model.distanceToTopPoint(u1,vm,A);
+            double dist2 = model.distanceToTopPoint(u2,vm,A);
+            if(dist1 < dist2){
+                ur = um;
+            }else{
+                ul = um;
+            }
+        }else{
+            um = (ul+ur)/2;
+            vm = (vl+vr)/2;
+            double v1 = (vl + vm)/2;
+            double v2 = (vr + vm)/2;
+            double dist1 = model.distanceToTopPoint(um,v1,A);
+            double dist2 = model.distanceToTopPoint(um,v2,A);
+            if(dist1 < dist2){
+                vr = vm;
+            }else{
+                vl = vm;
+            }
+        }
+    }
+    return {um,vm};
+}
+
 int main() {
 
     Model model = Model(
@@ -414,7 +438,7 @@ int main() {
             59.5/180 * M_PI,
             11.4,
             14.4,
-            2.04,
+            10,
             1.2,
             50.0/180*M_PI,
             7.2,
@@ -437,13 +461,13 @@ int main() {
 
 
     drawPart(p1, x, y, z);
-    drawPart(p2, x, y, z);
-
-    drawPart(p3, x, y, z);
-    drawPart(p4, x, y, z);
-
-    drawPart(p5, x, y, z);
-    drawPart(p6, x, y, z);
+//    drawPart(p2, x, y, z);
+//
+//    drawPart(p3, x, y, z);
+//    drawPart(p4, x, y, z);
+//
+//    drawPart(p5, x, y, z);
+//    drawPart(p6, x, y, z);
 
     plt::plot_surface(x,y,z);
     plt::xlim(-20,20);
@@ -455,14 +479,14 @@ int main() {
     vector<double> A = {8,6.3,10};
     vector<vector<double>> u,v,dist;
     double min_dist = 100000;
-    for (double i = 0; i < 1; i += 0.05) {
+    for (double i = -0.2; i < 1.2; i += 0.05) {
         vector<double> uRow, vRow, distRow;
-        for (double j = 0; j < 1; j += 0.05) {
+        for (double j = -0.2; j < 1.2; j += 0.05) {
             uRow.push_back(j);
             vRow.push_back(i);
-            distRow.push_back(p1.distanceToTopPoint(j,i,A));
-            if(min_dist > p1.distanceToTopPoint(j,i,A))
-                min_dist = p1.distanceToTopPoint(j,i,A);
+            distRow.push_back(p1.distanceToTopPoint(j,i,A) + 100*constraintFunc(j,i));
+            if(min_dist > p1.distanceToTopPoint(j,i,A) + 100*constraintFunc(j,i))
+                min_dist = p1.distanceToTopPoint(j,i,A) + 100*constraintFunc(j,i);
         }
         u.push_back(uRow);
         v.push_back(vRow);
@@ -473,14 +497,14 @@ int main() {
 //    plt::show();
     double scale = 0.10;
     vector<double> x2,y2,z2,u2,v2,w2;
-    for (double i = 0; i < 1; i += 0.05) {
-        for (double j = 0; j < 1; j += 0.05) {
+    for (double i = -0.2; i < 1.2; i += 0.05) {
+        for (double j = -0.2; j < 1.2; j += 0.05) {
             x2.push_back(j);
             y2.push_back(i);
             z2.push_back(min_dist);
             double tU, tV;
-            tU = p1.completeDistanceTopDerU(j,i,A);
-            tV = p1.completeDistanceTopDerV(j,i,A);
+            tU = p1.completeDistanceTopDerU(j,i,A) + 100*constraintFuncdU(j,i);
+            tV = p1.completeDistanceTopDerV(j,i,A) + 100*constraintFuncdV(j,i);
             u2.push_back(tU);
             v2.push_back(tV);
             w2.push_back(0);
@@ -500,14 +524,14 @@ int main() {
             NvsR.push_back(res[4]);
             if(res[0] < 1 && res[0] > 0 && res[1] < 1 && res[1] > 0){
                 NVsR.push_back(0);
+                cout << "Newton u: " << res[0] << " v: " << res[1] << " V: " << res[2] << " u0: " << res[3] << " v0: " << res[4] << " iterations: " << res[5] << endl;
+
             }else {
                 NVsR.push_back(1);
+                cout << "Newton u: " << res[0] << " v: " << res[1] << " V: " << res[2] << " u0: " << res[3] << " v0: " << res[4] << " iterations: " << res[5] << endl;
             }
-            if( res[0] < 1 && res[0] > 0 && res[1] < 1 && res[1] > 0 && res[2] > min_dist){
-                cout << "Newton u: " << res[0] << " v: " << res[1] << " V: " << res[2] << " u0: " << res[3] << " v0: " << res[4] << endl;
 
-            }
-            res = FletcherReevesCG(p1,A,j,i,0.00001);
+           /* res = FletcherReevesCG(p1,A,j,i,0.00001);
             CGusR.push_back(res[3]);
             CGvsR.push_back(res[4]);
             if(res[0] < 1 && res[0] > 0 && res[1] < 1 && res[1] > 0){
@@ -518,20 +542,20 @@ int main() {
             if( res[0] < 1 && res[0] > 0 && res[1] < 1 && res[1] > 0 && res[2] > min_dist) {
                 cout << "CG     u: " << res[0] << " v: " << res[1] << " V: " << res[2] << " u0: " << res[3] << " v0: "
                      << res[4] << endl;
-                FletcherReevesCG(p1, A, j, i, 0.00001, 1);
-            }
+                FletcherReevesCG(p1, A, j, i, 0.00001, 0);
+            }*/
         }
-        CGus.push_back(CGusR);
+        /*CGus.push_back(CGusR);
         CGvs.push_back(CGvsR);
-        CGVs.push_back(CGVsR);
+        CGVs.push_back(CGVsR);*/
         Nus.push_back(NusR);
         Nvs.push_back(NvsR);
         NVs.push_back(NVsR);
     }
     plt::plot_surface(Nus,Nvs,NVs);
     plt::show();
-    plt::plot_surface(CGus,CGvs,CGVs);
-    plt::show();
+   /* plt::plot_surface(CGus,CGvs,CGVs);
+    plt::show();*/
     cout << "Distance via Newton's Method for 2D: " << NewtonMethod(p1,A,0.8,0.2,0.00001,.5)[2] << endl;
     plt::plot_surface_with_vector_field(u,v,dist,x2,y2,z2,u2,v2,w2,0.03);
     plt::show();
@@ -543,6 +567,21 @@ int main() {
     plt::ylim(0,1);
     plt::show();
 
+    vector<double> P = {0,0,0};
+
+    for(double i = 4; i < 10; i += 0.2){
+        for(double j = 4; j < 10; j += 0.2){
+            for(double k = 4; k < 10; k += 0.2){
+                P = {i,j,k};
+                cout << "Point: " << i << ", " << j << ", " << k << endl;
+                vector<double> start = findStartingPoint(p1,P);
+                vector<double> res;
+                res = NewtonMethod(p1,P,start[0],start[1],0.00001,.5);
+                cout << "Newton u: " << res[0] << " v: " << res[1] << " V: " << res[2] << " u0: " << res[3] << " v0: " << res[4] << " iterations: " << res[5] << endl;
+
+            }
+        }
+    }
 //    cout << p1.fillTop(0.1,0.1)[0] << " " << p1.fillTop(0.1,0.1)[1] << " " <<p1.fillTop(0.1,0.1)[2] << " " <<endl;
 //    cout << p1.fillTopDerU(0.1,0.1)[0]<<" " << p1.fillTopDerU(0.1,0.1)[1]<< " " <<p1.fillTopDerU(0.1,0.1)[2] <<" " << endl;
 //    cout << p1.fillTopDerUU(0.1,0.1)[0]<< " " <<p1.fillTopDerUU(0.1,0.1)[1]<<" " << p1.fillTopDerUU(0.1,0.1)[2] << " " <<endl;

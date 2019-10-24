@@ -1,0 +1,68 @@
+should sinusoid curve be approximated by cubic Bezier?
+
+precision is slightly off when doing interpolation, not sure whether its float point truncation
+or something of with the calculation
+(probably floats, but should be cautious, when performing the calculations on GPU)
+
+one of the given calculations (bezierSinTop or smth) in the parameters.py is wrong
+
+derivatives for distance function give slightly weird results, yet Newton's algorithm seems to work fine
+(recheck derivatives, since you adapted them off of the 2D version, though the results might differ for this reason exactly)
+
+simple optimization task would be to partition the search space into 12 subspaces such that only 1 parametric function needs to be used
+
+
+
+
+
+
+Questions for Jiri:
+
+Regarding the derivative of the distance function.
+
+Root is simplified to d'(t) = sum((f(t) - P)f'(t)).
+
+This is not the direct mathematical derivation and it is made under the two assumptions:
+-minima of distance are equal to minima of squared distance
+-the root is invariant under multiplication, since it is 0
+
+Distance can be replaced by squared distance and it simplifies the computation by a lot.
+
+Do we care about points far enough where the curvature of the surface plays a major role?
+
+Two ways to approach spatial indexing. Subdivide surface or simply calculate equidistant starting points.
+In either case, you use Binary search to approach local point or surface. Question becomes when the function has
+multiple local minima. Do we care about those points?
+
+
+
+
+look into convex programming, since the parametric function is most likely convex
+
+from the looks of it, I can use either a gradient method or Newton's method, since we know the derivatives,
+so Newton's method seems like the obvious choice
+
+things to improve the basic version:
+ - preprocessing
+ - changing the derivatives into the proper formulation
+ - various Newton's method improvements, start at wikipedia
+ - look into other versions of Newton's method
+
+
+Newton's method calculations per step:
+ - calculate gradient
+ - calculate Hessian matrix
+ - either invert Hessian or Solve Hf(x)dx = -Grad f(x) // 2d matrix so not an issue
+ - solving Hf(x)dx = -Grad f(x) can be done approximately or completely // same
+
+currently implementing newtons method, doesnt work yet
+
+Newton's method does not work, if the Hessian is not positive definite. In this case, a modification is required.
+The book Numerical Optimization describes a few solutions. Also consider Wolfe, Goldstein or Armijo conditions.
+
+Working on Fletcher-Reeves CG, probably going to use Newton's method for the 1d minimization.
+1d Newton does not minimize properly, probably derivatives.
+
+
+Both Fletcher-Reeves CG and Newton's method work for the unconstrained case, now looking into constrained optimization
+versions.
