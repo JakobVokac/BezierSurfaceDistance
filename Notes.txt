@@ -66,3 +66,9 @@ Working on Fletcher-Reeves CG, probably going to use Newton's method for the 1d 
 
 Both Fletcher-Reeves CG and Newton's method work for the unconstrained case, now looking into constrained optimization
 versions.
+
+
+When executing 1D newton, you can change the distance and derivative computations to make it faster, since they only depend on 1 part of the parametric function.
+
+!!!IMPORTANT NOTE!!!
+The reason why Newton's method seems to jump so badly is probably because the valley isn't a proper minima, but a real maximum is present near.

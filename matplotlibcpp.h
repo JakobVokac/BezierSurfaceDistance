@@ -529,6 +529,7 @@ PyObject* get_array(const std::vector<Numeric>& v)
         PyTuple_SetItem(args2, 5, karray);
         PyObject *kwargs2 = PyDict_New();
         PyDict_SetItemString(kwargs2, "length", PyFloat_FromDouble(quiverLength));
+        PyDict_SetItemString(kwargs2, "pivot", PyString_FromString("tail"));
 
 
 

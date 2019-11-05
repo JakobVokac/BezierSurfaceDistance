@@ -119,6 +119,13 @@ public:
     double distranceToBottomPoint(double u, double v, vector<double> A);
 
     static Model getPart(Model model, int idx);
+
+    double squaredTopDist(double u, double v, vector<double> A);
+    double squaredTopDistDerU(double u, double v, vector<double> A);
+    double squaredTopDistDerV(double u, double v, vector<double> A);
+    double squaredTopDistDerUU(double u, double v, vector<double> A);
+    double squaredTopDistDerVV(double u, double v, vector<double> A);
+    double squaredTopDistDerUV(double u, double v, vector<double> A);
 };
 
 

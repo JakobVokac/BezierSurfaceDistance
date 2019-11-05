@@ -282,6 +282,56 @@ vector<double> Model::fillBottom(double u, double v){
     return point;
 }
 
+double Model::squaredTopDist(double u, double v, vector<double> A){
+    vector<double> top = fillTop(u,v);
+
+    double distance = pow(top[0] - A[0],2.0) + pow(top[1] - A[1],2.0) + pow(top[2] - A[2],2.0);
+    return distance;
+}
+
+double Model::squaredTopDistDerU(double u, double v, vector<double> A){
+    vector<double> top = fillTop(u,v);
+    vector<double> topDer = fillTopDerU(u,v);
+    double distance = 2*((top[0] - A[0])*topDer[0] + (top[1] - A[1])*topDer[1] + (top[2] - A[2])*topDer[2]);
+    return distance;
+}
+double Model::squaredTopDistDerV(double u, double v, vector<double> A){
+    vector<double> top = fillTop(u,v);
+    vector<double> topDer = fillTopDerV(u,v);
+    double distance = 2*((top[0] - A[0])*topDer[0] + (top[1] - A[1])*topDer[1] + (top[2] - A[2])*topDer[2]);
+    return distance;
+}
+double Model::squaredTopDistDerUU(double u, double v, vector<double> A){
+    vector<double> top = fillTop(u,v);
+    vector<double> topDer1 = fillTopDerU(u,v);
+    vector<double> topDer2 = fillTopDerUU(u,v);
+
+    double distance = 2*(pow((topDer1[0]),2.0) + (top[0] + A[0])*topDer2[0]
+                      + pow((topDer1[1]),2.0) + (top[1] + A[1])*topDer2[1]
+                      + pow((topDer1[2]),2.0) + (top[2] + A[2])*topDer2[2]);
+    return distance;
+}
+double Model::squaredTopDistDerVV(double u, double v, vector<double> A){
+    vector<double> top = fillTop(u,v);
+    vector<double> topDer1 = fillTopDerV(u,v);
+    vector<double> topDer2 = fillTopDerVV(u,v);
+
+    double distance = 2*(pow((topDer1[0]),2.0) + (top[0] + A[0])*topDer2[0]
+                         + pow((topDer1[1]),2.0) + (top[1] + A[1])*topDer2[1]
+                         + pow((topDer1[2]),2.0) + (top[2] + A[2])*topDer2[2]);
+    return distance;
+}
+double Model::squaredTopDistDerUV(double u, double v, vector<double> A){
+    vector<double> top = fillTop(u,v);
+    vector<double> topDerU = fillTopDerU(u,v);
+    vector<double> topDerV = fillTopDerV(u,v);
+    vector<double> topDerUV = fillTopDerUV(u,v);
+
+    double distance = 2*((top[0] - A[0])*topDerUV[0] + topDerV[0]*topDerU[0]
+                      + (top[1] - A[1])*topDerUV[1] + topDerV[1]*topDerU[1]
+                      + (top[2] - A[2])*topDerUV[2] + topDerV[2]*topDerU[2]);
+    return distance;
+}
 
 double Model::distanceToTopPoint(double u, double v, vector<double> A){
     vector<double> top = fillTop(u,v);
