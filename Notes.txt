@@ -72,3 +72,7 @@ When executing 1D newton, you can change the distance and derivative computation
 
 !!!IMPORTANT NOTE!!!
 The reason why Newton's method seems to jump so badly is probably because the valley isn't a proper minima, but a real maximum is present near.
+
+
+Tried quadratic interpolation for the start, but it seems to have issues at the very beginning. Can try 1st binary, then quadratic, then Newton.
+Binary search seems to do much better than quadratic interpolation for the start.

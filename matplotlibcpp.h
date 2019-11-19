@@ -453,6 +453,181 @@ PyObject* get_array(const std::vector<Numeric>& v)
     }
 
     template <typename Numeric>
+    void plot_surface_with_line_and_axes_set(const std::vector<::std::vector<Numeric>> &x,
+                      const std::vector<::std::vector<Numeric>> &y,
+                      const std::vector<::std::vector<Numeric>> &z,
+                      const std::vector<double> &axes,
+                      const std::vector<double> &linexs,
+                      const std::vector<double> &lineys,
+                      const std::vector<double> &linezs,
+                      const std::vector<double> &linexs2,
+                      const std::vector<double> &lineys2,
+                      const std::vector<double> &linezs2,
+                      const double line_len,
+                      const std::map<std::string, std::string> &keywords =
+                      std::map<std::string, std::string>())
+    {
+        // We lazily load the modules here the first time this function is called
+        // because I'm not sure that we can assume "matplotlib installed" implies
+        // "mpl_toolkits installed" on all platforms, and we don't want to require
+        // it for people who don't need 3d plots.
+        static PyObject *mpl_toolkitsmod = nullptr, *axis3dmod = nullptr;
+        if (!mpl_toolkitsmod) {
+            detail::_interpreter::get();
+
+            PyObject* mpl_toolkits = PyString_FromString("mpl_toolkits");
+            PyObject* axis3d = PyString_FromString("mpl_toolkits.mplot3d");
+            if (!mpl_toolkits || !axis3d) { throw std::runtime_error("couldnt create string"); }
+
+            mpl_toolkitsmod = PyImport_Import(mpl_toolkits);
+            Py_DECREF(mpl_toolkits);
+            if (!mpl_toolkitsmod) { throw std::runtime_error("Error loading module mpl_toolkits!"); }
+
+            axis3dmod = PyImport_Import(axis3d);
+            Py_DECREF(axis3d);
+            if (!axis3dmod) { throw std::runtime_error("Error loading module mpl_toolkits.mplot3d!"); }
+        }
+
+        assert(x.size() == y.size());
+        assert(y.size() == z.size());
+
+        // using numpy arrays
+        PyObject *xarray = get_2darray(x);
+        PyObject *yarray = get_2darray(y);
+        PyObject *zarray = get_2darray(z);
+
+        // construct positional args
+        PyObject *args = PyTuple_New(3);
+        PyTuple_SetItem(args, 0, xarray);
+        PyTuple_SetItem(args, 1, yarray);
+        PyTuple_SetItem(args, 2, zarray);
+
+        // Build up the kw args.
+        PyObject *kwargs = PyDict_New();
+        PyDict_SetItemString(kwargs, "rstride", PyInt_FromLong(1));
+        PyDict_SetItemString(kwargs, "cstride", PyInt_FromLong(1));
+
+        PyObject *python_colormap_coolwarm = PyObject_GetAttrString(
+                detail::_interpreter::get().s_python_colormap, "coolwarm");
+
+        PyDict_SetItemString(kwargs, "cmap", python_colormap_coolwarm);
+
+        for (std::map<std::string, std::string>::const_iterator it = keywords.begin();
+             it != keywords.end(); ++it) {
+            PyDict_SetItemString(kwargs, it->first.c_str(),
+                                 PyString_FromString(it->second.c_str()));
+        }
+
+        PyObject *fig =
+                PyObject_CallObject(detail::_interpreter::get().s_python_function_figure,
+                                    detail::_interpreter::get().s_python_empty_tuple);
+        if (!fig) throw std::runtime_error("Call to figure() failed.");
+
+        PyObject *gca_kwargs = PyDict_New();
+        PyDict_SetItemString(gca_kwargs, "projection", PyString_FromString("3d"));
+
+        PyObject *gca = PyObject_GetAttrString(fig, "gca");
+        if (!gca) throw std::runtime_error("No gca");
+        Py_INCREF(gca);
+        PyObject *axis = PyObject_Call(
+                gca, detail::_interpreter::get().s_python_empty_tuple, gca_kwargs);
+
+        if (!axis) throw std::runtime_error("No axis");
+        Py_INCREF(axis);
+
+        Py_DECREF(gca);
+        Py_DECREF(gca_kwargs);
+
+        PyObject *xlim_args = PyTuple_New(2);
+        PyTuple_SetItem(xlim_args, 0, PyInt_FromLong(axes[0]));
+        PyTuple_SetItem(xlim_args, 1, PyInt_FromLong(axes[1]));
+        PyObject *xlim_kwargs = PyDict_New();
+
+        PyObject *ylim_args = PyTuple_New(2);
+        PyTuple_SetItem(ylim_args, 0, PyInt_FromLong(axes[2]));
+        PyTuple_SetItem(ylim_args, 1, PyInt_FromLong(axes[3]));
+        PyObject *ylim_kwargs = PyDict_New();
+
+        PyObject *zlim_args = PyTuple_New(2);
+        PyTuple_SetItem(zlim_args, 0, PyInt_FromLong(axes[4]));
+        PyTuple_SetItem(zlim_args, 1, PyInt_FromLong(axes[5]));
+        PyObject *zlim_kwargs = PyDict_New();
+
+        PyObject *set_xlim = PyObject_GetAttrString(axis, "set_xlim3d");
+        if (!set_xlim) throw std::runtime_error("No xlim");
+        Py_INCREF(set_xlim);
+        PyObject *resx = PyObject_Call(set_xlim, xlim_args, xlim_kwargs);
+        if (!resx) throw std::runtime_error("failed xlim");
+        Py_DECREF(set_xlim);
+
+        PyObject *set_ylim = PyObject_GetAttrString(axis, "set_ylim3d");
+        if (!set_ylim) throw std::runtime_error("No ylim");
+        Py_INCREF(set_ylim);
+        PyObject *resy = PyObject_Call(set_ylim, ylim_args, ylim_kwargs);
+        if (!resy) throw std::runtime_error("failed ylim");
+        Py_DECREF(set_ylim);
+
+        PyObject *set_zlim = PyObject_GetAttrString(axis, "set_zlim3d");
+        if (!set_xlim) throw std::runtime_error("No zlim");
+        Py_INCREF(set_zlim);
+        PyObject *resz = PyObject_Call(set_zlim, zlim_args, zlim_kwargs);
+        if (!resz) throw std::runtime_error("failed zlim");
+        Py_DECREF(set_zlim);
+
+
+
+        PyObject* xlinearr = get_array(linexs);
+        PyObject* ylinearr = get_array(lineys);
+        PyObject* zlinearr = get_array(linezs);
+        PyObject* x2linearr = get_array(linexs2);
+        PyObject* y2linearr = get_array(lineys2);
+        PyObject* z2linearr = get_array(linezs2);
+
+
+        PyObject* line_args = PyTuple_New(6);
+        PyTuple_SetItem(line_args, 0, xlinearr);
+        PyTuple_SetItem(line_args, 1, ylinearr);
+        PyTuple_SetItem(line_args, 2, zlinearr);
+        PyTuple_SetItem(line_args, 3, x2linearr);
+        PyTuple_SetItem(line_args, 4, y2linearr);
+        PyTuple_SetItem(line_args, 5, z2linearr);
+
+
+        PyObject *line_kwargs = PyDict_New();
+        PyDict_SetItemString(line_kwargs, "length", PyFloat_FromDouble(line_len));
+        PyDict_SetItemString(line_kwargs, "pivot", PyString_FromString("tail"));
+        PyObject* colors = PyTuple_New(4);
+        PyTuple_SetItem(colors, 0, PyFloat_FromDouble(1.0));
+        PyTuple_SetItem(colors, 1, PyFloat_FromDouble(0));
+        PyTuple_SetItem(colors, 2, PyFloat_FromDouble(0));
+        PyTuple_SetItem(colors, 3, PyFloat_FromDouble(1.0));
+        PyDict_SetItemString(line_kwargs, "colors", colors);
+
+
+        PyObject *quiver = PyObject_GetAttrString(axis, "quiver");
+        if (!quiver) throw std::runtime_error("No quiver");
+        Py_INCREF(quiver);
+        PyObject *res_line = PyObject_Call(quiver, line_args, line_kwargs);
+        if (!res_line) throw std::runtime_error("failed quiver");
+        Py_DECREF(quiver);
+
+        PyObject *plot_surface = PyObject_GetAttrString(axis, "plot_wireframe");
+        if (!plot_surface) throw std::runtime_error("No surface");
+        Py_INCREF(plot_surface);
+        PyObject *res = PyObject_Call(plot_surface, args, kwargs);
+        if (!res) throw std::runtime_error("failed surface");
+        Py_DECREF(plot_surface);
+
+
+        Py_DECREF(axis);
+        Py_DECREF(args);
+        Py_DECREF(kwargs);
+        if (res) Py_DECREF(res);
+        if (res_line) Py_DECREF(res_line);
+    }
+
+
+    template <typename Numeric>
     void plot_surface_with_vector_field(const std::vector<::std::vector<Numeric>> &x,
                                         const std::vector<::std::vector<Numeric>> &y,
                                         const std::vector<::std::vector<Numeric>> &z,
