@@ -1551,6 +1551,120 @@ vector<double> fillTopParamDtt(Model m, double u0, double v0, double t, double l
     return add(add(mul(m.fillTopDerUU(u0+lamu*t,v0+lamv*t),lamu*lamu),mul(m.fillTopDerUV(u0+lamu*t,v0+lamv*t),2*lamu*lamv)),mul(m.fillTopDerVV(u0+lamu*t,v0+lamv*t),lamv*lamv));
 }
 
+
+vector<double> orthogonalProjection1DU(Model m, vector<double> P, double u, double v, double eps, int iter) {
+    double u0 = u, v0 = v;
+    double dist = 100000, distOld;
+    double lam1 = 1, lam2 = 2;
+    double dt = 1;
+    int i = 0;
+
+    vector<double> p0,p0P,du,duu,duv,dvv,dv,n,coefs,Ps,q,c1,c2,cq,s;
+    double g11, g12, g22, h11, h12, h22, g21, h21,k;
+
+    p0 = m.fillTop(u, v);
+
+    p0P = sub(P, p0);
+    distOld = dist;
+    dist = magnitude(p0P);
+    do {
+//        cout << "u: " << u << " v: " << v << endl;
+//        drawFillTopWithLine(m, {p0[0],p0[1],p0[2],p0P[0],p0P[1],p0P[2]}, {0,15,0,15,5,20});
+//        plt::show();
+        du = m.fillTopDerU(u, v);
+        dv = m.fillTopDerV(u, v);
+        duu = m.fillTopDerUU(u, v);
+        duv = m.fillTopDerVV(u, v);
+        dvv = m.fillTopDerUV(u, v);
+
+        n = cross(du, dv);
+        n = div(n, magnitude(n));
+
+//        drawFillTopWithLine(m, {p0[0],p0[1],p0[2],du[0],du[1],du[2]}, {0,15,0,15,5,20});
+//        plt::show();
+//        drawFillTopWithLine(m, {p0[0],p0[1],p0[2],dv[0],dv[1],dv[2]}, {0,15,0,15,5,20});
+//        plt::show();
+//        drawFillTopWithLine(m, {p0[0],p0[1],p0[2],n[0],n[1],n[2]}, {0,15,0,15,5,20});
+//        plt::show();
+        coefs = solve3Dlinear({du[0], dv[0], n[0], p0P[0]}, {du[1], dv[1], n[1], p0P[1]}, {du[2], dv[2], n[2], p0P[2]});
+        lam1 = coefs[0];
+        lam2 = coefs[1];
+        //double nu = coefs[2];
+
+//        cout << "lam1: " << lam1 << " lam2: " << lam2 << " nu: " << nu << endl;
+
+
+        g11 = dot(du, du);
+        g12 = dot(du, dv);
+        g21 = dot(dv, du);
+        g22 = dot(dv, dv);
+        h11 = dot(duu, n);
+        h12 = dot(duv, n);
+        h21 = h12;
+        h22 = dot(dvv, n);
+
+        k = (h11 * lam1 * lam1 + h12 * lam1 * lam2 + h21 * lam2 * lam1 + h22 * lam2 * lam2) /
+            (g11 * lam1 * lam1 + g12 * lam1 * lam2 + g21 * lam2 * lam1 + g22 * lam2 * lam2);
+
+//        cout << "curvature: " << k << " radius: " << 1.0/k << endl;
+
+//        drawSurWithLine(C,2,2, {p0[0],p0[1],p0[2],n[0]/k,n[1]/k,n[2]/k});
+//        plt::show();
+
+        s = add(p0, mul(n, 1.0 / k));
+//        drawFillTopWithLine(m, {p0[0],p0[1],p0[2],n[0]/k,n[1]/k,n[2]/k}, {0,15,0,15,5,20});
+//        plt::show();
+//        drawSurWithLine(C,2,2, {0,0,0,s[0],s[1],s[2]});
+//        plt::show();
+
+        Ps = sub(P, s);
+        q = add(s, div(Ps, magnitude(Ps) * abs(k)));
+        //double drawMag = magnitude(Ps)*abs(k);
+
+//        drawFillTopWithLine(m, {s[0],s[1],s[2],Ps[0]/drawMag,Ps[1]/drawMag,Ps[2]/drawMag}, {0,15,0,15,5,20});
+//        plt::show();
+
+        c1 = add(mul(du, lam1), mul(dv, lam2));
+        c2 = add(add(mul(duu, lam1 * lam1), mul(duv, 2 * lam1 * lam2)), mul(dvv, lam2 * lam2));
+
+//        vector<double> c = fillTopParam(m,u,v,0,lam1,lam2);
+//        vector<double> c1 = fillTopParamDt(m,u,v,0,lam1,lam2);
+//        vector<double> c2 = fillTopParamDtt(m,u,v,0,lam1,lam2);
+
+        cq = sub(q, p0);
+        dt = sign3D(c1, cq) * sqrt(abs(magnitude(cross(c1, cq)) / magnitude(cross(c1, c2))));
+
+        u += dt * lam1;
+        v += dt * lam2;
+        i++;
+        if (u < 0) {
+
+        }
+        if (u > 1) {
+
+        }
+        if (v < 0) {
+
+        }
+        if (v > 1) {
+
+        }
+
+        p0 = m.fillTop(u, v);
+
+        p0P = sub(P, p0);
+        distOld = dist;
+        dist = magnitude(p0P);
+        //cout << "dt: " << dt*lam1 + dt*lam2 << " ddist: " << abs(dist - magnitude(sub(P,m.fillTop(u,v)))) << endl;
+    }while(abs(dist - distOld) > eps && i < iter);
+
+    return {u,v,magnitude(sub(P,m.fillTop(u,v))),u0,v0,static_cast<double>(i)};
+}
+
+vector<double> orthogonalProjection1DV(Model m, vector<double> P, double u, double v, double eps, int iter) {
+
+}
+
 vector<double> orthogonalProjection(Model m, vector<double> P, double u, double v, double eps = 0.0000001, int iter = 100){
 
     double u0 = u, v0 = v;
@@ -1600,7 +1714,7 @@ vector<double> orthogonalProjection(Model m, vector<double> P, double u, double 
         g22 = dot(dv, dv);
         h11 = dot(duu, n);
         h12 = dot(duv, n);
-        h21 = dot(duv, n);
+        h21 = h12;
         h22 = dot(dvv, n);
 
         k = (h11 * lam1 * lam1 + h12 * lam1 * lam2 + h21 * lam2 * lam1 + h22 * lam2 * lam2) /
@@ -2076,14 +2190,22 @@ int main() {
           p4 = Model::getPart(model,3),
           p5 = Model::getPart(model,4),
           p6 = Model::getPart(model,5);
-
     vector<double> point = p1.fillTop(0.7,0.6);
     point[0] += 0.1;
     point[1] += 0.1;
     point[2] += 0.4;
     //orthogonalProjection(p1,point,0.5,0.5);
-    TestAlgorithmOnRandomCloseToSurface(p1,6,0,0,1);
+    //TestAlgorithmOnRandomCloseToSurface(p1,6,0,0,1);
 
+    vector<vector<double>> *Ps;
+    Ps = static_cast<vector<vector<double>> *>(malloc(1000 * sizeof(vector<double>(3))));
+
+    for (int i = 0; i < 1000; ++i) {
+        Ps[i].push_back({1.0*i,2.0*i,3.0*i});
+    }
+    double a = Ps[999][2];
+    cout << a << endl;
+    free(Ps);
     /*double dist = p1.squaredTopDist(0.3,0.5,point);
 
     double dU = p1.squaredTopDistDerU(0.3,0.5, point);
