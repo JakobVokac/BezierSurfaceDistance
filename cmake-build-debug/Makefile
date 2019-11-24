@@ -123,32 +123,18 @@ HeartValveModel/fast:
 	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/build
 .PHONY : HeartValveModel/fast
 
-Model.o: Model.cpp.o
+#=============================================================================
+# Target rules for targets named Parallel
 
-.PHONY : Model.o
+# Build rule for target.
+Parallel: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Parallel
+.PHONY : Parallel
 
-# target to build an object file
-Model.cpp.o:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/Model.cpp.o
-.PHONY : Model.cpp.o
-
-Model.i: Model.cpp.i
-
-.PHONY : Model.i
-
-# target to preprocess a source file
-Model.cpp.i:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/Model.cpp.i
-.PHONY : Model.cpp.i
-
-Model.s: Model.cpp.s
-
-.PHONY : Model.s
-
-# target to generate assembly for a file
-Model.cpp.s:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/Model.cpp.s
-.PHONY : Model.cpp.s
+# fast build rule for target.
+Parallel/fast:
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/build
+.PHONY : Parallel/fast
 
 bezier.o: bezier.cpp.o
 
@@ -157,6 +143,7 @@ bezier.o: bezier.cpp.o
 # target to build an object file
 bezier.cpp.o:
 	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier.cpp.o
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/bezier.cpp.o
 .PHONY : bezier.cpp.o
 
 bezier.i: bezier.cpp.i
@@ -166,6 +153,7 @@ bezier.i: bezier.cpp.i
 # target to preprocess a source file
 bezier.cpp.i:
 	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier.cpp.i
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/bezier.cpp.i
 .PHONY : bezier.cpp.i
 
 bezier.s: bezier.cpp.s
@@ -175,6 +163,7 @@ bezier.s: bezier.cpp.s
 # target to generate assembly for a file
 bezier.cpp.s:
 	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier.cpp.s
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/bezier.cpp.s
 .PHONY : bezier.cpp.s
 
 main.o: main.cpp.o
@@ -204,6 +193,63 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+model.o: model.cpp.o
+
+.PHONY : model.o
+
+# target to build an object file
+model.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/model.cpp.o
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/model.cpp.o
+.PHONY : model.cpp.o
+
+model.i: model.cpp.i
+
+.PHONY : model.i
+
+# target to preprocess a source file
+model.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/model.cpp.i
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/model.cpp.i
+.PHONY : model.cpp.i
+
+model.s: model.cpp.s
+
+.PHONY : model.s
+
+# target to generate assembly for a file
+model.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/model.cpp.s
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/model.cpp.s
+.PHONY : model.cpp.s
+
+parallel.o: parallel.cpp.o
+
+.PHONY : parallel.o
+
+# target to build an object file
+parallel.cpp.o:
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/parallel.cpp.o
+.PHONY : parallel.cpp.o
+
+parallel.i: parallel.cpp.i
+
+.PHONY : parallel.i
+
+# target to preprocess a source file
+parallel.cpp.i:
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/parallel.cpp.i
+.PHONY : parallel.cpp.i
+
+parallel.s: parallel.cpp.s
+
+.PHONY : parallel.s
+
+# target to generate assembly for a file
+parallel.cpp.s:
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/parallel.cpp.s
+.PHONY : parallel.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -211,17 +257,21 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... HeartValveModel"
 	@echo "... edit_cache"
-	@echo "... Model.o"
-	@echo "... Model.i"
-	@echo "... Model.s"
+	@echo "... HeartValveModel"
+	@echo "... Parallel"
 	@echo "... bezier.o"
 	@echo "... bezier.i"
 	@echo "... bezier.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... model.o"
+	@echo "... model.i"
+	@echo "... model.s"
+	@echo "... parallel.o"
+	@echo "... parallel.i"
+	@echo "... parallel.s"
 .PHONY : help
 
 

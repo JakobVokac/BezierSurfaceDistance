@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/s3179222/CLionProjects/HeartValveModel/Model.h
-bezier.h
-/home/s3179222/CLionProjects/HeartValveModel/bezier.h
-cmath
--
-
 /home/s3179222/CLionProjects/HeartValveModel/bezier.h
 vector
 -
@@ -25,10 +19,12 @@ vector
 -
 chrono
 -
+cmath
+-
 float.h
 -
-Model.h
-/home/s3179222/CLionProjects/HeartValveModel/Model.h
+model.h
+/home/s3179222/CLionProjects/HeartValveModel/model.h
 matplotlibcpp.h
 /home/s3179222/CLionProjects/HeartValveModel/matplotlibcpp.h
 
@@ -56,6 +52,12 @@ Python.h
 numpy/arrayobject.h
 -
 opencv2/opencv.hpp
+-
+
+/home/s3179222/CLionProjects/HeartValveModel/model.h
+bezier.h
+/home/s3179222/CLionProjects/HeartValveModel/bezier.h
+cmath
 -
 
 /usr/include/python2.7/Python.h

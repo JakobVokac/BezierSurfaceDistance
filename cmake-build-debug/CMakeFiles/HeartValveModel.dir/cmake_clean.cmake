@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/HeartValveModel.dir/Model.cpp.o"
   "CMakeFiles/HeartValveModel.dir/bezier.cpp.o"
   "CMakeFiles/HeartValveModel.dir/main.cpp.o"
+  "CMakeFiles/HeartValveModel.dir/model.cpp.o"
   "HeartValveModel"
   "HeartValveModel.pdb"
 )

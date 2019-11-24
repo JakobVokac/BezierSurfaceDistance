@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/s3179222/CLionProjects/HeartValveModel/Model.cpp" "/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles/HeartValveModel.dir/Model.cpp.o"
   "/home/s3179222/CLionProjects/HeartValveModel/bezier.cpp" "/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles/HeartValveModel.dir/bezier.cpp.o"
   "/home/s3179222/CLionProjects/HeartValveModel/main.cpp" "/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles/HeartValveModel.dir/main.cpp.o"
+  "/home/s3179222/CLionProjects/HeartValveModel/model.cpp" "/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles/HeartValveModel.dir/model.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

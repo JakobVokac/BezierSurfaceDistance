@@ -1,13 +1,18 @@
 #include <iostream>
 #include <vector>
 #include <chrono>
+#include <cmath>
 #include <float.h>
-#include "Model.h"
+#include "model.h"
 #include "matplotlibcpp.h"
 
 namespace plt = matplotlibcpp;
 
+int onedimcalls = 0;
 
+double inrange(double x, double low, double high){
+    return max(min(x, high),low);
+}
 
 double bisection(Model model, vector<double> A, double min_u, double min_v, double step, double eps=0.01){
     double min_distance = 100;
@@ -425,7 +430,7 @@ vector<double> NewtonMethod(Model model, vector<double> A, double u, double v, d
         us.push_back(u);
         vs.push_back(v);
         HModifier /= 2;
-    }while(abs(dist_old - dist) > eps);
+    }while(abs(dist_old - dist) > eps && iter < 20);
 //    plt::plot(us,vs);
 //    plt::show();
 //    cout << "Newton's method iterations: " << iter << " u: " << u << " v: " << v << endl;
@@ -436,7 +441,7 @@ double NewtonForLinearCG(Model model, vector<double> A, double u, double v, doub
     double V = model.distanceToTopPoint(u,v,A);
     double V_old;
     double t = 0;
-
+    int iter = 0;
 
     do{
         t -= (dU * model.squaredTopDistDerU(u + dU*t,v + dV*t,A) + dV * model.squaredTopDistDerV(u + dU*t,v + dV*t,A))
@@ -447,7 +452,8 @@ double NewtonForLinearCG(Model model, vector<double> A, double u, double v, doub
 //        cout << "t: " << t << endl;
         V_old = V;
         V = model.distanceToTopPoint(u + dU*t, v + dV*t, A);
-    }while(abs(V-V_old) > eps && 0 <= u + dU*t && u + dU*t <= 1 && v + dV*t <= 1 && 0 <= v + dV*t);
+        iter++;
+    }while(abs(V-V_old) > eps && 0 <= u + dU*t && u + dU*t <= 1 && v + dV*t <= 1 && 0 <= v + dV*t && iter < 10);
 
     vector<double> xs,ys, ys2, ys3;
 
@@ -636,13 +642,13 @@ vector<double> FletcherReevesCG(Model model, vector<double> A, double u, double 
     // p 0 <- - Grad f 0 = Grad f(u,v)
     dU2 = -model.squaredTopDistDerU(u,v,A);
     dV2 = -model.squaredTopDistDerV(u,v,A);
-    vector<double> xs, ys, is, js,zs,ks;
-    xs.push_back(u);
-    ys.push_back(v);
-    zs.push_back(0);
-    is.push_back(dU2);
-    js.push_back(dV2);
-    ks.push_back(0);
+//    vector<double> xs, ys, is, js,zs,ks;
+//    xs.push_back(u);
+//    ys.push_back(v);
+//    zs.push_back(0);
+//    is.push_back(dU2);
+//    js.push_back(dV2);
+//    ks.push_back(0);
     do{
         dU = dU2;
         dV = dV2;
@@ -651,41 +657,41 @@ vector<double> FletcherReevesCG(Model model, vector<double> A, double u, double 
         alpha = NewtonForLinearCG(model,A,u,v,dU,dV,eps);
 //        cout << "alpha: " << alpha << endl;
 //        cout << "dU: " << dU << " dV: " << dV << endl;
-        if(plot){
-            cout << "u: " << u << " v: " << v << " dU: " << dU << " dV: " << dV << " alpha: " << alpha << endl;
-        }
+//        if(plot){
+//            cout << "u: " << u << " v: " << v << " dU: " << dU << " dV: " << dV << " alpha: " << alpha << endl;
+//        }
         u += alpha * dU;
         v += alpha * dV;
         if (u < 0) {
 //            plt::plot(us,vs);
 //            plt::show();
             alpha = NewtonForLinearCG(model,A,0,v,0,1,eps);
-            cout << "u: " << u << " v: " << v << endl;
-            DrawDistWithDirection(model,A);
+//            cout << "u: " << u << " v: " << v << endl;
+//            DrawDistWithDirection(model,A);
             return {0,v + alpha, model.distanceToTopPoint(0,v + alpha,A), u0, v0, static_cast<double>(iter)};
         }
         if (u > 1) {
 //            plt::plot(us,vs);
 //            plt::show();
             alpha = NewtonForLinearCG(model,A,1,v,0,1,eps);
-            cout << "u: " << u << " v: " << v << endl;
-            DrawDistWithDirection(model,A);
+//            cout << "u: " << u << " v: " << v << endl;
+//            DrawDistWithDirection(model,A);
             return {1,v + alpha, model.distanceToTopPoint(1,v + alpha,A), u0, v0, static_cast<double>(iter)};
         }
         if (v < 0) {
 //            plt::plot(us,vs);
 //            plt::show();
             alpha = NewtonForLinearCG(model,A,u,0,1,0,eps);
-            cout << "u: " << u << " v: " << v << endl;
-            DrawDistWithDirection(model,A);
+//            cout << "u: " << u << " v: " << v << endl;
+//            DrawDistWithDirection(model,A);
             return {u + alpha,0, model.distanceToTopPoint(u + alpha,0,A), u0, v0, static_cast<double>(iter)};
         }
         if (v > 1) {
 //            plt::plot(us,vs);
 //            plt::show();
             alpha = NewtonForLinearCG(model,A,u,1,1,0,eps);
-            cout << "u: " << u << " v: " << v << endl;
-            DrawDistWithDirection(model,A);
+//            cout << "u: " << u << " v: " << v << endl;
+//            DrawDistWithDirection(model,A);
             return {u + alpha,1, model.distanceToTopPoint(u + alpha,1,A), u0, v0, static_cast<double>(iter)};
         }
 
@@ -700,21 +706,21 @@ vector<double> FletcherReevesCG(Model model, vector<double> A, double u, double 
 
         //k <- k + 1
         iter++;
-        xs.push_back(u);
-        ys.push_back(v);
-        zs.push_back(50);
-        is.push_back(dU2);
-        js.push_back(dV2);
-        ks.push_back(0);
+//        xs.push_back(u);
+//        ys.push_back(v);
+//        zs.push_back(50);
+//        is.push_back(dU2);
+//        js.push_back(dV2);
+//        ks.push_back(0);
 //        cout << "u: " << u << " v: " << v << endl;
     }while(abs(dU + dV) > eps && iter < 10); // while Grad
-    cout << "u: " << u << " v: " << v << endl;
-    DrawDistWithDirection(model,A);
-
-    if(plot){
-        plt::plot(xs,ys, "g");
-        plt::show();
-    }
+//    cout << "u: " << u << " v: " << v << endl;
+//    DrawDistWithDirection(model,A);
+//
+//    if(plot){
+//        plt::plot(xs,ys, "g");
+//        plt::show();
+//    }
     return {u,v,model.distanceToTopPoint(u,v,A), u0, v0, static_cast<double>(iter)};
 }
 
@@ -1126,10 +1132,7 @@ double magnitude(vector<double> v){
     return sqrt(sum);
 }
 
-double curvature(vector<double> c1, vector<double> c2){
-    double mag = magnitude(c1);
-    return det(c1,c2)/(mag*mag*mag);
-}
+
 
 vector<double> circleCenterDir(vector<double> c1, vector<double> c2){
     double sign = 0;
@@ -1139,6 +1142,11 @@ vector<double> circleCenterDir(vector<double> c1, vector<double> c2){
         sign = -1;
     }
     return div({c1[1] * (-sign),c1[0] * sign},magnitude(c1));
+}
+
+double curvature(vector<double> c1, vector<double> c2){
+    double mag = magnitude(c2);
+    return det(c1,c2)/(mag*mag*mag);
 }
 
 vector<double> orthogonalProjectionTest(){
@@ -1368,6 +1376,16 @@ vector<double> cross(vector<double> a, vector<double> b){
     return {a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]};
 }
 
+double curvature3D(vector<double> c1, vector<double> c2){
+    double mag = magnitude(c1);
+    return magnitude(cross(c1,c2))/(mag*mag*mag);
+}
+vector<double> circleCenterDir3D(vector<double> c1, vector<double> c2) {
+    vector<double> c = cross(c1,c2);
+    c = cross(c,c1);
+    return div(c, magnitude(c));
+}
+
 vector<double> solve3Dlinear(vector<double> x, vector<double> y, vector<double> z){
     assert(x.size() == 4);
     assert(y.size() == 4);
@@ -1551,16 +1569,80 @@ vector<double> fillTopParamDtt(Model m, double u0, double v0, double t, double l
     return add(add(mul(m.fillTopDerUU(u0+lamu*t,v0+lamv*t),lamu*lamu),mul(m.fillTopDerUV(u0+lamu*t,v0+lamv*t),2*lamu*lamv)),mul(m.fillTopDerVV(u0+lamu*t,v0+lamv*t),lamv*lamv));
 }
 
+void drawCurveXY(CBezier b){
+    vector<double> x,y;
+    for (double i = 0; i < 1; i+=0.01) {
+        vector<double> p = cubicBezier(i,b);
+        x.push_back(p[0]);
+        y.push_back(p[1]);
+    }
+    plt::plot(x,y);
+}
 
-vector<double> orthogonalProjection1DU(Model m, vector<double> P, double u, double v, double eps, int iter) {
+vector<double> orthogonalProjection1D(CBezier b, vector<double> P, double t, double eps, int iter) {
+    double dist = 100000, distOld;
+    double dt = 0;
+    int i = 0;
+    vector<double> N = cross(sub(b.C2,b.C0),sub(b.C1,b.C0));
+    double D = abs(dot(N,P)-dot(N,b.C0))/magnitude(N);
+    vector<double> Pnew = sub(P,mul(N,D));
+
+    vector<double> p0,p0P,n,q,c1,c2,cq,c,s,u;
+    double k;
+
+    p0 = cubicBezier(t,b);
+
+    p0P = sub(Pnew, p0);
+    dist = magnitude(p0P);
+    do {
+
+        c1 = cubicBezierDer1(t,b);
+        c2 = cubicBezierDer2(t,b);
+
+        k = curvature3D(c1,c2);
+        c = circleCenterDir3D(c1,c2);
+        s = add(p0,div(c,k));
+        u = sub(Pnew,s);
+        q = add(s, div(u,k*magnitude(u)));
+        cq = sub(q,p0);
+        dt = sign3D(c1, cq) * sqrt(abs( 2*magnitude(cross(c1, cq))/magnitude(cross(c1, c2))));
+
+        t += dt;
+        double t2 = inrange(t,0,1);
+        if( t != t2 ){
+            return {t2,magnitude(sub(P,cubicBezier(t2,b))), static_cast<double>(i)};
+        }
+
+        p0 = cubicBezier(t,b);
+
+        p0P = sub(Pnew, p0);
+        distOld = dist;
+        dist = magnitude(p0P);
+//        drawCurveXY(b);
+//        vector<double> x = {c1[0]+p0[0],p0[0],c2[0]+p0[0],p0[0],p0[0]+c[0],p0[0],Pnew[0]}, y = {c1[1]+p0[1],p0[1],c2[1]+p0[1],p0[1],p0[1]+c[1],p0[1],Pnew[1]};
+//        plt::xlim(-20,20);
+//        plt::ylim(-20,20);
+//        plt::plot(x,y);
+//        plt::show();
+        i++;
+    }while(abs(dist - distOld) > eps && i < iter);
+
+    return {t,magnitude(sub(P,cubicBezier(t,b))), static_cast<double>(i)};
+}
+CBezier raiseDeg(QBezier q){
+    return {q.C0,add(mul(q.C0,1.0/3.0),mul(q.C1,2.0/3.0)),add(mul(q.C1,2.0/3.0),mul(q.C2,1.0/3.0)),q.C2};
+}
+
+vector<double> orthogonalProjection(Model m, vector<double> P, double u, double v, double eps = 0.0000001, int iter = 15){
+
     double u0 = u, v0 = v;
     double dist = 100000, distOld;
     double lam1 = 1, lam2 = 2;
     double dt = 1;
     int i = 0;
-
+    int rangecount = 1;
     vector<double> p0,p0P,du,duu,duv,dvv,dv,n,coefs,Ps,q,c1,c2,cq,s;
-    double g11, g12, g22, h11, h12, h22, g21, h21,k;
+    double g11, g12, g22, h11, h12, h22, g21, h21, k;
 
     p0 = m.fillTop(u, v);
 
@@ -1632,23 +1714,110 @@ vector<double> orthogonalProjection1DU(Model m, vector<double> P, double u, doub
 //        vector<double> c2 = fillTopParamDtt(m,u,v,0,lam1,lam2);
 
         cq = sub(q, p0);
-        dt = sign3D(c1, cq) * sqrt(abs(magnitude(cross(c1, cq)) / magnitude(cross(c1, c2))));
+        dt = sign3D(c1, cq) * sqrt(abs(2 * magnitude(cross(c1, cq)) / magnitude(cross(c1, c2))));
 
         u += dt * lam1;
         v += dt * lam2;
         i++;
-        if (u < 0) {
+        if(u < 0 && rangecount > 2){
+            onedimcalls++;
+            u = 0;
+            if(v < 0){
+                v = 0;
+                vector<double> res1, res2;
+                res1 = orthogonalProjection1D(m.symCurveTop,P,v,eps,iter-i);
+                res2 = orthogonalProjection1D(m.bendCurve,P,u,eps,iter-i);
+                if(res1[1] < res2[1]){
+                    v = res1[0];
+                }else{
+                    u = res1[0];
+                }
+                double distFinal = res1[1];
+                i += res1[2];
+                return {u,v,distFinal,u0,v0,static_cast<double>(i)};
+            }
+            if(v > 1){
+                v = 1;
+                vector<double> res1, res2;
+                res1 = orthogonalProjection1D(m.symCurveTop,P,v,eps,iter-i);
+                res2 = orthogonalProjection1D(m.leafCurve,P,u,eps,iter-i);
+                if(res1[1] < res2[1]){
+                    v = res1[0];
+                }else{
+                    u = res1[0];
+                }
+                double distFinal = res1[1];
+                i += res1[2];
+                return {u,v,distFinal,u0,v0,static_cast<double>(i)};
+            }
+            vector<double> res = orthogonalProjection1D(m.symCurveTop,P,v,eps,iter-i);
+            v = res[0];
+            double distFinal = res[1];
+            i += res[2];
+            return {u,v,distFinal,u0,v0,static_cast<double>(i)};
+        } else
+            rangecount++;
+        if(u > 1 && rangecount > 2){
+            onedimcalls++;
 
-        }
-        if (u > 1) {
+            u = 1;
+            if(v < 0){
+                v = 0;
+                vector<double> res1, res2;
+                res1 = orthogonalProjection1D(raiseDeg(m.sinCurveTop),P,v,eps,iter-i);
+                res2 = orthogonalProjection1D(m.bendCurve,P,u,eps,iter-i);
+                if(res1[1] < res2[1]){
+                    v = res1[0];
+                }else{
+                    u = res1[0];
+                }
+                double distFinal = res1[1];
+                i += res1[2];
+                return {u,v,distFinal,u0,v0,static_cast<double>(i)};
+            }
+            if(v > 1){
+                v = 1;
+                vector<double> res1, res2;
+                res1 = orthogonalProjection1D(raiseDeg(m.sinCurveTop),P,v,eps,iter-i);
+                res2 = orthogonalProjection1D(m.leafCurve,P,u,eps,iter-i);
+                if(res1[1] < res2[1]){
+                    v = res1[0];
+                }else{
+                    u = res1[0];
+                }
+                double distFinal = res1[1];
+                i += res1[2];
+                return {u,v,distFinal,u0,v0,static_cast<double>(i)};
+            }
+            vector<double> res = orthogonalProjection1D(raiseDeg(m.sinCurveTop),P,v,eps,iter-i);
+            v = res[0];
+            double distFinal = res[1];
+            i += res[2];
+            return {u,v,distFinal,u0,v0,static_cast<double>(i)};
+        } else
+            rangecount++;
+        if(v < 0 && rangecount > 2){
+            onedimcalls++;
 
-        }
-        if (v < 0) {
+            v = 0;
+            vector<double> res = orthogonalProjection1D(m.bendCurve,P,u,eps,iter-i);
+            u = res[0];
+            double distFinal = res[1];
+            i += res[2];
+            return {u,v,distFinal,u0,v0,static_cast<double>(i)};
+        } else
+            rangecount++;
+        if(v > 1 && rangecount > 2){
+            onedimcalls++;
 
-        }
-        if (v > 1) {
-
-        }
+            v = 1;
+            vector<double> res = orthogonalProjection1D(m.leafCurve,P,u,eps,iter-i);
+            u = res[0];
+            double distFinal = res[1];
+            i += res[2];
+            return {u,v,distFinal,u0,v0,static_cast<double>(i)};
+        } else
+            rangecount++;
 
         p0 = m.fillTop(u, v);
 
@@ -1656,122 +1825,8 @@ vector<double> orthogonalProjection1DU(Model m, vector<double> P, double u, doub
         distOld = dist;
         dist = magnitude(p0P);
         //cout << "dt: " << dt*lam1 + dt*lam2 << " ddist: " << abs(dist - magnitude(sub(P,m.fillTop(u,v)))) << endl;
-    }while(abs(dist - distOld) > eps && i < iter);
-
-    return {u,v,magnitude(sub(P,m.fillTop(u,v))),u0,v0,static_cast<double>(i)};
-}
-
-vector<double> orthogonalProjection1DV(Model m, vector<double> P, double u, double v, double eps, int iter) {
-
-}
-
-vector<double> orthogonalProjection(Model m, vector<double> P, double u, double v, double eps = 0.0000001, int iter = 100){
-
-    double u0 = u, v0 = v;
-    double dist = 100000, distOld;
-    double lam1 = 1, lam2 = 2;
-    double dt = 1;
-    int i = 0;
-
-    vector<double> p0,p0P,du,duu,duv,dvv,dv,n,coefs,Ps,q,c1,c2,cq,s;
-    double g11, g12, g22, h11, h12, h22, g21, h21,k;
-
-    p0 = m.fillTop(u, v);
-
-    p0P = sub(P, p0);
-    distOld = dist;
-    dist = magnitude(p0P);
-    do {
-//        cout << "u: " << u << " v: " << v << endl;
-//        drawFillTopWithLine(m, {p0[0],p0[1],p0[2],p0P[0],p0P[1],p0P[2]}, {0,15,0,15,5,20});
-//        plt::show();
-        du = m.fillTopDerU(u, v);
-        dv = m.fillTopDerV(u, v);
-        duu = m.fillTopDerUU(u, v);
-        duv = m.fillTopDerVV(u, v);
-        dvv = m.fillTopDerUV(u, v);
-
-        n = cross(du, dv);
-        n = div(n, magnitude(n));
-
-//        drawFillTopWithLine(m, {p0[0],p0[1],p0[2],du[0],du[1],du[2]}, {0,15,0,15,5,20});
-//        plt::show();
-//        drawFillTopWithLine(m, {p0[0],p0[1],p0[2],dv[0],dv[1],dv[2]}, {0,15,0,15,5,20});
-//        plt::show();
-//        drawFillTopWithLine(m, {p0[0],p0[1],p0[2],n[0],n[1],n[2]}, {0,15,0,15,5,20});
-//        plt::show();
-        coefs = solve3Dlinear({du[0], dv[0], n[0], p0P[0]}, {du[1], dv[1], n[1], p0P[1]}, {du[2], dv[2], n[2], p0P[2]});
-        lam1 = coefs[0];
-        lam2 = coefs[1];
-        //double nu = coefs[2];
-
-//        cout << "lam1: " << lam1 << " lam2: " << lam2 << " nu: " << nu << endl;
-
-
-        g11 = dot(du, du);
-        g12 = dot(du, dv);
-        g21 = dot(dv, du);
-        g22 = dot(dv, dv);
-        h11 = dot(duu, n);
-        h12 = dot(duv, n);
-        h21 = h12;
-        h22 = dot(dvv, n);
-
-        k = (h11 * lam1 * lam1 + h12 * lam1 * lam2 + h21 * lam2 * lam1 + h22 * lam2 * lam2) /
-            (g11 * lam1 * lam1 + g12 * lam1 * lam2 + g21 * lam2 * lam1 + g22 * lam2 * lam2);
-
-//        cout << "curvature: " << k << " radius: " << 1.0/k << endl;
-
-//        drawSurWithLine(C,2,2, {p0[0],p0[1],p0[2],n[0]/k,n[1]/k,n[2]/k});
-//        plt::show();
-
-        s = add(p0, mul(n, 1.0 / k));
-//        drawFillTopWithLine(m, {p0[0],p0[1],p0[2],n[0]/k,n[1]/k,n[2]/k}, {0,15,0,15,5,20});
-//        plt::show();
-//        drawSurWithLine(C,2,2, {0,0,0,s[0],s[1],s[2]});
-//        plt::show();
-
-        Ps = sub(P, s);
-        q = add(s, div(Ps, magnitude(Ps) * abs(k)));
-        //double drawMag = magnitude(Ps)*abs(k);
-
-//        drawFillTopWithLine(m, {s[0],s[1],s[2],Ps[0]/drawMag,Ps[1]/drawMag,Ps[2]/drawMag}, {0,15,0,15,5,20});
-//        plt::show();
-
-        c1 = add(mul(du, lam1), mul(dv, lam2));
-        c2 = add(add(mul(duu, lam1 * lam1), mul(duv, 2 * lam1 * lam2)), mul(dvv, lam2 * lam2));
-
-//        vector<double> c = fillTopParam(m,u,v,0,lam1,lam2);
-//        vector<double> c1 = fillTopParamDt(m,u,v,0,lam1,lam2);
-//        vector<double> c2 = fillTopParamDtt(m,u,v,0,lam1,lam2);
-
-        cq = sub(q, p0);
-        dt = sign3D(c1, cq) * sqrt(abs(magnitude(cross(c1, cq)) / magnitude(cross(c1, c2))));
-
-        u += dt * lam1;
-        v += dt * lam2;
-        i++;
-        if (u < 0) {
-
-        }
-        if (u > 1) {
-
-        }
-        if (v < 0) {
-
-        }
-        if (v > 1) {
-
-        }
-
-        p0 = m.fillTop(u, v);
-
-        p0P = sub(P, p0);
-        distOld = dist;
-        dist = magnitude(p0P);
-        //cout << "dt: " << dt*lam1 + dt*lam2 << " ddist: " << abs(dist - magnitude(sub(P,m.fillTop(u,v)))) << endl;
-    }while(abs(dist - distOld) > eps && i < iter);
-
+    }while((abs(dist - distOld) > eps && i < iter) || u != inrange(u,0,1) || v != inrange(v,0,1) );
+    //cout << "u: " << u << " v: " << v << endl;
     return {u,v,magnitude(sub(P,m.fillTop(u,v))),u0,v0,static_cast<double>(i)};
 }
 
@@ -1982,13 +2037,13 @@ void TestAlgorithmOnRandomUniform(Model model, int algorithm, int preprocess, in
     }
     cout << "reliability: " << double(reliability)/iterations << " average error: " << avgError/iterations << " average iterations: " << double(sumIters)/iterations << endl;
 }
-
-void TestAlgorithmOnRandomCloseToSurface(Model model, int algorithm, int preprocess, int seed, int plot = 0, int iterations = 1000, double GSAcc = 0.05, double eps = 0.0000001){
+void TestAlgorithmOnRandomFarFromSurface(Model model, int algorithm, int preprocess, int seed, int plot = 0, int iterations = 1000, double GSAcc = 0.05, double eps = 0.0000001){
+    cout << "Far from surface test: Preprocessing: " << preprocess << " ";
     int reliability = 0;
     double avgError = 0;
     int sumIters = 0;
     srand(seed);
-
+    int count1D = 0;
     time_t avgTime = 0;
 
     chrono::time_point<chrono::high_resolution_clock> t_start;
@@ -2000,9 +2055,9 @@ void TestAlgorithmOnRandomCloseToSurface(Model model, int algorithm, int preproc
     for (int i = 0; i < iterations; i++) {
         vector<double> P = model.fillTop(double(rand())/RAND_MAX,double(rand())/RAND_MAX);
 
-        P[0] += (double(rand())/RAND_MAX)*0.5;
-        P[1] += (double(rand())/RAND_MAX)*0.5;
-        P[2] += (double(rand())/RAND_MAX)*0.5;
+        P[0] += (double(rand())/RAND_MAX)*20;
+        P[1] += (double(rand())/RAND_MAX)*20;
+        P[2] += (double(rand())/RAND_MAX)*20;
 
         vector<double> start;
         double gridV = gridSearch(model,P,GSAcc);
@@ -2019,6 +2074,7 @@ void TestAlgorithmOnRandomCloseToSurface(Model model, int algorithm, int preproc
         }else
             start = {0.5,0.5};
 
+        int onedimold = onedimcalls;
         switch (algorithm) {
             case 0:
                 algV = gradientDescent(model,P,start[0],start[1],eps);
@@ -2031,21 +2087,21 @@ void TestAlgorithmOnRandomCloseToSurface(Model model, int algorithm, int preproc
                     cout << "Fletcher-Reeves CG ";
                 break;
             case 2:
-                algV = NewtonMethod(model,P, start[0], start[1], eps);
+                algV = NewtonMethod(model,P, start[0], start[1], eps,0.1,100,0);
                 if(plot)
                     cout << "Newton's Method ";
                 break;
             case 3:
                 t_start = chrono::high_resolution_clock::now();
-                algV = NewtonMethodProjected(model,P,start[0],start[1],eps,0.01,1600);
+                algV = NewtonMethodProjected(model,P,start[0],start[1],eps,0.01,0);
                 t_stop = chrono::high_resolution_clock::now();
                 t_duration2 = chrono::duration_cast<chrono::microseconds>(t_stop - t_start);
                 if(preprocess) {
                     avgTime += t_duration1.count() + t_duration2.count();
-                    cout << "Duration: " << t_duration1.count() + t_duration2.count() << " microseconds " << endl;
+//                    cout << "Duration: " << t_duration1.count() + t_duration2.count() << " microseconds " << endl;
                 }else {
                     avgTime += t_duration2.count();
-                    cout << "Duration: " << t_duration2.count() << " microseconds " << endl;
+//                    cout << "Duration: " << t_duration2.count() << " microseconds " << endl;
                 }
                 if(plot)
                     cout << "Newton's Method constrained ";
@@ -2068,10 +2124,10 @@ void TestAlgorithmOnRandomCloseToSurface(Model model, int algorithm, int preproc
                 t_duration2 = chrono::duration_cast<chrono::microseconds>(t_stop - t_start);
                 if(preprocess) {
                     avgTime += t_duration1.count() + t_duration2.count();
-                    cout << "Duration: " << t_duration1.count() + t_duration2.count() << " microseconds " << endl;
+                    //cout << "Duration: " << t_duration1.count() + t_duration2.count() << " microseconds " << endl;
                 }else {
                     avgTime += t_duration2.count();
-                    cout << "Duration: " << t_duration2.count() << " microseconds " << endl;
+                    //cout << "Duration: " << t_duration2.count() << " microseconds " << endl;
                 }
                 if(plot){
                     cout << "Geometric search: ";
@@ -2089,6 +2145,9 @@ void TestAlgorithmOnRandomCloseToSurface(Model model, int algorithm, int preproc
             reliability++;
         }else{
             avgError += (algV[2] - gridV)/gridV;
+            if(onedimold != onedimcalls){
+                count1D++;
+            }
             if(plot) {
                 cout << "Grid Search: " << gridV << endl;
                 vector<vector<double>> u, v, dist;
@@ -2154,6 +2213,186 @@ void TestAlgorithmOnRandomCloseToSurface(Model model, int algorithm, int preproc
             break;
     }
     cout << "reliability: " << double(reliability)/iterations << " average error: " << avgError/iterations << " average iterations: " << double(sumIters)/iterations << " average time: " << avgTime/iterations << " microseconds " << endl;
+   // cout << "% onedimcalls: " << double(onedimcalls)/iterations << " error by 1D search %: " << double(count1D)/onedimcalls << endl;
+}
+
+void TestAlgorithmOnRandomCloseToSurface(Model model, int algorithm, int preprocess, int seed, int plot = 0, int iterations = 1000, double GSAcc = 0.05, double eps = 0.0000001){
+    cout << "Close to surface test: Preprocessing: " << preprocess << " ";
+    int reliability = 0;
+    double avgError = 0;
+    int sumIters = 0;
+    srand(seed);
+    int count1D = 0;
+    time_t avgTime = 0;
+
+    chrono::time_point<chrono::high_resolution_clock> t_start;
+    chrono::time_point<chrono::high_resolution_clock> t_stop;
+    chrono::microseconds t_duration1;
+    chrono::microseconds t_duration2;
+
+
+    for (int i = 0; i < iterations; i++) {
+        vector<double> P = model.fillTop(double(rand())/RAND_MAX,double(rand())/RAND_MAX);
+
+        P[0] += (double(rand())/RAND_MAX)*0.5;
+        P[1] += (double(rand())/RAND_MAX)*0.5;
+        P[2] += (double(rand())/RAND_MAX)*0.5;
+
+        vector<double> start;
+        double gridV = gridSearch(model,P,GSAcc);
+        vector<double> algV;
+        if(algorithm == 5)
+            preprocess = 0;
+
+        if(preprocess) {
+            t_start = chrono::high_resolution_clock::now();
+            start = findStartingPoint(model, P, preprocess);
+            t_stop = chrono::high_resolution_clock::now();
+            t_duration1 = chrono::duration_cast<chrono::microseconds>(t_stop - t_start);
+
+        }else
+            start = {0.5,0.5};
+
+        int onedimold = onedimcalls;
+        switch (algorithm) {
+            case 0:
+                algV = gradientDescent(model,P,start[0],start[1],eps);
+                if(plot)
+                    cout << "Gradient Descent ";
+                break;
+            case 1:
+                algV = FletcherReevesCG(model,P,start[0],start[1],eps);
+                if(plot)
+                    cout << "Fletcher-Reeves CG ";
+                break;
+            case 2:
+                algV = NewtonMethod(model,P, start[0], start[1], eps,0.1,100,0);
+                if(plot)
+                    cout << "Newton's Method ";
+                break;
+            case 3:
+                t_start = chrono::high_resolution_clock::now();
+                algV = NewtonMethodProjected(model,P,start[0],start[1],eps,0.01,0);
+                t_stop = chrono::high_resolution_clock::now();
+                t_duration2 = chrono::duration_cast<chrono::microseconds>(t_stop - t_start);
+                if(preprocess) {
+                    avgTime += t_duration1.count() + t_duration2.count();
+//                    cout << "Duration: " << t_duration1.count() + t_duration2.count() << " microseconds " << endl;
+                }else {
+                    avgTime += t_duration2.count();
+//                    cout << "Duration: " << t_duration2.count() << " microseconds " << endl;
+                }
+                if(plot)
+                    cout << "Newton's Method constrained ";
+                break;
+            case 4:
+                // TODO: UNFINISHED!!
+                algV = FletcherReevesCGSecant(model,P,start[0],start[1],1.0/preprocess,eps);
+                if(plot)
+                    cout << "Fletcher-Reeves CG Secant constrained ";
+                break;
+            case 5:
+                algV = BinarySearch(model,P);
+                if(plot)
+                    cout << "Binary Search ";
+                break;
+            case 6:
+                t_start = chrono::high_resolution_clock::now();
+                algV = orthogonalProjection(model,P,start[0], start[1],eps);
+                t_stop = chrono::high_resolution_clock::now();
+                t_duration2 = chrono::duration_cast<chrono::microseconds>(t_stop - t_start);
+                if(preprocess) {
+                    avgTime += t_duration1.count() + t_duration2.count();
+                    //cout << "Duration: " << t_duration1.count() + t_duration2.count() << " microseconds " << endl;
+                }else {
+                    avgTime += t_duration2.count();
+                    //cout << "Duration: " << t_duration2.count() << " microseconds " << endl;
+                }
+                if(plot){
+                    cout << "Geometric search: ";
+                }
+                break;
+            default:
+                cout << "Algorithm number out of bounds" << endl;
+                i = iterations;
+                break;
+        }
+        if(plot)
+            cout << "u: " << algV[0] << " v: " << algV[1] << " V: " << algV[2] << " u0: " << algV[3] << " v0: " << algV[4] << " iterations: " << algV[5] << endl;
+
+        if(algV[2] <= gridV) {
+            reliability++;
+        }else{
+            avgError += (algV[2] - gridV)/gridV;
+            if(onedimold != onedimcalls){
+                count1D++;
+            }
+            if(plot) {
+                cout << "Grid Search: " << gridV << endl;
+                vector<vector<double>> u, v, dist;
+                double min_dist = 100000;
+                for (double i = -0.5; i < 1.5; i += 0.15) {
+                    vector<double> uRow, vRow, distRow;
+                    for (double j = -0.5; j < 1.5; j += 0.15) {
+                        uRow.push_back(j);
+                        vRow.push_back(i);
+                        distRow.push_back(model.squaredTopDist(j, i, P));
+                        if (min_dist > model.squaredTopDist(j, i, P)) {
+                            min_dist = model.squaredTopDist(j, i, P);
+                        }
+                    }
+                    u.push_back(uRow);
+                    v.push_back(vRow);
+                    dist.push_back(distRow);
+                }
+                vector<double> x2, y2, z2, u2, v2, w2;
+                for (double i = -0.5; i < 1.5; i += 0.15) {
+                    for (double j = -0.5; j < 1.5; j += 0.15) {
+                        x2.push_back(j);
+                        y2.push_back(i);
+                        z2.push_back(min_dist);
+                        double tU, tV;
+                        tU = model.squaredTopDistDerU(j, i, P);
+                        tV = model.squaredTopDistDerV(j, i, P);
+                        u2.push_back(tU);
+                        v2.push_back(tV);
+                        w2.push_back(0);
+                    }
+                }
+                plt::plot_surface_with_vector_field(u, v, dist, x2, y2, z2, u2, v2, w2, 0.1);
+                plt::show();
+            }
+        }
+
+        sumIters += int(algV[5]);
+
+    }
+    switch (algorithm) {
+        case 0:
+            cout << "Gradient Descent ";
+            break;
+        case 1:
+            cout << "Fletcher-Reeves CG ";
+            break;
+        case 2:
+            cout << "Newton's Method ";
+            break;
+        case 3:
+            cout << "Newton's Method constrained ";
+            break;
+        case 4:
+            cout << "Fletcher-Reeves CG Secant ";
+            break;
+        case 5:
+            cout << "Binary Search ";
+            break;
+        case 6:
+            cout << "Geometric Search ";
+        default:
+            break;
+    }
+    cout << "reliability: " << double(reliability)/iterations << " average error: " << avgError/iterations << " average iterations: " << double(sumIters)/iterations << " average time: " << avgTime/iterations << " microseconds " << endl;
+   // cout << "% onedimcalls: " << double(onedimcalls)/iterations << " error by 1D search %: " << double(count1D)/onedimcalls << endl;
 }
 
 int main() {
@@ -2190,22 +2429,29 @@ int main() {
           p4 = Model::getPart(model,3),
           p5 = Model::getPart(model,4),
           p6 = Model::getPart(model,5);
-    vector<double> point = p1.fillTop(0.7,0.6);
-    point[0] += 0.1;
-    point[1] += 0.1;
-    point[2] += 0.4;
+
+
+    for (int i = 0; i <= 12; i+= 4) {
+        TestAlgorithmOnRandomCloseToSurface(p1,1,i,0,0);
+        TestAlgorithmOnRandomFarFromSurface(p1,1,i,0,0);
+        TestAlgorithmOnRandomCloseToSurface(p1,2,i,0,0);
+        TestAlgorithmOnRandomFarFromSurface(p1,2,i,0,0);
+        TestAlgorithmOnRandomCloseToSurface(p1,3,i,0,0);
+        TestAlgorithmOnRandomFarFromSurface(p1,3,i,0,0);
+
+        TestAlgorithmOnRandomCloseToSurface(p1,6,i,0,0);
+        onedimcalls = 0;
+        TestAlgorithmOnRandomFarFromSurface(p1,6,i,0,0);
+        onedimcalls = 0;
+    }
+
+//    vector<double> point = p1.fillTop(0.7,0.6);
+//    point[0] += 0.1;
+//    point[1] += 0.1;
+//    point[2] += 0.4;
     //orthogonalProjection(p1,point,0.5,0.5);
     //TestAlgorithmOnRandomCloseToSurface(p1,6,0,0,1);
 
-    vector<vector<double>> *Ps;
-    Ps = static_cast<vector<vector<double>> *>(malloc(1000 * sizeof(vector<double>(3))));
-
-    for (int i = 0; i < 1000; ++i) {
-        Ps[i].push_back({1.0*i,2.0*i,3.0*i});
-    }
-    double a = Ps[999][2];
-    cout << a << endl;
-    free(Ps);
     /*double dist = p1.squaredTopDist(0.3,0.5,point);
 
     double dU = p1.squaredTopDistDerU(0.3,0.5, point);
@@ -2224,7 +2470,7 @@ int main() {
     cout << "binary " << res[0] << " " << res[1] << endl;
 
     DrawDistWithDirection(p1,point);*/
-    //TestAlgorithmOnRandomCloseToSurface(p1,1,12,0,1);
+
 
 //    drawPart(p2, x, y, z);
 //

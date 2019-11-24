@@ -70,18 +70,18 @@ CMakeFiles/HeartValveModel.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/main.cpp -o CMakeFiles/HeartValveModel.dir/main.cpp.s
 
-CMakeFiles/HeartValveModel.dir/Model.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
-CMakeFiles/HeartValveModel.dir/Model.cpp.o: ../Model.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/HeartValveModel.dir/Model.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/Model.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/Model.cpp
+CMakeFiles/HeartValveModel.dir/model.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
+CMakeFiles/HeartValveModel.dir/model.cpp.o: ../model.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/HeartValveModel.dir/model.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/model.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/model.cpp
 
-CMakeFiles/HeartValveModel.dir/Model.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/Model.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/Model.cpp > CMakeFiles/HeartValveModel.dir/Model.cpp.i
+CMakeFiles/HeartValveModel.dir/model.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/model.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/model.cpp > CMakeFiles/HeartValveModel.dir/model.cpp.i
 
-CMakeFiles/HeartValveModel.dir/Model.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/Model.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/Model.cpp -o CMakeFiles/HeartValveModel.dir/Model.cpp.s
+CMakeFiles/HeartValveModel.dir/model.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/model.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/model.cpp -o CMakeFiles/HeartValveModel.dir/model.cpp.s
 
 CMakeFiles/HeartValveModel.dir/bezier.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
 CMakeFiles/HeartValveModel.dir/bezier.cpp.o: ../bezier.cpp
@@ -99,14 +99,14 @@ CMakeFiles/HeartValveModel.dir/bezier.cpp.s: cmake_force
 # Object files for target HeartValveModel
 HeartValveModel_OBJECTS = \
 "CMakeFiles/HeartValveModel.dir/main.cpp.o" \
-"CMakeFiles/HeartValveModel.dir/Model.cpp.o" \
+"CMakeFiles/HeartValveModel.dir/model.cpp.o" \
 "CMakeFiles/HeartValveModel.dir/bezier.cpp.o"
 
 # External object files for target HeartValveModel
 HeartValveModel_EXTERNAL_OBJECTS =
 
 HeartValveModel: CMakeFiles/HeartValveModel.dir/main.cpp.o
-HeartValveModel: CMakeFiles/HeartValveModel.dir/Model.cpp.o
+HeartValveModel: CMakeFiles/HeartValveModel.dir/model.cpp.o
 HeartValveModel: CMakeFiles/HeartValveModel.dir/bezier.cpp.o
 HeartValveModel: CMakeFiles/HeartValveModel.dir/build.make
 HeartValveModel: /usr/lib/x86_64-linux-gnu/libpython2.7.so

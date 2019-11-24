@@ -2,7 +2,7 @@
 // Created by s3179222 on 10/12/19.
 //
 
-#include "Model.h"
+#include "model.h"
 
 Model::Model(
         double root_radius,

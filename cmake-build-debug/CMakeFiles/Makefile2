@@ -54,11 +54,13 @@ CMAKE_BINARY_DIR = /home/s3179222/CLionProjects/HeartValveModel/cmake-build-debu
 
 # The main recursive "all" target.
 all: CMakeFiles/HeartValveModel.dir/all
+all: CMakeFiles/Parallel.dir/all
 
 .PHONY : all
 
 # The main recursive "clean" target.
 clean: CMakeFiles/HeartValveModel.dir/clean
+clean: CMakeFiles/Parallel.dir/clean
 
 .PHONY : clean
 
@@ -93,6 +95,33 @@ HeartValveModel: CMakeFiles/HeartValveModel.dir/rule
 CMakeFiles/HeartValveModel.dir/clean:
 	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/clean
 .PHONY : CMakeFiles/HeartValveModel.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/Parallel.dir
+
+# All Build rule for target.
+CMakeFiles/Parallel.dir/all:
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/depend
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=5,6,7,8 "Built target Parallel"
+.PHONY : CMakeFiles/Parallel.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Parallel.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Parallel.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/Parallel.dir/rule
+
+# Convenience name for target.
+Parallel: CMakeFiles/Parallel.dir/rule
+
+.PHONY : Parallel
+
+# clean rule for target.
+CMakeFiles/Parallel.dir/clean:
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/clean
+.PHONY : CMakeFiles/Parallel.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

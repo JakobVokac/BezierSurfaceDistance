@@ -27,6 +27,16 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="HeartValveModel">
 				<Option output="/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/HeartValveModel" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug"/>
@@ -75,28 +85,60 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="edit_cache">
+			<Target title="Parallel">
+				<Option output="/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/Parallel" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug"/>
-				<Option type="4"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/Makefile&quot;  VERBOSE=1 Parallel"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Parallel/fast">
+				<Option output="/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/Parallel" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/Makefile&quot;  VERBOSE=1 Parallel/fast"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/Model.cpp">
-			<Option target="HeartValveModel"/>
-		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/Model.h">
-			<Option target="HeartValveModel"/>
-		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/bezier.cpp">
 			<Option target="HeartValveModel"/>
+			<Option target="Parallel"/>
 		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/bezier.h">
 			<Option target="HeartValveModel"/>
+			<Option target="Parallel"/>
 		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/main.cpp">
 			<Option target="HeartValveModel"/>
@@ -104,8 +146,20 @@
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/matplotlibcpp.h">
 			<Option target="HeartValveModel"/>
 		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/model.cpp">
+			<Option target="HeartValveModel"/>
+			<Option target="Parallel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/model.h">
+			<Option target="HeartValveModel"/>
+			<Option target="Parallel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/parallel.cpp">
+			<Option target="Parallel"/>
+		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/parameters.h">
 			<Option target="HeartValveModel"/>
+			<Option target="Parallel"/>
 		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

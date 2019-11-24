@@ -3,7 +3,9 @@ project(HeartValveModel)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(HeartValveModel main.cpp parameters.h Model.cpp Model.h bezier.cpp bezier.h matplotlibcpp.h)
+add_executable(HeartValveModel main.cpp parameters.h model.cpp model.h bezier.cpp bezier.h matplotlibcpp.h)
+
+add_executable(Parallel parallel.cpp parameters.h model.cpp model.h bezier.cpp bezier.h)
 
 find_package(PythonLibs 2.7)
 target_include_directories(HeartValveModel PRIVATE ${PYTHON_INCLUDE_DIRS})
