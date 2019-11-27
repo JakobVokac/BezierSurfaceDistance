@@ -73,19 +73,19 @@ double distanceToCusp(Model model, vector<double> A, double eps = 0.01){
     return model.distanceToTopPoint(initUV[0], initUV[1], A);
 }
 void drawPart(Model &model, vector<vector<double>> &x, vector<vector<double>> &y, vector<vector<double>> &z) {
-    for (double i = 1; i >= 0; i -= 0.1) {
-        vector<double> x_row, y_row, z_row;
-        for (double j = 0; j <= 1; j += 0.1) {
-            vector<double> p = model.fillTop(j, i);
-//            cout << p[0] << " " << p[1] << " " << p[2] << endl;
-            x_row.push_back(p[0]);
-            y_row.push_back(p[1]);
-            z_row.push_back(p[2]);
-        }
-        x.push_back(x_row);
-        y.push_back(y_row);
-        z.push_back(z_row);
-    }
+//    for (double i = 1; i >= 0; i -= 0.1) {
+//        vector<double> x_row, y_row, z_row;
+//        for (double j = 0; j <= 1; j += 0.1) {
+//            vector<double> p = model.fillTop(j, i);
+////            cout << p[0] << " " << p[1] << " " << p[2] << endl;
+//            x_row.push_back(p[0]);
+//            y_row.push_back(p[1]);
+//            z_row.push_back(p[2]);
+//        }
+//        x.push_back(x_row);
+//        y.push_back(y_row);
+//        z.push_back(z_row);
+//    }
 
     for (double i = 0.1; i <= 1;  i += 0.1) {
         vector<double> x_row, y_row, z_row;
@@ -413,7 +413,7 @@ vector<double> NewtonMethod(Model model, vector<double> A, double u, double v, d
 
         u -= sigma*(H[0][0] * grad[0] + H[0][1] * grad[1]);
         v -= sigma*(H[1][0] * grad[0] + H[1][1] * grad[1]);
-        if( u < 0 ){
+       /* if( u < 0 ){
             u = 0;
         }
         if( v < 0 ){
@@ -424,7 +424,7 @@ vector<double> NewtonMethod(Model model, vector<double> A, double u, double v, d
         }
         if( v > 1 ){
             v = 1;
-        }
+        }*/
         dist_old = dist;
         dist = model.distanceToTopPoint(u,v,A) + lambda*constraintFunc(u,v);
         us.push_back(u);
@@ -2430,6 +2430,46 @@ int main() {
           p5 = Model::getPart(model,4),
           p6 = Model::getPart(model,5);
 
+
+
+    vector<double> A = {4,4,4};
+    vector<vector<double>> u,v,dist;
+    double min_dist = 100000;
+    for (double i = -0; i <= 1; i += 0.05) {
+        vector<double> uRow, vRow, distRow;
+        for (double j = -0; j <= 1; j += 0.05) {
+            uRow.push_back(j);
+            vRow.push_back(i);
+            distRow.push_back(p1.distanceToTopPoint(j,i,A) );
+            if(min_dist > p1.distanceToTopPoint(j,i,A))
+                min_dist = p1.distanceToTopPoint(j,i,A);
+        }
+        u.push_back(uRow);
+        v.push_back(vRow);
+        dist.push_back(distRow);
+    }
+    double scale = 0.10;
+    vector<double> x2,y2,z2,u2,v2,w2;
+    for (double i = -0; i <= 1; i += 0.05) {
+        for (double j = -0; j <= 1; j += 0.05) {
+            x2.push_back(j);
+            y2.push_back(i);
+            z2.push_back(min_dist);
+            double tU, tV;
+            tU = p1.completeDistanceTopDerU(j,i,A);
+            tV = p1.completeDistanceTopDerV(j,i,A);
+            u2.push_back(tU);
+            v2.push_back(tV);
+            w2.push_back(0);
+        }
+    }
+    cout << "Rough expected distance: " << min_dist << endl;
+    vector<vector<double>> CGus, CGvs, CGVs;
+    vector<vector<double>> Nus, Nvs, NVs;
+
+
+    plt::plot_surface_with_vector_field(u,v,dist,x2,y2,z2,u2,v2,w2,0.03);
+    plt::show();
 
     for (int i = 0; i <= 12; i+= 4) {
         TestAlgorithmOnRandomCloseToSurface(p1,1,i,0,0);
