@@ -90,6 +90,31 @@ double quadBezierDer2(double t, int i, QBezier b) {
 
 }
 
+double sqDistBezier(CBezier c, double t, vector<double> A){
+    vector<double> P = cubicBezier(t,c);
+
+    double distance = pow(P[0] - A[0], 2.0) + pow(P[1] - A[1], 2.0) + pow(P[2] - A[2], 2.0);
+    return distance;
+}
+
+double sqDistBezierDer1(CBezier c, double t, vector<double> A){
+    vector<double> P = cubicBezier(t,c);
+    vector<double> Pd = cubicBezierDer1(t,c);
+    double distance = 2*((P[0] - A[0])*Pd[0] + (P[1] - A[1])*Pd[1] + (P[2] - A[2])*Pd[2]);
+    return distance;
+}
+
+double sqDistBezierDer2(CBezier c, double t, vector<double> A){
+    vector<double> P = cubicBezier(t,c);
+    vector<double> Pd = cubicBezierDer1(t,c);
+    vector<double> Pdd = cubicBezierDer2(t,c);
+
+    double distance = 2*(pow((Pd[0]),2.0) + (P[0] + A[0])*Pdd[0]
+                         + pow((Pd[1]),2.0) + (P[1] + A[1])*Pdd[1]
+                         + pow((Pd[2]),2.0) + (P[2] + A[2])*Pdd[2]);
+    return distance;
+}
+
 vector<double> RotAxisZ(double rad, vector<double> P){
     vector<double> Pn = {0,0,0};
 

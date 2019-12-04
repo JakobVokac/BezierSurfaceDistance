@@ -28,7 +28,7 @@ This is not the direct mathematical derivation and it is made under the two assu
 
 Distance can be replaced by squared distance and it simplifies the computation by a lot.
 
-Do we care about points far enough where the curvature of the surface plays a major role?
+Do we care about points far enough where the curvature2D of the surface plays a major role?
 
 Two ways to approach spatial indexing. Subdivide surface or simply calculate equidistant starting points.
 In either case, you use Binary search to approach local point or surface. Question becomes when the function has

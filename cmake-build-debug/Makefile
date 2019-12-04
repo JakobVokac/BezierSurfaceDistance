@@ -193,6 +193,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+maths/vec3d.o: maths/vec3d.cpp.o
+
+.PHONY : maths/vec3d.o
+
+# target to build an object file
+maths/vec3d.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.o
+.PHONY : maths/vec3d.cpp.o
+
+maths/vec3d.i: maths/vec3d.cpp.i
+
+.PHONY : maths/vec3d.i
+
+# target to preprocess a source file
+maths/vec3d.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.i
+.PHONY : maths/vec3d.cpp.i
+
+maths/vec3d.s: maths/vec3d.cpp.s
+
+.PHONY : maths/vec3d.s
+
+# target to generate assembly for a file
+maths/vec3d.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.s
+.PHONY : maths/vec3d.cpp.s
+
 model.o: model.cpp.o
 
 .PHONY : model.o
@@ -250,6 +277,60 @@ parallel.cpp.s:
 	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/parallel.cpp.s
 .PHONY : parallel.cpp.s
 
+plotting.o: plotting.cpp.o
+
+.PHONY : plotting.o
+
+# target to build an object file
+plotting.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/plotting.cpp.o
+.PHONY : plotting.cpp.o
+
+plotting.i: plotting.cpp.i
+
+.PHONY : plotting.i
+
+# target to preprocess a source file
+plotting.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/plotting.cpp.i
+.PHONY : plotting.cpp.i
+
+plotting.s: plotting.cpp.s
+
+.PHONY : plotting.s
+
+# target to generate assembly for a file
+plotting.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/plotting.cpp.s
+.PHONY : plotting.cpp.s
+
+vectorMath.o: vectorMath.cpp.o
+
+.PHONY : vectorMath.o
+
+# target to build an object file
+vectorMath.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/vectorMath.cpp.o
+.PHONY : vectorMath.cpp.o
+
+vectorMath.i: vectorMath.cpp.i
+
+.PHONY : vectorMath.i
+
+# target to preprocess a source file
+vectorMath.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/vectorMath.cpp.i
+.PHONY : vectorMath.cpp.i
+
+vectorMath.s: vectorMath.cpp.s
+
+.PHONY : vectorMath.s
+
+# target to generate assembly for a file
+vectorMath.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/vectorMath.cpp.s
+.PHONY : vectorMath.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -266,12 +347,21 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... maths/vec3d.o"
+	@echo "... maths/vec3d.i"
+	@echo "... maths/vec3d.s"
 	@echo "... model.o"
 	@echo "... model.i"
 	@echo "... model.s"
 	@echo "... parallel.o"
 	@echo "... parallel.i"
 	@echo "... parallel.s"
+	@echo "... plotting.o"
+	@echo "... plotting.i"
+	@echo "... plotting.s"
+	@echo "... vectorMath.o"
+	@echo "... vectorMath.i"
+	@echo "... vectorMath.s"
 .PHONY : help
 
 

@@ -1,7 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/HeartValveModel.dir/bezier.cpp.o"
   "CMakeFiles/HeartValveModel.dir/main.cpp.o"
+  "CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.o"
   "CMakeFiles/HeartValveModel.dir/model.cpp.o"
+  "CMakeFiles/HeartValveModel.dir/plotting.cpp.o"
+  "CMakeFiles/HeartValveModel.dir/vectorMath.cpp.o"
   "HeartValveModel"
   "HeartValveModel.pdb"
 )

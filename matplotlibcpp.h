@@ -899,6 +899,7 @@ PyObject* get_array(const std::vector<Numeric>& v)
 
         return res;
     }
+/*
 
 #ifndef WITHOUT_NUMPY
     namespace internal {
@@ -971,6 +972,7 @@ PyObject* get_array(const std::vector<Numeric>& v)
     }
 #endif // WITH_OPENCV
 #endif // WITHOUT_NUMPY
+*/
 
     template<typename NumericX, typename NumericY>
     bool scatter(const std::vector<NumericX>& x,

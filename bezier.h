@@ -41,6 +41,11 @@ double quadBezierDer1(double t, int i, QBezier b);
 vector<double> quadBezierDer2(double t, QBezier b);
 double quadBezierDer2(double t, int i, QBezier b);
 
+double sqDistBezier(CBezier c, double t, vector<double> A);
+double sqDistBezierDer1(CBezier c, double t, vector<double> A);
+double sqDistBezierDer2(CBezier c, double t, vector<double> A);
+
+
 QBezier RotAxisZ(double rad, QBezier b);
 CBezier RotAxisZ(double rad, CBezier b);
 QBezier MirrorY(QBezier b);

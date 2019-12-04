@@ -25,8 +25,10 @@ float.h
 -
 model.h
 /home/s3179222/CLionProjects/HeartValveModel/model.h
-matplotlibcpp.h
-/home/s3179222/CLionProjects/HeartValveModel/matplotlibcpp.h
+vectorMath.h
+/home/s3179222/CLionProjects/HeartValveModel/vectorMath.h
+plotting.h
+/home/s3179222/CLionProjects/HeartValveModel/plotting.h
 
 /home/s3179222/CLionProjects/HeartValveModel/matplotlibcpp.h
 vector
@@ -58,6 +60,22 @@ opencv2/opencv.hpp
 bezier.h
 /home/s3179222/CLionProjects/HeartValveModel/bezier.h
 cmath
+-
+
+/home/s3179222/CLionProjects/HeartValveModel/plotting.h
+model.h
+/home/s3179222/CLionProjects/HeartValveModel/model.h
+matplotlibcpp.h
+/home/s3179222/CLionProjects/HeartValveModel/matplotlibcpp.h
+vectorMath.h
+/home/s3179222/CLionProjects/HeartValveModel/vectorMath.h
+
+/home/s3179222/CLionProjects/HeartValveModel/vectorMath.h
+vector
+-
+cmath
+-
+assert.h
 -
 
 /usr/include/python2.7/Python.h

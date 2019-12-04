@@ -143,6 +143,12 @@
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/main.cpp">
 			<Option target="HeartValveModel"/>
 		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/maths/vec3d.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/maths/vec3d.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/matplotlibcpp.h">
 			<Option target="HeartValveModel"/>
 		</Unit>
@@ -160,6 +166,18 @@
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/parameters.h">
 			<Option target="HeartValveModel"/>
 			<Option target="Parallel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/plotting.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/plotting.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/vectorMath.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/vectorMath.h">
+			<Option target="HeartValveModel"/>
 		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
