@@ -5,7 +5,7 @@
 #ifndef HEARTVALVEMODEL_MODEL_H
 #define HEARTVALVEMODEL_MODEL_H
 
-#include "bezier.h"
+#include "bezier/bezier.h"
 #include <cmath>
 
 class Model {

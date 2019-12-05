@@ -1,6 +1,13 @@
 //
 // Created by s3179222 on 12/3/19.
 //
+#include "vectorMath.h"
+#include "model.h"
+#include <float.h>
+#include <cmath>
+#include <chrono>
+#include <vector>
+#include <iostream>
 #include "plotting.h"
 
 void DrawDist(Model &model, const vector<double> &P) {
@@ -105,4 +112,37 @@ void plotEdgeDistSq(CBezier c, vector<double> P){
     plt::plot(xs,ydds);
 
     plt::show();
+}
+
+void drawPart(Model &model, vector<vector<double>> &x, vector<vector<double>> &y, vector<vector<double>> &z, int top, int bottom) {
+
+    if(top) {
+        for (double i = 1; i >= 0; i -= 0.1) {
+            vector<double> x_row, y_row, z_row;
+            for (double j = 0; j <= 1; j += 0.1) {
+                vector<double> p = model.fillTop(j, i);
+                x_row.push_back(p[0]);
+                y_row.push_back(p[1]);
+                z_row.push_back(p[2]);
+            }
+            x.push_back(x_row);
+            y.push_back(y_row);
+            z.push_back(z_row);
+        }
+    }
+
+    if(bottom) {
+        for (double i = 0.1; i <= 1; i += 0.1) {
+            vector<double> x_row, y_row, z_row;
+            for (double j = 0; j <= 1; j += 0.1) {
+                vector<double> p = model.fillBottom(j, i);
+                x_row.push_back(p[0]);
+                y_row.push_back(p[1]);
+                z_row.push_back(p[2]);
+            }
+            x.push_back(x_row);
+            y.push_back(y_row);
+            z.push_back(z_row);
+        }
+    }
 }

@@ -4,39 +4,125 @@
 
 #include "vec3d.h"
 
-vec3d vec3d::operator + (vec3d b){
-    return {x + b.x, y + b.y, z + b.z};
+vec3d operator + (vec3d a, const vec3d& b){
+    a += b;
+    return a;
 };
-vec3d vec3d::operator - (vec3d b){
-    return {x - b.x, y - b.y, z - b.z};
 
-};
-vec3d vec3d::operator * (vec3d b){
-    return {x * b.x, y * b.y, z * b.z};
+vec3d& vec3d::operator += (const vec3d& b)
+{
+    this->x += b.x;
+    this->y += b.y;
+    this->z += b.z;
 
+    return *this;
+}
+vec3d operator - (vec3d a, const vec3d& b){
+    a -= b;
+    return a;
 };
-vec3d vec3d::operator / (vec3d b){
-    b.non_zero();
-    return {x / b.x, y / b.y, z / b.z};
 
-};
-vec3d vec3d::operator + (double b){
-    return {x + b, y + b, z + b};
-};
-vec3d vec3d::operator - (double b){
-    return {x - b, y - b, z - b};
+vec3d& vec3d::operator -= (const vec3d& b)
+{
+    this->x -= b.x;
+    this->y -= b.y;
+    this->z -= b.z;
 
-};
-vec3d vec3d::operator * (double b){
-    return {x * b, y * b, z * b};
+    return *this;
+}
 
+vec3d operator * (vec3d a, const vec3d& b){
+    a *= b;
+    return a;
 };
-vec3d vec3d::operator / (double b){
-    return {x / b, y / b, z / b};
+
+vec3d& vec3d::operator *= (const vec3d& b)
+{
+    this->x *= b.x;
+    this->y *= b.y;
+    this->z *= b.z;
+
+    return *this;
+}
+
+vec3d operator / (vec3d a, const vec3d& b){
+    a /= b;
+    return a;
 };
-int vec3d::operator == (vec3d b){
-    return (x == b.x && y == b.y && z == b.z);
+
+vec3d& vec3d::operator /= (const vec3d& b)
+{
+    this->x /= b.x;
+    this->y /= b.y;
+    this->z /= b.z;
+
+    return *this;
+}
+
+vec3d operator + (vec3d a, const double& b){
+    a += b;
+    return a;
 };
+vec3d operator + (const double& b, vec3d a){
+    a += b;
+    return a;
+};
+vec3d& vec3d::operator += (const double& b)
+{
+    this->x += b;
+    this->y += b;
+    this->z += b;
+
+    return *this;
+}
+vec3d operator - (vec3d a, const double& b){
+    a -= b;
+    return a;
+};
+vec3d operator - (const double& b, vec3d a){
+    a -= b;
+    return a;
+};
+vec3d& vec3d::operator -= (const double& b)
+{
+    this->x -= b;
+    this->y -= b;
+    this->z -= b;
+
+    return *this;
+}
+vec3d operator * (vec3d a, const double& b){
+    a *= b;
+    return a;
+};
+vec3d operator * (const double& b, vec3d a){
+    a *= b;
+    return a;
+};
+vec3d& vec3d::operator *= (const double& b)
+{
+    this->x *= b;
+    this->y *= b;
+    this->z *= b;
+
+    return *this;
+}
+vec3d operator / (vec3d a, const double& b){
+    a /= b;
+    return a;
+};
+vec3d operator / (const double& b, vec3d a){
+    a /= b;
+    return a;
+};
+vec3d& vec3d::operator /= (const double& b)
+{
+    this->x /= b;
+    this->y /= b;
+    this->z /= b;
+
+    return *this;
+}
 vec3d vec3d::operator - (){
     return {-x, -y, -z};
 

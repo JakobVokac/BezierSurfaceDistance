@@ -94,8 +94,8 @@ vector<double> BSurDuv(double u, double v, vector<vector<double>> k, int n, int 
 vector<double> BSurDvv(double u, double v, vector<vector<double>> k, int n, int m){
     vector<double> sum = {0,0,0};
 
-    for (int i = 0; i <= n-2; ++i) {
-        for (int j = 0; j <= m; ++j) {
+    for (int i = 0; i <= n; ++i) {
+        for (int j = 0; j <= m-2; ++j) {
             double param = binom(m - 2, j) * pow(v, j) * pow(1 - v, m - 2 - j) *
                            binom(n, i) * pow(u, i) * pow(1 - u, n - i);
             sum[0] += param * m * (m-1) * (k[i * (n+1) + j + 2][0] - 2*k[i * (n+1) + j + 1][0] + k[i * (n+1) + j][0]);

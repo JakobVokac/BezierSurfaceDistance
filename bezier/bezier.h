@@ -10,6 +10,7 @@
 
 using namespace std;
 
+
 struct QBezier{
     vector<double> C0 = vector<double>(3);
     vector<double> C1 = vector<double>(3);

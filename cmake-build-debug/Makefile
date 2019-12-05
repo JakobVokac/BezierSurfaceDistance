@@ -136,35 +136,89 @@ Parallel/fast:
 	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/build
 .PHONY : Parallel/fast
 
-bezier.o: bezier.cpp.o
+bezier/bezier.o: bezier/bezier.cpp.o
 
-.PHONY : bezier.o
+.PHONY : bezier/bezier.o
 
 # target to build an object file
-bezier.cpp.o:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier.cpp.o
-	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/bezier.cpp.o
-.PHONY : bezier.cpp.o
+bezier/bezier.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.o
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/bezier/bezier.cpp.o
+.PHONY : bezier/bezier.cpp.o
 
-bezier.i: bezier.cpp.i
+bezier/bezier.i: bezier/bezier.cpp.i
 
-.PHONY : bezier.i
+.PHONY : bezier/bezier.i
 
 # target to preprocess a source file
-bezier.cpp.i:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier.cpp.i
-	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/bezier.cpp.i
-.PHONY : bezier.cpp.i
+bezier/bezier.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.i
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/bezier/bezier.cpp.i
+.PHONY : bezier/bezier.cpp.i
 
-bezier.s: bezier.cpp.s
+bezier/bezier.s: bezier/bezier.cpp.s
 
-.PHONY : bezier.s
+.PHONY : bezier/bezier.s
 
 # target to generate assembly for a file
-bezier.cpp.s:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier.cpp.s
-	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/bezier.cpp.s
-.PHONY : bezier.cpp.s
+bezier/bezier.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.s
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/bezier/bezier.cpp.s
+.PHONY : bezier/bezier.cpp.s
+
+bezier/bicubicsrf.o: bezier/bicubicsrf.cpp.o
+
+.PHONY : bezier/bicubicsrf.o
+
+# target to build an object file
+bezier/bicubicsrf.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.o
+.PHONY : bezier/bicubicsrf.cpp.o
+
+bezier/bicubicsrf.i: bezier/bicubicsrf.cpp.i
+
+.PHONY : bezier/bicubicsrf.i
+
+# target to preprocess a source file
+bezier/bicubicsrf.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.i
+.PHONY : bezier/bicubicsrf.cpp.i
+
+bezier/bicubicsrf.s: bezier/bicubicsrf.cpp.s
+
+.PHONY : bezier/bicubicsrf.s
+
+# target to generate assembly for a file
+bezier/bicubicsrf.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.s
+.PHONY : bezier/bicubicsrf.cpp.s
+
+bezier/cubiccrv.o: bezier/cubiccrv.cpp.o
+
+.PHONY : bezier/cubiccrv.o
+
+# target to build an object file
+bezier/cubiccrv.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.o
+.PHONY : bezier/cubiccrv.cpp.o
+
+bezier/cubiccrv.i: bezier/cubiccrv.cpp.i
+
+.PHONY : bezier/cubiccrv.i
+
+# target to preprocess a source file
+bezier/cubiccrv.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.i
+.PHONY : bezier/cubiccrv.cpp.i
+
+bezier/cubiccrv.s: bezier/cubiccrv.cpp.s
+
+.PHONY : bezier/cubiccrv.s
+
+# target to generate assembly for a file
+bezier/cubiccrv.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.s
+.PHONY : bezier/cubiccrv.cpp.s
 
 main.o: main.cpp.o
 
@@ -341,9 +395,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... HeartValveModel"
 	@echo "... Parallel"
-	@echo "... bezier.o"
-	@echo "... bezier.i"
-	@echo "... bezier.s"
+	@echo "... bezier/bezier.o"
+	@echo "... bezier/bezier.i"
+	@echo "... bezier/bezier.s"
+	@echo "... bezier/bicubicsrf.o"
+	@echo "... bezier/bicubicsrf.i"
+	@echo "... bezier/bicubicsrf.s"
+	@echo "... bezier/cubiccrv.o"
+	@echo "... bezier/cubiccrv.i"
+	@echo "... bezier/cubiccrv.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

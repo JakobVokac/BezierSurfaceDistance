@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/HeartValveModel.dir/bezier.cpp.o"
+  "CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.o"
+  "CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.o"
+  "CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.o"
   "CMakeFiles/HeartValveModel.dir/main.cpp.o"
   "CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.o"
   "CMakeFiles/HeartValveModel.dir/model.cpp.o"
