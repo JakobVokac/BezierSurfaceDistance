@@ -5,8 +5,14 @@
 #ifndef HEARTVALVEMODEL_MODEL_H
 #define HEARTVALVEMODEL_MODEL_H
 
-#include "bezier/bezier.h"
+#include "old_code/bezier.h"
 #include <cmath>
+#include "geometry/maths/vec3d.h"
+#include "geometry/curve/cubiccrv.h"
+#include "geometry/surface/surface.h"
+#include "geometry/surface/TopParametric.h"
+#include "geometry/surface/BottomParametric.h"
+#include "geometry/surface/bicubicsrf.h"
 
 class Model {
 public:
@@ -38,11 +44,10 @@ public:
     double t0;
     double t3;
 
-    CBezier leafCurve, bendCurve, symCurveTop, symCurveBottom;
-    QBezier sinCurveTop, sinCurveBottom;
+    cubiccrv leafCurve, bendCurve, symCurveTop, symCurveBottom, sinCurveTop, sinCurveBottom;
 
-    vector<double> Q_l_sin, Q_l_sym, Q_b_sin, Q_b_sym, Q_r;
-    Model(
+    vec3d Q_l_sin{}, Q_l_sym{}, Q_b_sin{}, Q_b_sym{}, Q_r{};
+    explicit Model(
             double root_radius = 12.0,
             double leaflet_angle = 59.5/180 * M_PI,
             double leaflet_height = 11.4,
@@ -65,67 +70,56 @@ public:
 
     double bendCurveFunc(double y);
 
-    CBezier leafCurveBezier(double eps, double t0, double t3);
+    cubiccrv leafCurveBezier();
 
-    CBezier bendCurveBezier(double eps, double t0, double t3);
+    cubiccrv bendCurveBezier();
 
-    QBezier sinCurveBottomBezier();
+    cubiccrv sinCurveBottomBezier();
 
-    QBezier sinCurveTopBezier();
+    cubiccrv sinCurveTopBezier();
 
-    CBezier symCurveBottomBezier();
+    cubiccrv symCurveBottomBezier();
 
-    CBezier symCurveTopBezier();
+    cubiccrv symCurveTopBezier();
 
-    vector<double> fillTop(double u, double v);
+    vec3d fillTop(double u, double v);
 
-    vector<double> fillTopDerU(double u, double v);
-    vector<double> fillTopDerUU(double u, double v);
-    vector<double> fillTopDerUV(double u, double v);
+    vec3d fillTopDerU(double u, double v);
+    vec3d fillTopDerUU(double u, double v);
+    vec3d fillTopDerUV(double u, double v);
 
-    vector<double> fillTopDerV(double u, double v);
-    vector<double> fillTopDerVV(double u, double v);
-    vector<double> fillTopDerVU(double u, double v);
+    vec3d fillTopDerV(double u, double v);
+    vec3d fillTopDerVV(double u, double v);
 
-    vector<double> fillBottom(double u, double v);
+    vec3d fillBottom(double u, double v);
 
-    double distanceToTopPoint(double u, double v, vector<double> A);
-
-    double distanceToTopPointDerU(double u, double v, vector<double> A);
-    double distanceToTopPointDerUU(double u, double v, vector<double> A);
-    double distanceToTopPointDerUV(double u, double v, vector<double> A);
-
-    double distanceToTopPointDerV(double u, double v, vector<double> A);
-    double distanceToTopPointDerVV(double u, double v, vector<double> A);
-    double distanceToTopPointDerVU(double u, double v, vector<double> A);
-
-    double completeDistanceTopDerU(double u, double v, vector<double> A);
-    double completeDistanceTopDerUU(double u, double v, vector<double> A);
-    double completeDistanceTopDerV(double u, double v, vector<double> A);
-    double completeDistanceTopDerVV(double u, double v, vector<double> A);
-    double completeDistanceTopDerUV(double u, double v, vector<double> A);
+    double distanceToTopPoint(double u, double v, vec3d A);
 
 
-
-    //test functions
-    double completeDistanceTopDerUU2(double u, double v, vector<double> A);
-    double completeDistanceTopDerVV2(double u, double v, vector<double> A);
-    double completeDistanceTopDerUV2(double u, double v, vector<double> A);
+    double completeDistanceTopDerU(double u, double v, vec3d A);
+    double completeDistanceTopDerV(double u, double v, vec3d A);
 
 
+    //old_code functions
+    double completeDistanceTopDerUU(double u, double v, vec3d A);
+    double completeDistanceTopDerVV(double u, double v, vec3d A);
+    double completeDistanceTopDerUV(double u, double v, vec3d A);
 
 
-
-    double distranceToBottomPoint(double u, double v, vector<double> A);
+    double distanceToBottomPoint(double u, double v, vec3d A);
 
     static Model getPart(Model model, int idx);
 
-    double squaredTopDist(double u, double v, vector<double> A);
-    double squaredTopDistDerU(double u, double v, vector<double> A);
-    double squaredTopDistDerV(double u, double v, vector<double> A);
-    double squaredTopDistDerUU(double u, double v, vector<double> A);
-    double squaredTopDistDerVV(double u, double v, vector<double> A);
-    double squaredTopDistDerUV(double u, double v, vector<double> A);
+    double squaredTopDist(double u, double v, vec3d A);
+    double squaredTopDistDerU(double u, double v, vec3d A);
+    double squaredTopDistDerV(double u, double v, vec3d A);
+    double squaredTopDistDerUU(double u, double v, vec3d A);
+    double squaredTopDistDerVV(double u, double v, vec3d A);
+    double squaredTopDistDerUV(double u, double v, vec3d A);
+
+    TopParametric getTopParametric();
+    BottomParametric getBottomParametric();
+    bicubicsrf getTopBezier();
 };
 
 

@@ -7,7 +7,7 @@
 
 #include <cmath>
 #include <vector>
-#include "../plotting.h"
+#include "plotting.h"
 
 using namespace std;
 

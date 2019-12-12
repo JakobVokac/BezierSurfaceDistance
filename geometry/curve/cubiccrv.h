@@ -5,13 +5,14 @@
 #ifndef HEARTVALVEMODEL_CUBICCRV_H
 #define HEARTVALVEMODEL_CUBICCRV_H
 
-#include "../maths/vec3d.h"
+#include "curve.h"
 
-class cubiccrv {
+class cubiccrv : public curve {
 private:
     vec3d c0{},c1{},c2{},c3{};
 
 public:
+    cubiccrv() = default;
 
     cubiccrv(vec3d c0, vec3d c1, vec3d c2, vec3d c3){
         this->c0 = c0;
@@ -26,11 +27,22 @@ public:
         this->c2 = c1 * 2.0/3.0 + c2 * 1.0/3.0;
         this->c3 = c2;
     }
+    ~cubiccrv() = default;
 
-    vec3d f(double t);
-    vec3d df(double t);
-    vec3d ddf(double t);
+    vec3d f(double t) override;
+    vec3d df(double t) override;
+    vec3d ddf(double t) override;
+
+    vec3d curvePlaneNormal() override;
+    vec3d getCtrlP(int i);
+    bool hasConvexPolygon();
+
+    cubiccrv RotAxisZ(double rad);
+    cubiccrv MirrorY();
+
+    std::string asString() override;
 };
+
 
 
 #endif //HEARTVALVEMODEL_CUBICCRV_H

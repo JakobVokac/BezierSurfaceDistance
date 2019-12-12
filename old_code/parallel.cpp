@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <chrono>
-#include "model.h"
+#include "../model.h"
 #include <cmath>
 
 struct QBezierGPU{

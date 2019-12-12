@@ -320,7 +320,7 @@ namespace matplotlibcpp {
 #else // fallback if we don't have numpy: copy every element of the given vector
 
     template<typename Numeric>
-PyObject* get_array(const std::vector<Numeric>& v)
+PyObject* get_array(const std::maths<Numeric>& v)
 {
     PyObject* list = PyList_New(v.size());
     for(size_t i = 0; i < v.size(); ++i) {

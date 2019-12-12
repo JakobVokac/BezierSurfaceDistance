@@ -53,15 +53,12 @@ Model::Model(
     this->eps = eps;
     this->t0 = t0;
     this->t3 = t3;
-
-    this->leafCurve = leafCurveBezier(eps, t0, t3);
-    this->bendCurve = bendCurveBezier(eps, t0, t3);
+    this->leafCurve = leafCurveBezier();
+    this->bendCurve = bendCurveBezier();
     this->symCurveBottom = symCurveBottomBezier();
     this->symCurveTop = symCurveTopBezier();
     this->sinCurveBottom = sinCurveBottomBezier();
     this->sinCurveTop = sinCurveTopBezier();
-
-
 }
 double Model::leafCurveFunc(double y){
     return leaflet_radius_in + (leaflet_end_x - leaflet_radius_in) * pow(y/leaflet_end_y, leaflet_power);
@@ -71,442 +68,357 @@ double Model::bendCurveFunc(double y){
     return bending_radius_in + (bending_end_x - bending_radius_in) * pow(y/bending_end_y, bending_power);
 }
 
-CBezier Model::leafCurveBezier(double eps, double t0, double t3){
-    CBezier curve = CBezier();
-    curve.C0 = {leaflet_radius_in,0,leaflet_height};
-    curve.C3 = {leaflet_end_x, leaflet_end_y, leaflet_height};
-    curve.C1 = {leaflet_radius_in + t0 * (leafCurveFunc(eps) - leaflet_radius_in)/eps, 0 + t0, leaflet_height};
-    curve.C2 = {leaflet_end_x + t3 * (leafCurveFunc(leaflet_end_y - eps) - leaflet_end_x)/eps, leaflet_end_y - t3, leaflet_height};
+cubiccrv Model::leafCurveBezier(){
+    vec3d C0 = {leaflet_radius_in,0,leaflet_height};
+    vec3d C3 = {leaflet_end_x, leaflet_end_y, leaflet_height};
+    vec3d C1 = {leaflet_radius_in + t0 * (leafCurveFunc(eps) - leaflet_radius_in)/eps, 0 + t0, leaflet_height};
+    vec3d C2 = {leaflet_end_x + t3 * (leafCurveFunc(leaflet_end_y - eps) - leaflet_end_x)/eps, leaflet_end_y - t3, leaflet_height};
+    cubiccrv curve = cubiccrv(C0,C1,C2,C3);
 
     return curve;
 }
 
-CBezier Model::bendCurveBezier(double eps, double t0, double t3){
-    CBezier curve = CBezier();
-    curve.C0 = {bending_radius_in,0,bending_height};
-    curve.C1 = {bending_radius_in + t0 * (bendCurveFunc(eps) - bending_radius_in)/eps, 0 + t0, bending_height};
-    curve.C2 = {bending_end_x + t3 * (bendCurveFunc(bending_end_y - eps) - bending_end_x)/eps, bending_end_y - t3, bending_height};
-    curve.C3 = {bending_end_x, bending_end_y, bending_height};
+cubiccrv Model::bendCurveBezier(){
+    vec3d C0 = {bending_radius_in,0,bending_height};
+    vec3d C1 = {bending_radius_in + t0 * (bendCurveFunc(eps) - bending_radius_in)/eps, 0 + t0, bending_height};
+    vec3d C2 = {bending_end_x + t3 * (bendCurveFunc(bending_end_y - eps) - bending_end_x)/eps, bending_end_y - t3, bending_height};
+    vec3d C3 = {bending_end_x, bending_end_y, bending_height};
+    cubiccrv curve = cubiccrv(C0,C1,C2,C3);
 
     return curve;
 }
 
-QBezier Model::sinCurveBottomBezier() {
-    CBezier temp = CBezier();
-    QBezier curve = QBezier();
+cubiccrv Model::sinCurveBottomBezier() {
+    vec3d tC0 = {root_radius, 0.0, 0.0};
+    vec3d tC2 = {leaflet_end_x, leaflet_end_y, leaflet_height};
+    vec3d tC3 = {bending_end_x, bending_end_y, bending_height};
+    vec3d tC1 = (tC3 - pow((1 - s_sin), 2.0) * tC0 - pow(s_sin, 2.0) * tC2) / (2 * (1 - s_sin) * s_sin);
 
-    temp.C0 = {root_radius, 0.0, 0.0};
-    temp.C2 = {leaflet_end_x, leaflet_end_y, leaflet_height};
-    temp.C3 = {bending_end_x, bending_end_y, bending_height};
-    for (int i = 0; i < 3; i++) {
-        temp.C1[i] = (temp.C3[i] - pow((1 - s_sin), 2.0) * temp.C0[i] - pow(s_sin, 2.0) * temp.C2[i]) /
-                     (2 * (1 - s_sin) * s_sin);
-    }
+    vec3d C0 = tC0;
+    vec3d C2 = tC3;
+    vec3d C1 = (1-s_sin)*tC0 + s_sin*tC1;
 
-    curve.C0 = temp.C0;
-    curve.C2 = temp.C3;
-    for (int i = 0; i < 3; i++) {
-        curve.C1[i] = (1-s_sin)*temp.C0[i] + s_sin*temp.C1[i];
-    }
+    cubiccrv curve = cubiccrv(C0,C1,C2);
     return curve;
 }
 
-QBezier Model::sinCurveTopBezier() {
-    CBezier temp = CBezier();
-    QBezier curve = QBezier();
+cubiccrv Model::sinCurveTopBezier() {
+    vec3d tC0 = {root_radius, 0.0, 0.0};
+    vec3d tC2 = {leaflet_end_x, leaflet_end_y, leaflet_height};
+    vec3d tC3 = {bending_end_x, bending_end_y, bending_height};
+    vec3d tC1 = (tC3 - pow((1 - s_sin), 2.0) * tC0 - pow(s_sin, 2.0) * tC2) / (2 * (1 - s_sin) * s_sin);
 
-    temp.C0 = {root_radius, 0.0, 0.0};
-    temp.C2 = {leaflet_end_x, leaflet_end_y, leaflet_height};
-    temp.C3 = {bending_end_x, bending_end_y, bending_height};
-    for (int i = 0; i < 3; i++) {
-        temp.C1[i] = (temp.C3[i] - pow((1 - s_sin), 2.0) * temp.C0[i] - pow(s_sin, 2.0) * temp.C2[i]) /
-                     (2 * (1 - s_sin) * s_sin);
-    }
 
-    curve.C0 = temp.C2;
-    curve.C2 = temp.C3;
-    for (int i = 0; i < 3; i++) {
-        curve.C1[i] = (1-s_sin)*temp.C1[i] + s_sin*temp.C2[i];
-    }
+    vec3d C0 = tC2;
+    vec3d C2 = tC3;
+    vec3d C1 = (1-s_sin)*tC1 + s_sin*tC2;
+
+    cubiccrv curve = cubiccrv(C0,C1,C2);
     return curve;
 }
 
-CBezier Model::symCurveBottomBezier(){
-    CBezier temp = CBezier();
-    CBezier curve = CBezier();
-    vector<double> B = vector<double>(3);
-    vector<double> R12 = vector<double>(3);
+cubiccrv Model::symCurveBottomBezier(){
+    vec3d tC0 = {root_radius,0.0,0.0};
+    vec3d tC3 = {leaflet_radius_in,0.0,leaflet_height};
+    vec3d tC1 = {(root_radius + bending_radius_in)/2 + xQ1_sym*(root_radius - bending_radius_in), 0.0, bending_height/2 + zQ1_sym*bending_height};
+    vec3d B = {bending_radius_in,0,bending_height};
+    vec3d tC2 = (B - pow((1 - s_sym), 3.0) * tC0 - 3 * s_sym * pow((1 - s_sym), 2.0) * tC1 -
+            pow(s_sym, 3.0) * tC3) / (3 * (1 - s_sym) * pow(s_sym, 2.0));
 
-    temp.C0 = {root_radius,0.0,0.0};
-    temp.C3 = {leaflet_radius_in,0.0,leaflet_height};
-    temp.C1 = {(root_radius + bending_radius_in)/2 + xQ1_sym*(root_radius - bending_radius_in), 0.0, bending_height/2 + zQ1_sym*bending_height};
-    B = {bending_radius_in,0,bending_height};
-    for (int i = 0; i < 3; ++i) {
-        temp.C2[i] = (B[i] - pow((1 - s_sym), 3.0) * temp.C0[i] - 3 * s_sym * pow((1 - s_sym), 2.0) * temp.C1[i] -
-                      pow(s_sym, 3.0) * temp.C3[i]) / (3 * (1 - s_sym) * pow(s_sym, 2.0));
-    }
+    vec3d C0 = tC0;
+    vec3d C3 = B;
 
-    curve.C0 = temp.C0;
-    curve.C3 = B;
-    for (int i = 0; i < 3; ++i) {
-        curve.C1[i] = (1-s_sym)*temp.C0[i] + s_sym*temp.C1[i];
-        R12[i] = (1-s_sym)*temp.C1[i] + s_sym*temp.C2[i];
-        curve.C2[i] = (1-s_sym)*curve.C1[i] + s_sym*R12[i];
-    }
+    vec3d C1 = (1-s_sym)*tC0 + s_sym*tC1;
+    vec3d R12 = (1-s_sym)*tC1 + s_sym*tC2;
+    vec3d C2 = (1-s_sym)*C1 + s_sym*R12;
+
+    cubiccrv curve = cubiccrv(C0,C1,C2,C3);
 
     return curve;
 }
 
-CBezier Model::symCurveTopBezier(){
-    CBezier temp = CBezier();
-    CBezier curve = CBezier();
-    vector<double> B = vector<double>(3);
-    vector<double> R12 = vector<double>(3);
+cubiccrv Model::symCurveTopBezier(){
 
-    temp.C0 = {root_radius,0,0};
-    temp.C3 = {leaflet_radius_in,0,leaflet_height};
-    temp.C1 = {(root_radius + bending_radius_in)/2 + xQ1_sym*(root_radius - bending_radius_in), 0, bending_height/2 + zQ1_sym*bending_height};
-    B = {bending_radius_in,0,bending_height};
-    for (int i = 0; i < 3; ++i) {
-        temp.C2[i] = (B[i] - pow((1 - s_sym), 3) * temp.C0[i] - 3 * s_sym * pow((1 - s_sym), 2.0) * temp.C1[i] -
-                      pow(s_sym, 3.0) * temp.C3[i]) / (3 * (1 - s_sym) * pow(s_sym, 2.0));
-    }
+    vec3d tC0 = {root_radius,0,0};
+    vec3d tC3 = {leaflet_radius_in,0,leaflet_height};
+    vec3d tC1 = {(root_radius + bending_radius_in)/2 + xQ1_sym*(root_radius - bending_radius_in), 0, bending_height/2 + zQ1_sym*bending_height};
+    vec3d B = {bending_radius_in,0,bending_height};
 
-    curve.C0 = temp.C3;
-    curve.C3 = B;
-    for (int i = 0; i < 3; ++i) {
-        curve.C1[i] = (1-s_sym)*temp.C2[i] + s_sym*temp.C3[i];
-        R12[i] = (1-s_sym)*temp.C1[i] + s_sym*temp.C2[i];
-        curve.C2[i] = (1-s_sym)*R12[i] + s_sym*curve.C1[i];
-    }
+    vec3d tC2 = (B - pow((1 - s_sym), 3) * tC0 - 3 * s_sym * pow((1 - s_sym), 2.0) * tC1 -
+                  pow(s_sym, 3.0) * tC3) / (3 * (1 - s_sym) * pow(s_sym, 2.0));
 
+
+    vec3d C0 = tC3;
+    vec3d C3 = B;
+
+    vec3d C1 = (1-s_sym)*tC2 + s_sym*tC3;
+    vec3d R12 = (1-s_sym)*tC1 + s_sym*tC2;
+    vec3d C2 = (1-s_sym)*R12 + s_sym*C1;
+
+    cubiccrv curve = cubiccrv(C0,C1,C2,C3);
     return curve;
 }
 
-vector<double> Model::fillTop(double u, double v){
-    vector<double> point = vector<double>(3);
+vec3d Model::fillTop(double u, double v){
 
-    for (int i = 0; i < 3; ++i) {
-        point[i] = (1 - v) * cubicBezier(u, i, bendCurve) + v * cubicBezier(u, i, leafCurve) +
-                   (1 - u) * cubicBezier(1 - v, i, symCurveTop) + u * quadBezier(1 - v, i, sinCurveTop) -
-                   ((1 - u) * (1 - v) * Q_b_sym[i] + u * v * Q_l_sin[i] +
-                    u * (1 - v) * Q_b_sin[i] + (1 - u) * v * Q_l_sym[i]);
-    }
 
-    return point;
-}
 
-vector<double> Model::fillTopDerU(double u, double v) {
-    vector<double> point = vector<double>(3);
+    vec3d point = (1 - v) * bendCurve.f(u) + v * leafCurve.f(u) +
+            (1 - u) * symCurveTop.f(1-v) + u * sinCurveTop.f(1-v) -
+            ((1 - u) * (1 - v) * Q_b_sym + u * v * Q_l_sin +
+            u * (1 - v) * Q_b_sin + (1 - u) * v * Q_l_sym);
 
-    for (int i = 0; i < 3; ++i) {
-        point[i] = (1 - v) * cubicBezierDer1(u, i, bendCurve) + v * cubicBezierDer1(u, i, leafCurve)
-                 - cubicBezier(1 - v, i, symCurveTop) + quadBezier(1 - v, i, sinCurveTop) -
-                   (- (1 - v) * Q_b_sym[i] + v * Q_l_sin[i] +
-                   (1 - v) * Q_b_sin[i] - v * Q_l_sym[i]);
-    }
 
     return point;
 }
 
-vector<double> Model::fillTopDerUU(double u, double v){
-    vector<double> point = vector<double>(3);
+vec3d Model::fillTopDerU(double u, double v) {
 
-    for (int i = 0; i < 3; ++i) {
-        point[i] = (1 - v) * cubicBezierDer2(u, i, bendCurve) + v * cubicBezierDer2(u, i, leafCurve);
-    }
+
+    vec3d point = (1 - v) * bendCurve.df(u) + v * leafCurve.df(u)
+             - symCurveTop.f(1-v) + sinCurveTop.f(1-v) -
+               (- (1 - v) * Q_b_sym + v * Q_l_sin +
+               (1 - v) * Q_b_sin - v * Q_l_sym);
+
 
     return point;
 }
 
-vector<double> Model::fillTopDerUV(double u, double v) {
-    vector<double> point = vector<double>(3);
+vec3d Model::fillTopDerUU(double u, double v){
 
-    for (int i = 0; i < 3; ++i) {
-        point[i] = - cubicBezierDer1(u, i, bendCurve) + cubicBezierDer1(u, i, leafCurve)
-                   + cubicBezierDer1(1 - v, i, symCurveTop) - quadBezierDer1(1 - v, i, sinCurveTop) -
-                   ( + Q_b_sym[i] + Q_l_sin[i] - Q_b_sin[i] - Q_l_sym[i]);
-    }
+    vec3d point = (1 - v) * bendCurve.ddf(u) + v * leafCurve.ddf(u);
+
+    return point;
+}
+
+vec3d Model::fillTopDerUV(double u, double v) {
+
+    vec3d point = - bendCurve.df(u) + leafCurve.df(u)
+                   + symCurveTop.df(1-v) - sinCurveTop.df(1-v) -
+                   (Q_b_sym + Q_l_sin - Q_b_sin - Q_l_sym);
 
     return point;
 }
 
 
-vector<double> Model::fillTopDerV(double u, double v){
-    vector<double> point = vector<double>(3);
+vec3d Model::fillTopDerV(double u, double v){
 
-    for (int i = 0; i < 3; ++i) {
-        point[i] = - cubicBezier(u, i, bendCurve) + cubicBezier(u, i, leafCurve) -
-                   (1 - u) * cubicBezierDer1(1 - v, i, symCurveTop) - u * quadBezierDer1(1 - v, i, sinCurveTop) -
-                   (- (1 - u) * Q_b_sym[i] + u * Q_l_sin[i]
-                    - u * Q_b_sin[i] + (1 - u) * Q_l_sym[i]);
-    }
+    vec3d point = - bendCurve.f(u) + leafCurve.f(u) -
+               (1 - u) * symCurveTop.df(1-v) - u * sinCurveTop.df(1-v) -
+               (- (1 - u) * Q_b_sym + u * Q_l_sin
+                - u * Q_b_sin + (1 - u) * Q_l_sym);
+
 
     return point;
 }
 
-vector<double> Model::fillTopDerVV(double u, double v){
-    vector<double> point = vector<double>(3);
+vec3d Model::fillTopDerVV(double u, double v){
 
-    for (int i = 0; i < 3; ++i) {
-        point[i] = (1 - u) * cubicBezierDer2(1 - v, i, symCurveTop) + u * quadBezierDer2(1 - v, i, sinCurveTop);
-    }
-
-    return point;
-}
-
-vector<double> Model::fillTopDerVU(double u, double v){
-    vector<double> point = vector<double>(3);
-
-    for (int i = 0; i < 3; ++i) {
-        point[i] = - cubicBezierDer1(u, i, bendCurve) + cubicBezierDer1(u, i, leafCurve)
-                   + cubicBezierDer1(1 - v, i, symCurveTop) - quadBezierDer1(1 - v, i, sinCurveTop) -
-                   ( + Q_b_sym[i] + Q_l_sin[i] - Q_b_sin[i] - Q_l_sym[i]);
-    }
+    vec3d point = (1 - u) * symCurveTop.ddf(1-v) + u * sinCurveTop.ddf(1-v);
 
     return point;
 }
 
 
+vec3d Model::fillBottom(double u, double v){
 
-vector<double> Model::fillBottom(double u, double v){
-    vector<double> point = vector<double>(3);
-
-    for (int i = 0; i < 3; ++i) {
-        point[i] = v * Q_r[i] + (1 - v) * cubicBezier(u, i, bendCurve) +
-                   u * quadBezier(1 - v, i, sinCurveBottom) + (1 - u) * cubicBezier(1 - v, i, symCurveBottom) -
-                   (u * v * Q_r[i] + (1 - u) * (1 - v) * Q_b_sym[i] +
-                    (1 - u) * v * Q_r[i] + u * (1 - v) * Q_b_sin[i]);
-    }
+    vec3d point = v * Q_r + (1 - v) * bendCurve.f(u) +
+               u * sinCurveBottom.f(1-v) + (1 - u) * symCurveBottom.f(1-v) -
+               (u * v * Q_r + (1 - u) * (1 - v) * Q_b_sym +
+                (1 - u) * v * Q_r + u * (1 - v) * Q_b_sin);
 
     return point;
 }
 
-double Model::squaredTopDist(double u, double v, vector<double> A){
-    vector<double> top = fillTop(u,v);
-
-    double distance = pow(top[0] - A[0],2.0) + pow(top[1] - A[1],2.0) + pow(top[2] - A[2],2.0);
-    return distance;
+double Model::squaredTopDist(double u, double v, vec3d A){
+    vec3d top = fillTop(u,v);
+    double dist = top.sqdist(A);
+    return dist;
 }
 
-double Model::squaredTopDistDerU(double u, double v, vector<double> A){
-    vector<double> top = fillTop(u,v);
-    vector<double> topDer = fillTopDerU(u,v);
-    double distance = 2*((top[0] - A[0])*topDer[0] + (top[1] - A[1])*topDer[1] + (top[2] - A[2])*topDer[2]);
-    return distance;
+double Model::squaredTopDistDerU(double u, double v, vec3d A){
+    vec3d top = fillTop(u,v);
+    vec3d topDer = fillTopDerU(u,v);
+    double dist = 2*((top - A)*topDer).sum();
+    return dist;
 }
-double Model::squaredTopDistDerV(double u, double v, vector<double> A){
-    vector<double> top = fillTop(u,v);
-    vector<double> topDer = fillTopDerV(u,v);
-    double distance = 2*((top[0] - A[0])*topDer[0] + (top[1] - A[1])*topDer[1] + (top[2] - A[2])*topDer[2]);
-    return distance;
+double Model::squaredTopDistDerV(double u, double v, vec3d A){
+    vec3d top = fillTop(u,v);
+    vec3d topDer = fillTopDerV(u,v);
+    double dist = 2*((top - A)*topDer).sum();
+    return dist;
 }
-double Model::squaredTopDistDerUU(double u, double v, vector<double> A){
-    vector<double> top = fillTop(u,v);
-    vector<double> topDer1 = fillTopDerU(u,v);
-    vector<double> topDer2 = fillTopDerUU(u,v);
+double Model::squaredTopDistDerUU(double u, double v, vec3d A){
+    vec3d top = fillTop(u,v);
+    vec3d topDer1 = fillTopDerU(u,v);
+    vec3d topDer2 = fillTopDerUU(u,v);
 
-    double distance = 2*(pow((topDer1[0]),2.0) + (top[0] + A[0])*topDer2[0]
-                      + pow((topDer1[1]),2.0) + (top[1] + A[1])*topDer2[1]
-                      + pow((topDer1[2]),2.0) + (top[2] + A[2])*topDer2[2]);
-    return distance;
-}
-double Model::squaredTopDistDerVV(double u, double v, vector<double> A){
-    vector<double> top = fillTop(u,v);
-    vector<double> topDer1 = fillTopDerV(u,v);
-    vector<double> topDer2 = fillTopDerVV(u,v);
+    double dist = 2*((topDer1*topDer1).sum() + ((top - A)*topDer2).sum());
 
-    double distance = 2*(pow((topDer1[0]),2.0) + (top[0] + A[0])*topDer2[0]
-                         + pow((topDer1[1]),2.0) + (top[1] + A[1])*topDer2[1]
-                         + pow((topDer1[2]),2.0) + (top[2] + A[2])*topDer2[2]);
-    return distance;
+    return dist;
 }
-double Model::squaredTopDistDerUV(double u, double v, vector<double> A){
-    vector<double> top = fillTop(u,v);
-    vector<double> topDerU = fillTopDerU(u,v);
-    vector<double> topDerV = fillTopDerV(u,v);
-    vector<double> topDerUV = fillTopDerUV(u,v);
+double Model::squaredTopDistDerVV(double u, double v, vec3d A){
+    vec3d top = fillTop(u,v);
+    vec3d topDer1 = fillTopDerV(u,v);
+    vec3d topDer2 = fillTopDerVV(u,v);
 
-    double distance = 2*((top[0] - A[0])*topDerUV[0] + topDerV[0]*topDerU[0]
-                      + (top[1] - A[1])*topDerUV[1] + topDerV[1]*topDerU[1]
-                      + (top[2] - A[2])*topDerUV[2] + topDerV[2]*topDerU[2]);
-    return distance;
+    double dist = 2*((topDer1*topDer1).sum() + ((top - A)*topDer2).sum());
+
+    return dist;
+}
+double Model::squaredTopDistDerUV(double u, double v, vec3d A){
+    vec3d top = fillTop(u,v);
+    vec3d topDerU = fillTopDerU(u,v);
+    vec3d topDerV = fillTopDerV(u,v);
+    vec3d topDerUV = fillTopDerUV(u,v);
+
+    double dist = 2*(((top - A)*topDerUV).sum() + (topDerU*topDerV).sum());
+
+    return dist;
 }
 
-double Model::distanceToTopPoint(double u, double v, vector<double> A){
-    vector<double> top = fillTop(u,v);
+double Model::distanceToTopPoint(double u, double v, vec3d A){
 
-    double distance = sqrt(pow(top[0] - A[0],2.0) + pow(top[1] - A[1],2.0) + pow(top[2] - A[2],2.0));
-    return distance;
+    return sqrt(squaredTopDist(u,v,A));
 }
 
+double Model::completeDistanceTopDerU(double u, double v, vec3d A){
 
-double Model::distanceToTopPointDerU(double u, double v, vector<double> A){
-    vector<double> top = fillTop(u,v);
-    vector<double> topDer = fillTopDerU(u,v);
-    double distance = (top[0] - A[0])*topDer[0] + (top[1] - A[1])*topDer[1] + (top[2] - A[2])*topDer[2];
-    return distance;
+    return squaredTopDistDerU(u,v,A) / distanceToTopPoint(u,v,A);
+}
+double Model::completeDistanceTopDerV(double u, double v, vec3d A) {
+
+    return squaredTopDistDerV(u, v, A) / distanceToTopPoint(u, v, A);
 }
 
-double Model::distanceToTopPointDerUU(double u, double v, vector<double> A){
-    vector<double> top = fillTop(u,v);
-    vector<double> topDer1 = fillTopDerU(u,v);
-    vector<double> topDer2 = fillTopDerUU(u,v);
+double Model::completeDistanceTopDerUU(double u, double v, vec3d A) {
+    vec3d f = fillTop(u,v);
+    vec3d f1 = fillTopDerU(u,v);
+    vec3d f2 = fillTopDerUU(u,v);
 
-    double distance = pow((topDer1[0]),2.0) + (top[0] + A[0])*topDer2[0]
-                    + pow((topDer1[1]),2.0) + (top[1] + A[1])*topDer2[1]
-                    + pow((topDer1[2]),2.0) + (top[2] + A[2])*topDer2[2];
-    return distance;
+    double dist = ((f - A)*f2 + f1*f1).sum()/(sqrt(((f-A)*(f-A)).sum()) - pow(((f-A)*f1).sum(),2.0)/(pow(((f-A)*(f-A)).sum(),1.5)));
+
+    return dist;
 }
 
+double Model::completeDistanceTopDerVV(double u, double v, vec3d A) {
+    vec3d f = fillTop(u,v);
+    vec3d f1 = fillTopDerV(u,v);
+    vec3d f2 = fillTopDerVV(u,v);
 
-double Model::distanceToTopPointDerUV(double u, double v, vector<double> A){
-    vector<double> top = fillTop(u,v);
-    vector<double> topDerU = fillTopDerU(u,v);
-    vector<double> topDerV = fillTopDerV(u,v);
-    vector<double> topDerUV = fillTopDerUV(u,v);
+    double dist = ((f - A)*f2 + f1*f1).sum()/(sqrt(((f-A)*(f-A)).sum()) - pow(((f-A)*f1).sum(),2.0)/(pow(((f-A)*(f-A)).sum(),1.5)));
 
-    double distance = (top[0] - A[0])*topDerUV[0] + topDerV[0]*topDerU[0]
-                      + (top[1] - A[1])*topDerUV[1] + topDerV[1]*topDerU[1]
-                      + (top[2] - A[2])*topDerUV[2] + topDerV[2]*topDerU[2];
-    return distance;
+    return dist;
 }
 
+double Model::completeDistanceTopDerUV(double u, double v, vec3d A) {
+    vec3d f = fillTop(u, v);
+    vec3d f1u = fillTopDerU(u, v);
+    vec3d f1v = fillTopDerV(u, v);
+    vec3d f2 = fillTopDerUV(u, v);
 
-double Model::distanceToTopPointDerV(double u, double v, vector<double> A){
-    vector<double> top = fillTop(u,v);
-    vector<double> topDer = fillTopDerV(u,v);
-    double distance = (top[0] - A[0])*topDer[0] + (top[1] - A[1])*topDer[1] + (top[2] - A[2])*topDer[2];
-    return distance;
+    double dist = ((((f - A)*(f - A)).sum())*((f2*(f-A)).sum() + (f1u*f1v).sum()) - (f1u*(f-A)).sum()*(f1v*(f-A)).sum())/(pow(((f-A)*(f-A)).sum(),1.5));
+
+    return dist;
 }
 
-double Model::distanceToTopPointDerVV(double u, double v, vector<double> A){
-    vector<double> top = fillTop(u,v);
-    vector<double> topDer1 = fillTopDerV(u,v);
-    vector<double> topDer2 = fillTopDerVV(u,v);
+double Model::distanceToBottomPoint(double u, double v, vec3d A){
+    vec3d bottom = fillBottom(u, v);
+    double dist = ((bottom - A)*(bottom - A)).sum();
 
-    double distance = pow((topDer1[0]),2.0) + (top[0] + A[0])*topDer2[0]
-                    + pow((topDer1[1]),2.0) + (top[1] + A[1])*topDer2[1]
-                    + pow((topDer1[2]),2.0) + (top[2] + A[2])*topDer2[2];
-    return distance;
-}
-
-double Model::distanceToTopPointDerVU(double u, double v, vector<double> A){
-    vector<double> top = fillTop(u,v);
-    vector<double> topDerV = fillTopDerV(u,v);
-    vector<double> topDerU = fillTopDerU(u,v);
-    vector<double> topDerVU = fillTopDerVU(u,v);
-
-    double distance = (top[0] - A[0])*topDerVU[0] + topDerV[0]*topDerU[0]
-                    + (top[1] - A[1])*topDerVU[1] + topDerV[1]*topDerU[1]
-                    + (top[2] - A[2])*topDerVU[2] + topDerV[2]*topDerU[2];
-    return distance;
-
-    // d(u,v)/dv = (f(u,v) - A)*f(u,v)/dv
-    // d(u,v)/dvdu = f(u,v)/du * f(u,v)/dv + ((f(u,v) - A)*f(u,v)/dvdu
-}
-
-double Model::completeDistanceTopDerU(double u, double v, vector<double> A){
-
-    return distanceToTopPointDerU(u,v,A)/distanceToTopPoint(u,v,A);
-}
-double Model::completeDistanceTopDerV(double u, double v, vector<double> A){
-
-    return distanceToTopPointDerV(u,v,A)/distanceToTopPoint(u,v,A);
-}
-double Model::completeDistanceTopDerUU(double u, double v, vector<double> A){
-    double f = distanceToTopPoint(u,v,A),
-           fodu = distanceToTopPointDerU(u,v,A),
-           fodudu = distanceToTopPointDerUU(u,v,A);
-
-    return (f*fodudu - fodu/f*fodu)/(f*f);
-}
-
-double Model::completeDistanceTopDerUU2(double u, double v, vector<double> A) {
-    vector<double> f = fillTop(u,v);
-    vector<double> f1 = fillTopDerU(u,v);
-    vector<double> f2 = fillTopDerUU(u,v);
-
-    return (2*(f[0] - A[0])*f2[0] + 2*f1[0]*f1[0] + 2*(f[1] - A[1])*f2[1] + 2*f1[1]*f1[1] + 2*(f[2] - A[2])*f2[2] + 2*f1[2]*f1[2]) /
-            (2*sqrt((f[0] - A[0])*(f[0] - A[0]) + (f[1] -  A[1])*(f[1] -  A[1]) + (f[2] - A[2])*(f[2] - A[2]))) -
-            pow((2*(f[0] - A[0])*f1[0] + 2*(f[1] -  A[1])*f1[1] + 2*(f[2] - A[2])*f1[2]), 2.0)/
-                    (4 * pow((f[0] - A[0])*(f[0] - A[0]) + (f[1] -  A[1])*(f[1] -  A[1]) + (f[2] - A[2])*(f[2] - A[2]),1.5));
-}
-
-double Model::completeDistanceTopDerVV2(double u, double v, vector<double> A) {
-    vector<double> f = fillTop(u,v);
-    vector<double> f1 = fillTopDerV(u,v);
-    vector<double> f2 = fillTopDerVV(u,v);
-
-    return (2*(f[0] - A[0])*f2[0] + 2*f1[0]*f1[0] + 2*(f[1] - A[1])*f2[1] + 2*f1[1]*f1[1] + 2*(f[2] - A[2])*f2[2] + 2*f1[2]*f1[2]) /
-           (2*sqrt((f[0] - A[0])*(f[0] - A[0]) + (f[1] -  A[1])*(f[1] -  A[1]) + (f[2] - A[2])*(f[2] - A[2]))) -
-           pow((2*(f[0] - A[0])*f1[0] + 2*(f[1] -  A[1])*f1[1] + 2*(f[2] - A[2])*f1[2]), 2.0)/
-           (4 * pow((f[0] - A[0])*(f[0] - A[0]) + (f[1] -  A[1])*(f[1] -  A[1]) + (f[2] - A[2])*(f[2] - A[2]),1.5));
-}
-
-double Model::completeDistanceTopDerUV2(double u, double v, vector<double> A) {
-    vector<double> f = fillTop(u, v);
-    vector<double> f1u = fillTopDerU(u, v);
-    vector<double> f1v = fillTopDerV(u, v);
-    vector<double> f2 = fillTopDerUV(u, v);
-
-    return (2 * (pow((f[0] - A[0]), 2.0) + pow((f[1] - A[1]), 2.0) + pow((f[2] - A[2]), 2.0)) *
-             (f1v[0] * f1u[0] + (f[0] - A[0]) * f2[0] + f1v[1] * f1u[1] + (f[1] -A[1]) * f2[1] + f1v[2] * f1u[2] +
-              (f[2] - A[2]) * f2[2])
-             - 2 * ((f[0] - A[0]) * f1v[0] + (f[1] - A[1]) * f1v[1] + (f[2] - A[2]) * f1v[2]) *
-               ((f[0] - A[0]) * f1u[0] + (f[1] - A[1]) * f1u[1] + (f[2] - A[2]) * f1u[2])) /
-            (2 * pow((pow((f[0] - A[0]), 2.0) + pow((f[1] - A[1]), 2.0) + pow((f[2] - A[2]), 2.0)), (3.0 / 2.0)));
-
-}
-double Model::completeDistanceTopDerVV(double u, double v, vector<double> A){
-    double f = distanceToTopPoint(u,v,A),
-           fodu = distanceToTopPointDerV(u,v,A),
-           fodudu = distanceToTopPointDerVV(u,v,A);
-
-    return (f*fodudu - (fodu/f)*fodu)/(f*f);
-}
-double Model::completeDistanceTopDerUV(double u, double v, vector<double> A){
-    double f = distanceToTopPoint(u,v,A),
-            fodu = distanceToTopPointDerU(u,v,A),
-            fodv = distanceToTopPointDerV(u,v,A),
-            fodudv = distanceToTopPointDerUV(u,v,A);
-
-    return (f*fodudv - fodv/f*fodu)/(f*f);
-}
-
-double Model::distranceToBottomPoint(double u, double v, vector<double> A){
-    vector<double> bottom = fillBottom(u, v);
-
-    double distance = sqrt(pow(bottom[0] - A[0], 2.0) + pow(bottom[1] - A[1], 2.0) + pow(bottom[2] - A[2], 2.0));
-    return distance;
+    return sqrt(dist);
 }
 
 Model Model::getPart(Model model, int idx){
     if(idx % 2 != 0){
-        model.leafCurve = MirrorY(model.leafCurve);
-        model.bendCurve = MirrorY(model.bendCurve);
-        model.sinCurveBottom = MirrorY(model.sinCurveBottom);
-        model.sinCurveTop = MirrorY(model.sinCurveTop);
-        model.Q_b_sym[1] *= -1;
-        model.Q_l_sym[1] *= -1;
-        model.Q_b_sin[1] *= -1;
-        model.Q_l_sin[1] *= -1;
-        model.Q_r[1] *= -1;
+        model.leafCurve = model.leafCurve.MirrorY();
+        model.bendCurve = model.bendCurve.MirrorY();
+        model.sinCurveBottom = model.sinCurveBottom.MirrorY();
+        model.sinCurveTop = model.sinCurveTop.MirrorY();
+        model.Q_b_sym = model.Q_b_sym.MirrorY();
+        model.Q_l_sym = model.Q_l_sym.MirrorY();
+        model.Q_b_sin = model.Q_b_sin.MirrorY();
+        model.Q_l_sin = model.Q_l_sin.MirrorY();
+        model.Q_r = model.Q_r.MirrorY();
+
         idx--;
     }
     idx /= 2;
     for(int i = 0; i < idx; i++){
-        model.leafCurve = RotAxisZ(120.0/180*M_PI,model.leafCurve);
-        model.bendCurve = RotAxisZ(120.0/180*M_PI,model.bendCurve);
-        model.symCurveBottom = RotAxisZ(120.0/180*M_PI,model.symCurveBottom);
-        model.symCurveTop = RotAxisZ(120.0/180*M_PI,model.symCurveTop);
-        model.sinCurveBottom = RotAxisZ(120.0/180*M_PI,model.sinCurveBottom);
-        model.sinCurveTop = RotAxisZ(120.0/180*M_PI,model.sinCurveTop);
-        model.Q_b_sym = RotAxisZ(120.0/180*M_PI,model.Q_b_sym);
-        model.Q_l_sym = RotAxisZ(120.0/180*M_PI,model.Q_l_sym);
-        model.Q_b_sin = RotAxisZ(120.0/180*M_PI,model.Q_b_sin);
-        model.Q_l_sin = RotAxisZ(120.0/180*M_PI,model.Q_l_sin);
-        model.Q_r = RotAxisZ(120.0/180*M_PI,model.Q_r);
+        model.leafCurve = model.leafCurve.RotAxisZ(120.0/180*M_PI);
+        model.bendCurve = model.bendCurve.RotAxisZ(120.0/180*M_PI);
+        model.symCurveBottom = model.symCurveBottom.RotAxisZ(120.0/180*M_PI);
+        model.symCurveTop = model.symCurveTop.RotAxisZ(120.0/180*M_PI);
+        model.sinCurveBottom = model.sinCurveBottom.RotAxisZ(120.0/180*M_PI);
+        model.sinCurveTop = model.sinCurveTop.RotAxisZ(120.0/180*M_PI);
+        model.Q_b_sym = model.Q_b_sym.RotAxisZ(120.0/180*M_PI);
+        model.Q_l_sym = model.Q_l_sym.RotAxisZ(120.0/180*M_PI);
+        model.Q_b_sin = model.Q_b_sin.RotAxisZ(120.0/180*M_PI);
+        model.Q_l_sin = model.Q_l_sin.RotAxisZ(120.0/180*M_PI);
+        model.Q_r = model.Q_r.RotAxisZ(120.0/180*M_PI);
     }
     return model;
+}
+
+TopParametric Model::getTopParametric() {
+    return TopParametric(
+            leafCurveBezier(),
+            bendCurveBezier(),
+            symCurveTopBezier(),
+            sinCurveTopBezier(),
+            Q_l_sin,
+            Q_l_sym,
+            Q_b_sin,
+            Q_b_sym
+            );
+}
+
+BottomParametric Model::getBottomParametric() {
+    return BottomParametric(
+            sinCurveBottom,
+            symCurveBottom,
+            bendCurve,
+            Q_r,
+            Q_b_sin,
+            Q_b_sym
+    );
+}
+
+bicubicsrf Model::getTopBezier() {
+    TopParametric top = getTopParametric();
+    cubiccrv lC = leafCurveBezier();
+    cubiccrv bC = bendCurveBezier();
+    cubiccrv symC = symCurveTopBezier();
+    cubiccrv sinC = sinCurveTopBezier();
+
+    vec3d k00 = bC.getCtrlP(0);
+    vec3d k01 = symC.getCtrlP(2);
+    vec3d k10 = bC.getCtrlP(1);
+    vec3d dUV00 = top.atDerUV(0,0);
+    vec3d k11 = k01 + k10 - k00 - dUV00/100;
+
+    vec3d k30 = bC.getCtrlP(3);
+    vec3d k31 = sinC.getCtrlP(2);
+    vec3d k20 = bC.getCtrlP(2);
+    vec3d dUV10 = top.atDerUV(1,0);
+    vec3d k21 = k31 + k20 - k30 - dUV10/100;
+
+    vec3d k03 = lC.getCtrlP(0);
+    vec3d k02 = symC.getCtrlP(1);
+    vec3d k13 = lC.getCtrlP(1);
+    vec3d dUV01 = top.atDerUV(0,1);
+    vec3d k12 = k02 + k13 - k03 - dUV01/100;
+
+    vec3d k33 = lC.getCtrlP(3);
+    vec3d k32 = sinC.getCtrlP(1);
+    vec3d k23 = lC.getCtrlP(2);
+    vec3d dUV11 = top.atDerUV(1,1);
+    vec3d k22 = k32 + k23 - k33 - dUV11/100;
+
+    vec3d ctrls[16] ={k00,k01,k02,k03,
+                      k10,k11,k12,k13,
+                      k20,k21,k22,k23,
+                      k30,k31,k32,k33};
+
+    return bicubicsrf(ctrls);
 }

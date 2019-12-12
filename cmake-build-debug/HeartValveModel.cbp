@@ -132,36 +132,66 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/bezier/bezier.cpp">
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/bezier.cpp">
 			<Option target="HeartValveModel"/>
 			<Option target="Parallel"/>
 		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/bezier/bezier.h">
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/bezier.h">
 			<Option target="HeartValveModel"/>
 			<Option target="Parallel"/>
 		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/bezier/bicubicsrf.cpp">
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/cubiccrv.cpp">
 			<Option target="HeartValveModel"/>
 		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/bezier/bicubicsrf.h">
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/cubiccrv.h">
 			<Option target="HeartValveModel"/>
 		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/bezier/cubiccrv.cpp">
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/curve.cpp">
 			<Option target="HeartValveModel"/>
 		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/bezier/cubiccrv.h">
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/curve.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/maths/vec3d.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/maths/vec3d.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/BottomParametric.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/BottomParametric.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/TopParametric.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/TopParametric.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/bicubicsrf.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/bicubicsrf.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.h">
 			<Option target="HeartValveModel"/>
 		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/main.cpp">
 			<Option target="HeartValveModel"/>
 		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/maths/vec3d.cpp">
-			<Option target="HeartValveModel"/>
-		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/maths/vec3d.h">
-			<Option target="HeartValveModel"/>
-		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/matplotlibcpp.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.h">
 			<Option target="HeartValveModel"/>
 		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/model.cpp">
@@ -172,8 +202,47 @@
 			<Option target="HeartValveModel"/>
 			<Option target="Parallel"/>
 		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/parallel.cpp">
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/parallel.cpp">
 			<Option target="Parallel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/optimizer.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/optimizer.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/bisection.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/bisection.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/preprocessor.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/quadraticInterpolation.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/quadraticInterpolation.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/states.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Geometric.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Geometric.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Newton.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Newton.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/step.h">
+			<Option target="HeartValveModel"/>
 		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/parameters.h">
 			<Option target="HeartValveModel"/>

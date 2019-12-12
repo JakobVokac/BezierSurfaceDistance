@@ -83,18 +83,18 @@ CMakeFiles/HeartValveModel.dir/model.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/model.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/model.cpp -o CMakeFiles/HeartValveModel.dir/model.cpp.s
 
-CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
-CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.o: ../bezier/bezier.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/bezier/bezier.cpp
+CMakeFiles/HeartValveModel.dir/geometry/curve/bezier.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
+CMakeFiles/HeartValveModel.dir/geometry/curve/bezier.cpp.o: ../geometry/curve/bezier.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/HeartValveModel.dir/geometry/curve/bezier.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/geometry/curve/bezier.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/geometry/curve/bezier.cpp
 
-CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/bezier/bezier.cpp > CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.i
+CMakeFiles/HeartValveModel.dir/geometry/curve/bezier.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/geometry/curve/bezier.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/geometry/curve/bezier.cpp > CMakeFiles/HeartValveModel.dir/geometry/curve/bezier.cpp.i
 
-CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/bezier/bezier.cpp -o CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.s
+CMakeFiles/HeartValveModel.dir/geometry/curve/bezier.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/geometry/curve/bezier.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/geometry/curve/bezier.cpp -o CMakeFiles/HeartValveModel.dir/geometry/curve/bezier.cpp.s
 
 CMakeFiles/HeartValveModel.dir/vectorMath.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
 CMakeFiles/HeartValveModel.dir/vectorMath.cpp.o: ../vectorMath.cpp
@@ -122,71 +122,221 @@ CMakeFiles/HeartValveModel.dir/plotting.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/plotting.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/plotting.cpp -o CMakeFiles/HeartValveModel.dir/plotting.cpp.s
 
-CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
-CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.o: ../maths/vec3d.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/maths/vec3d.cpp
+CMakeFiles/HeartValveModel.dir/geometry/maths/vec3d.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
+CMakeFiles/HeartValveModel.dir/geometry/maths/vec3d.cpp.o: ../geometry/maths/vec3d.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/HeartValveModel.dir/geometry/maths/vec3d.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/geometry/maths/vec3d.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/geometry/maths/vec3d.cpp
 
-CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/maths/vec3d.cpp > CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.i
+CMakeFiles/HeartValveModel.dir/geometry/maths/vec3d.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/geometry/maths/vec3d.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/geometry/maths/vec3d.cpp > CMakeFiles/HeartValveModel.dir/geometry/maths/vec3d.cpp.i
 
-CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/maths/vec3d.cpp -o CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.s
+CMakeFiles/HeartValveModel.dir/geometry/maths/vec3d.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/geometry/maths/vec3d.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/geometry/maths/vec3d.cpp -o CMakeFiles/HeartValveModel.dir/geometry/maths/vec3d.cpp.s
 
-CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
-CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.o: ../bezier/cubiccrv.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/bezier/cubiccrv.cpp
+CMakeFiles/HeartValveModel.dir/geometry/curve/cubiccrv.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
+CMakeFiles/HeartValveModel.dir/geometry/curve/cubiccrv.cpp.o: ../geometry/curve/cubiccrv.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/HeartValveModel.dir/geometry/curve/cubiccrv.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/geometry/curve/cubiccrv.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/geometry/curve/cubiccrv.cpp
 
-CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/bezier/cubiccrv.cpp > CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.i
+CMakeFiles/HeartValveModel.dir/geometry/curve/cubiccrv.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/geometry/curve/cubiccrv.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/geometry/curve/cubiccrv.cpp > CMakeFiles/HeartValveModel.dir/geometry/curve/cubiccrv.cpp.i
 
-CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/bezier/cubiccrv.cpp -o CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.s
+CMakeFiles/HeartValveModel.dir/geometry/curve/cubiccrv.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/geometry/curve/cubiccrv.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/geometry/curve/cubiccrv.cpp -o CMakeFiles/HeartValveModel.dir/geometry/curve/cubiccrv.cpp.s
 
-CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
-CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.o: ../bezier/bicubicsrf.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/bezier/bicubicsrf.cpp
+CMakeFiles/HeartValveModel.dir/geometry/surface/bicubicsrf.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
+CMakeFiles/HeartValveModel.dir/geometry/surface/bicubicsrf.cpp.o: ../geometry/surface/bicubicsrf.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/HeartValveModel.dir/geometry/surface/bicubicsrf.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/geometry/surface/bicubicsrf.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/bicubicsrf.cpp
 
-CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/bezier/bicubicsrf.cpp > CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.i
+CMakeFiles/HeartValveModel.dir/geometry/surface/bicubicsrf.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/geometry/surface/bicubicsrf.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/bicubicsrf.cpp > CMakeFiles/HeartValveModel.dir/geometry/surface/bicubicsrf.cpp.i
 
-CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/bezier/bicubicsrf.cpp -o CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.s
+CMakeFiles/HeartValveModel.dir/geometry/surface/bicubicsrf.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/geometry/surface/bicubicsrf.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/bicubicsrf.cpp -o CMakeFiles/HeartValveModel.dir/geometry/surface/bicubicsrf.cpp.s
+
+CMakeFiles/HeartValveModel.dir/geometry/surface/TopParametric.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
+CMakeFiles/HeartValveModel.dir/geometry/surface/TopParametric.cpp.o: ../geometry/surface/TopParametric.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/HeartValveModel.dir/geometry/surface/TopParametric.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/geometry/surface/TopParametric.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/TopParametric.cpp
+
+CMakeFiles/HeartValveModel.dir/geometry/surface/TopParametric.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/geometry/surface/TopParametric.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/TopParametric.cpp > CMakeFiles/HeartValveModel.dir/geometry/surface/TopParametric.cpp.i
+
+CMakeFiles/HeartValveModel.dir/geometry/surface/TopParametric.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/geometry/surface/TopParametric.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/TopParametric.cpp -o CMakeFiles/HeartValveModel.dir/geometry/surface/TopParametric.cpp.s
+
+CMakeFiles/HeartValveModel.dir/geometry/surface/BottomParametric.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
+CMakeFiles/HeartValveModel.dir/geometry/surface/BottomParametric.cpp.o: ../geometry/surface/BottomParametric.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/HeartValveModel.dir/geometry/surface/BottomParametric.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/geometry/surface/BottomParametric.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/BottomParametric.cpp
+
+CMakeFiles/HeartValveModel.dir/geometry/surface/BottomParametric.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/geometry/surface/BottomParametric.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/BottomParametric.cpp > CMakeFiles/HeartValveModel.dir/geometry/surface/BottomParametric.cpp.i
+
+CMakeFiles/HeartValveModel.dir/geometry/surface/BottomParametric.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/geometry/surface/BottomParametric.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/BottomParametric.cpp -o CMakeFiles/HeartValveModel.dir/geometry/surface/BottomParametric.cpp.s
+
+CMakeFiles/HeartValveModel.dir/geometry/surface/surface.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
+CMakeFiles/HeartValveModel.dir/geometry/surface/surface.cpp.o: ../geometry/surface/surface.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/HeartValveModel.dir/geometry/surface/surface.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/geometry/surface/surface.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.cpp
+
+CMakeFiles/HeartValveModel.dir/geometry/surface/surface.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/geometry/surface/surface.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.cpp > CMakeFiles/HeartValveModel.dir/geometry/surface/surface.cpp.i
+
+CMakeFiles/HeartValveModel.dir/geometry/surface/surface.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/geometry/surface/surface.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.cpp -o CMakeFiles/HeartValveModel.dir/geometry/surface/surface.cpp.s
+
+CMakeFiles/HeartValveModel.dir/geometry/curve/curve.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
+CMakeFiles/HeartValveModel.dir/geometry/curve/curve.cpp.o: ../geometry/curve/curve.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/HeartValveModel.dir/geometry/curve/curve.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/geometry/curve/curve.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/geometry/curve/curve.cpp
+
+CMakeFiles/HeartValveModel.dir/geometry/curve/curve.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/geometry/curve/curve.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/geometry/curve/curve.cpp > CMakeFiles/HeartValveModel.dir/geometry/curve/curve.cpp.i
+
+CMakeFiles/HeartValveModel.dir/geometry/curve/curve.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/geometry/curve/curve.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/geometry/curve/curve.cpp -o CMakeFiles/HeartValveModel.dir/geometry/curve/curve.cpp.s
+
+CMakeFiles/HeartValveModel.dir/optimizer/optimizer.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
+CMakeFiles/HeartValveModel.dir/optimizer/optimizer.cpp.o: ../optimizer/optimizer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/HeartValveModel.dir/optimizer/optimizer.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/optimizer/optimizer.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/optimizer/optimizer.cpp
+
+CMakeFiles/HeartValveModel.dir/optimizer/optimizer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/optimizer/optimizer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/optimizer/optimizer.cpp > CMakeFiles/HeartValveModel.dir/optimizer/optimizer.cpp.i
+
+CMakeFiles/HeartValveModel.dir/optimizer/optimizer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/optimizer/optimizer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/optimizer/optimizer.cpp -o CMakeFiles/HeartValveModel.dir/optimizer/optimizer.cpp.s
+
+CMakeFiles/HeartValveModel.dir/optimizer/step/Newton.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
+CMakeFiles/HeartValveModel.dir/optimizer/step/Newton.cpp.o: ../optimizer/step/Newton.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/HeartValveModel.dir/optimizer/step/Newton.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/optimizer/step/Newton.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Newton.cpp
+
+CMakeFiles/HeartValveModel.dir/optimizer/step/Newton.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/optimizer/step/Newton.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Newton.cpp > CMakeFiles/HeartValveModel.dir/optimizer/step/Newton.cpp.i
+
+CMakeFiles/HeartValveModel.dir/optimizer/step/Newton.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/optimizer/step/Newton.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Newton.cpp -o CMakeFiles/HeartValveModel.dir/optimizer/step/Newton.cpp.s
+
+CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/bisection.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
+CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/bisection.cpp.o: ../optimizer/preprocessor/bisection.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/bisection.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/bisection.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/bisection.cpp
+
+CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/bisection.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/bisection.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/bisection.cpp > CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/bisection.cpp.i
+
+CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/bisection.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/bisection.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/bisection.cpp -o CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/bisection.cpp.s
+
+CMakeFiles/HeartValveModel.dir/optimizer/step/Geometric.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
+CMakeFiles/HeartValveModel.dir/optimizer/step/Geometric.cpp.o: ../optimizer/step/Geometric.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/HeartValveModel.dir/optimizer/step/Geometric.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/optimizer/step/Geometric.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Geometric.cpp
+
+CMakeFiles/HeartValveModel.dir/optimizer/step/Geometric.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/optimizer/step/Geometric.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Geometric.cpp > CMakeFiles/HeartValveModel.dir/optimizer/step/Geometric.cpp.i
+
+CMakeFiles/HeartValveModel.dir/optimizer/step/Geometric.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/optimizer/step/Geometric.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Geometric.cpp -o CMakeFiles/HeartValveModel.dir/optimizer/step/Geometric.cpp.s
+
+CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/quadraticInterpolation.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
+CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/quadraticInterpolation.cpp.o: ../optimizer/preprocessor/quadraticInterpolation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/quadraticInterpolation.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/quadraticInterpolation.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/quadraticInterpolation.cpp
+
+CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/quadraticInterpolation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/quadraticInterpolation.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/quadraticInterpolation.cpp > CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/quadraticInterpolation.cpp.i
+
+CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/quadraticInterpolation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/quadraticInterpolation.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/quadraticInterpolation.cpp -o CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/quadraticInterpolation.cpp.s
+
+CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
+CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.o: ../measurements/measurements.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.cpp
+
+CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.cpp > CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.i
+
+CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.cpp -o CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.s
 
 # Object files for target HeartValveModel
 HeartValveModel_OBJECTS = \
 "CMakeFiles/HeartValveModel.dir/main.cpp.o" \
 "CMakeFiles/HeartValveModel.dir/model.cpp.o" \
-"CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.o" \
+"CMakeFiles/HeartValveModel.dir/geometry/curve/bezier.cpp.o" \
 "CMakeFiles/HeartValveModel.dir/vectorMath.cpp.o" \
 "CMakeFiles/HeartValveModel.dir/plotting.cpp.o" \
-"CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.o" \
-"CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.o" \
-"CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.o"
+"CMakeFiles/HeartValveModel.dir/geometry/maths/vec3d.cpp.o" \
+"CMakeFiles/HeartValveModel.dir/geometry/curve/cubiccrv.cpp.o" \
+"CMakeFiles/HeartValveModel.dir/geometry/surface/bicubicsrf.cpp.o" \
+"CMakeFiles/HeartValveModel.dir/geometry/surface/TopParametric.cpp.o" \
+"CMakeFiles/HeartValveModel.dir/geometry/surface/BottomParametric.cpp.o" \
+"CMakeFiles/HeartValveModel.dir/geometry/surface/surface.cpp.o" \
+"CMakeFiles/HeartValveModel.dir/geometry/curve/curve.cpp.o" \
+"CMakeFiles/HeartValveModel.dir/optimizer/optimizer.cpp.o" \
+"CMakeFiles/HeartValveModel.dir/optimizer/step/Newton.cpp.o" \
+"CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/bisection.cpp.o" \
+"CMakeFiles/HeartValveModel.dir/optimizer/step/Geometric.cpp.o" \
+"CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/quadraticInterpolation.cpp.o" \
+"CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.o"
 
 # External object files for target HeartValveModel
 HeartValveModel_EXTERNAL_OBJECTS =
 
 HeartValveModel: CMakeFiles/HeartValveModel.dir/main.cpp.o
 HeartValveModel: CMakeFiles/HeartValveModel.dir/model.cpp.o
-HeartValveModel: CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.o
+HeartValveModel: CMakeFiles/HeartValveModel.dir/geometry/curve/bezier.cpp.o
 HeartValveModel: CMakeFiles/HeartValveModel.dir/vectorMath.cpp.o
 HeartValveModel: CMakeFiles/HeartValveModel.dir/plotting.cpp.o
-HeartValveModel: CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.o
-HeartValveModel: CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.o
-HeartValveModel: CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.o
+HeartValveModel: CMakeFiles/HeartValveModel.dir/geometry/maths/vec3d.cpp.o
+HeartValveModel: CMakeFiles/HeartValveModel.dir/geometry/curve/cubiccrv.cpp.o
+HeartValveModel: CMakeFiles/HeartValveModel.dir/geometry/surface/bicubicsrf.cpp.o
+HeartValveModel: CMakeFiles/HeartValveModel.dir/geometry/surface/TopParametric.cpp.o
+HeartValveModel: CMakeFiles/HeartValveModel.dir/geometry/surface/BottomParametric.cpp.o
+HeartValveModel: CMakeFiles/HeartValveModel.dir/geometry/surface/surface.cpp.o
+HeartValveModel: CMakeFiles/HeartValveModel.dir/geometry/curve/curve.cpp.o
+HeartValveModel: CMakeFiles/HeartValveModel.dir/optimizer/optimizer.cpp.o
+HeartValveModel: CMakeFiles/HeartValveModel.dir/optimizer/step/Newton.cpp.o
+HeartValveModel: CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/bisection.cpp.o
+HeartValveModel: CMakeFiles/HeartValveModel.dir/optimizer/step/Geometric.cpp.o
+HeartValveModel: CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/quadraticInterpolation.cpp.o
+HeartValveModel: CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.o
 HeartValveModel: CMakeFiles/HeartValveModel.dir/build.make
 HeartValveModel: /usr/lib/x86_64-linux-gnu/libpython2.7.so
 HeartValveModel: CMakeFiles/HeartValveModel.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable HeartValveModel"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX executable HeartValveModel"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/HeartValveModel.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

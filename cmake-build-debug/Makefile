@@ -136,89 +136,224 @@ Parallel/fast:
 	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/build
 .PHONY : Parallel/fast
 
-bezier/bezier.o: bezier/bezier.cpp.o
+geometry/curve/bezier.o: geometry/curve/bezier.cpp.o
 
-.PHONY : bezier/bezier.o
-
-# target to build an object file
-bezier/bezier.cpp.o:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.o
-	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/bezier/bezier.cpp.o
-.PHONY : bezier/bezier.cpp.o
-
-bezier/bezier.i: bezier/bezier.cpp.i
-
-.PHONY : bezier/bezier.i
-
-# target to preprocess a source file
-bezier/bezier.cpp.i:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.i
-	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/bezier/bezier.cpp.i
-.PHONY : bezier/bezier.cpp.i
-
-bezier/bezier.s: bezier/bezier.cpp.s
-
-.PHONY : bezier/bezier.s
-
-# target to generate assembly for a file
-bezier/bezier.cpp.s:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier/bezier.cpp.s
-	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/bezier/bezier.cpp.s
-.PHONY : bezier/bezier.cpp.s
-
-bezier/bicubicsrf.o: bezier/bicubicsrf.cpp.o
-
-.PHONY : bezier/bicubicsrf.o
+.PHONY : geometry/curve/bezier.o
 
 # target to build an object file
-bezier/bicubicsrf.cpp.o:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.o
-.PHONY : bezier/bicubicsrf.cpp.o
+geometry/curve/bezier.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/curve/bezier.cpp.o
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/geometry/curve/bezier.cpp.o
+.PHONY : geometry/curve/bezier.cpp.o
 
-bezier/bicubicsrf.i: bezier/bicubicsrf.cpp.i
+geometry/curve/bezier.i: geometry/curve/bezier.cpp.i
 
-.PHONY : bezier/bicubicsrf.i
+.PHONY : geometry/curve/bezier.i
 
 # target to preprocess a source file
-bezier/bicubicsrf.cpp.i:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.i
-.PHONY : bezier/bicubicsrf.cpp.i
+geometry/curve/bezier.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/curve/bezier.cpp.i
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/geometry/curve/bezier.cpp.i
+.PHONY : geometry/curve/bezier.cpp.i
 
-bezier/bicubicsrf.s: bezier/bicubicsrf.cpp.s
+geometry/curve/bezier.s: geometry/curve/bezier.cpp.s
 
-.PHONY : bezier/bicubicsrf.s
+.PHONY : geometry/curve/bezier.s
 
 # target to generate assembly for a file
-bezier/bicubicsrf.cpp.s:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier/bicubicsrf.cpp.s
-.PHONY : bezier/bicubicsrf.cpp.s
+geometry/curve/bezier.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/curve/bezier.cpp.s
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/geometry/curve/bezier.cpp.s
+.PHONY : geometry/curve/bezier.cpp.s
 
-bezier/cubiccrv.o: bezier/cubiccrv.cpp.o
+geometry/curve/cubiccrv.o: geometry/curve/cubiccrv.cpp.o
 
-.PHONY : bezier/cubiccrv.o
+.PHONY : geometry/curve/cubiccrv.o
 
 # target to build an object file
-bezier/cubiccrv.cpp.o:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.o
-.PHONY : bezier/cubiccrv.cpp.o
+geometry/curve/cubiccrv.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/curve/cubiccrv.cpp.o
+.PHONY : geometry/curve/cubiccrv.cpp.o
 
-bezier/cubiccrv.i: bezier/cubiccrv.cpp.i
+geometry/curve/cubiccrv.i: geometry/curve/cubiccrv.cpp.i
 
-.PHONY : bezier/cubiccrv.i
+.PHONY : geometry/curve/cubiccrv.i
 
 # target to preprocess a source file
-bezier/cubiccrv.cpp.i:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.i
-.PHONY : bezier/cubiccrv.cpp.i
+geometry/curve/cubiccrv.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/curve/cubiccrv.cpp.i
+.PHONY : geometry/curve/cubiccrv.cpp.i
 
-bezier/cubiccrv.s: bezier/cubiccrv.cpp.s
+geometry/curve/cubiccrv.s: geometry/curve/cubiccrv.cpp.s
 
-.PHONY : bezier/cubiccrv.s
+.PHONY : geometry/curve/cubiccrv.s
 
 # target to generate assembly for a file
-bezier/cubiccrv.cpp.s:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/bezier/cubiccrv.cpp.s
-.PHONY : bezier/cubiccrv.cpp.s
+geometry/curve/cubiccrv.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/curve/cubiccrv.cpp.s
+.PHONY : geometry/curve/cubiccrv.cpp.s
+
+geometry/curve/curve.o: geometry/curve/curve.cpp.o
+
+.PHONY : geometry/curve/curve.o
+
+# target to build an object file
+geometry/curve/curve.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/curve/curve.cpp.o
+.PHONY : geometry/curve/curve.cpp.o
+
+geometry/curve/curve.i: geometry/curve/curve.cpp.i
+
+.PHONY : geometry/curve/curve.i
+
+# target to preprocess a source file
+geometry/curve/curve.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/curve/curve.cpp.i
+.PHONY : geometry/curve/curve.cpp.i
+
+geometry/curve/curve.s: geometry/curve/curve.cpp.s
+
+.PHONY : geometry/curve/curve.s
+
+# target to generate assembly for a file
+geometry/curve/curve.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/curve/curve.cpp.s
+.PHONY : geometry/curve/curve.cpp.s
+
+geometry/maths/vec3d.o: geometry/maths/vec3d.cpp.o
+
+.PHONY : geometry/maths/vec3d.o
+
+# target to build an object file
+geometry/maths/vec3d.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/maths/vec3d.cpp.o
+.PHONY : geometry/maths/vec3d.cpp.o
+
+geometry/maths/vec3d.i: geometry/maths/vec3d.cpp.i
+
+.PHONY : geometry/maths/vec3d.i
+
+# target to preprocess a source file
+geometry/maths/vec3d.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/maths/vec3d.cpp.i
+.PHONY : geometry/maths/vec3d.cpp.i
+
+geometry/maths/vec3d.s: geometry/maths/vec3d.cpp.s
+
+.PHONY : geometry/maths/vec3d.s
+
+# target to generate assembly for a file
+geometry/maths/vec3d.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/maths/vec3d.cpp.s
+.PHONY : geometry/maths/vec3d.cpp.s
+
+geometry/surface/BottomParametric.o: geometry/surface/BottomParametric.cpp.o
+
+.PHONY : geometry/surface/BottomParametric.o
+
+# target to build an object file
+geometry/surface/BottomParametric.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/BottomParametric.cpp.o
+.PHONY : geometry/surface/BottomParametric.cpp.o
+
+geometry/surface/BottomParametric.i: geometry/surface/BottomParametric.cpp.i
+
+.PHONY : geometry/surface/BottomParametric.i
+
+# target to preprocess a source file
+geometry/surface/BottomParametric.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/BottomParametric.cpp.i
+.PHONY : geometry/surface/BottomParametric.cpp.i
+
+geometry/surface/BottomParametric.s: geometry/surface/BottomParametric.cpp.s
+
+.PHONY : geometry/surface/BottomParametric.s
+
+# target to generate assembly for a file
+geometry/surface/BottomParametric.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/BottomParametric.cpp.s
+.PHONY : geometry/surface/BottomParametric.cpp.s
+
+geometry/surface/TopParametric.o: geometry/surface/TopParametric.cpp.o
+
+.PHONY : geometry/surface/TopParametric.o
+
+# target to build an object file
+geometry/surface/TopParametric.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/TopParametric.cpp.o
+.PHONY : geometry/surface/TopParametric.cpp.o
+
+geometry/surface/TopParametric.i: geometry/surface/TopParametric.cpp.i
+
+.PHONY : geometry/surface/TopParametric.i
+
+# target to preprocess a source file
+geometry/surface/TopParametric.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/TopParametric.cpp.i
+.PHONY : geometry/surface/TopParametric.cpp.i
+
+geometry/surface/TopParametric.s: geometry/surface/TopParametric.cpp.s
+
+.PHONY : geometry/surface/TopParametric.s
+
+# target to generate assembly for a file
+geometry/surface/TopParametric.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/TopParametric.cpp.s
+.PHONY : geometry/surface/TopParametric.cpp.s
+
+geometry/surface/bicubicsrf.o: geometry/surface/bicubicsrf.cpp.o
+
+.PHONY : geometry/surface/bicubicsrf.o
+
+# target to build an object file
+geometry/surface/bicubicsrf.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/bicubicsrf.cpp.o
+.PHONY : geometry/surface/bicubicsrf.cpp.o
+
+geometry/surface/bicubicsrf.i: geometry/surface/bicubicsrf.cpp.i
+
+.PHONY : geometry/surface/bicubicsrf.i
+
+# target to preprocess a source file
+geometry/surface/bicubicsrf.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/bicubicsrf.cpp.i
+.PHONY : geometry/surface/bicubicsrf.cpp.i
+
+geometry/surface/bicubicsrf.s: geometry/surface/bicubicsrf.cpp.s
+
+.PHONY : geometry/surface/bicubicsrf.s
+
+# target to generate assembly for a file
+geometry/surface/bicubicsrf.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/bicubicsrf.cpp.s
+.PHONY : geometry/surface/bicubicsrf.cpp.s
+
+geometry/surface/surface.o: geometry/surface/surface.cpp.o
+
+.PHONY : geometry/surface/surface.o
+
+# target to build an object file
+geometry/surface/surface.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/surface.cpp.o
+.PHONY : geometry/surface/surface.cpp.o
+
+geometry/surface/surface.i: geometry/surface/surface.cpp.i
+
+.PHONY : geometry/surface/surface.i
+
+# target to preprocess a source file
+geometry/surface/surface.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/surface.cpp.i
+.PHONY : geometry/surface/surface.cpp.i
+
+geometry/surface/surface.s: geometry/surface/surface.cpp.s
+
+.PHONY : geometry/surface/surface.s
+
+# target to generate assembly for a file
+geometry/surface/surface.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/surface.cpp.s
+.PHONY : geometry/surface/surface.cpp.s
 
 main.o: main.cpp.o
 
@@ -247,32 +382,32 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-maths/vec3d.o: maths/vec3d.cpp.o
+measurements/measurements.o: measurements/measurements.cpp.o
 
-.PHONY : maths/vec3d.o
+.PHONY : measurements/measurements.o
 
 # target to build an object file
-maths/vec3d.cpp.o:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.o
-.PHONY : maths/vec3d.cpp.o
+measurements/measurements.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.o
+.PHONY : measurements/measurements.cpp.o
 
-maths/vec3d.i: maths/vec3d.cpp.i
+measurements/measurements.i: measurements/measurements.cpp.i
 
-.PHONY : maths/vec3d.i
+.PHONY : measurements/measurements.i
 
 # target to preprocess a source file
-maths/vec3d.cpp.i:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.i
-.PHONY : maths/vec3d.cpp.i
+measurements/measurements.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.i
+.PHONY : measurements/measurements.cpp.i
 
-maths/vec3d.s: maths/vec3d.cpp.s
+measurements/measurements.s: measurements/measurements.cpp.s
 
-.PHONY : maths/vec3d.s
+.PHONY : measurements/measurements.s
 
 # target to generate assembly for a file
-maths/vec3d.cpp.s:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/maths/vec3d.cpp.s
-.PHONY : maths/vec3d.cpp.s
+measurements/measurements.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.s
+.PHONY : measurements/measurements.cpp.s
 
 model.o: model.cpp.o
 
@@ -304,32 +439,167 @@ model.cpp.s:
 	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/model.cpp.s
 .PHONY : model.cpp.s
 
-parallel.o: parallel.cpp.o
+old_code/parallel.o: old_code/parallel.cpp.o
 
-.PHONY : parallel.o
+.PHONY : old_code/parallel.o
 
 # target to build an object file
-parallel.cpp.o:
-	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/parallel.cpp.o
-.PHONY : parallel.cpp.o
+old_code/parallel.cpp.o:
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/old_code/parallel.cpp.o
+.PHONY : old_code/parallel.cpp.o
 
-parallel.i: parallel.cpp.i
+old_code/parallel.i: old_code/parallel.cpp.i
 
-.PHONY : parallel.i
+.PHONY : old_code/parallel.i
 
 # target to preprocess a source file
-parallel.cpp.i:
-	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/parallel.cpp.i
-.PHONY : parallel.cpp.i
+old_code/parallel.cpp.i:
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/old_code/parallel.cpp.i
+.PHONY : old_code/parallel.cpp.i
 
-parallel.s: parallel.cpp.s
+old_code/parallel.s: old_code/parallel.cpp.s
 
-.PHONY : parallel.s
+.PHONY : old_code/parallel.s
 
 # target to generate assembly for a file
-parallel.cpp.s:
-	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/parallel.cpp.s
-.PHONY : parallel.cpp.s
+old_code/parallel.cpp.s:
+	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/old_code/parallel.cpp.s
+.PHONY : old_code/parallel.cpp.s
+
+optimizer/optimizer.o: optimizer/optimizer.cpp.o
+
+.PHONY : optimizer/optimizer.o
+
+# target to build an object file
+optimizer/optimizer.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/optimizer.cpp.o
+.PHONY : optimizer/optimizer.cpp.o
+
+optimizer/optimizer.i: optimizer/optimizer.cpp.i
+
+.PHONY : optimizer/optimizer.i
+
+# target to preprocess a source file
+optimizer/optimizer.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/optimizer.cpp.i
+.PHONY : optimizer/optimizer.cpp.i
+
+optimizer/optimizer.s: optimizer/optimizer.cpp.s
+
+.PHONY : optimizer/optimizer.s
+
+# target to generate assembly for a file
+optimizer/optimizer.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/optimizer.cpp.s
+.PHONY : optimizer/optimizer.cpp.s
+
+optimizer/preprocessor/bisection.o: optimizer/preprocessor/bisection.cpp.o
+
+.PHONY : optimizer/preprocessor/bisection.o
+
+# target to build an object file
+optimizer/preprocessor/bisection.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/bisection.cpp.o
+.PHONY : optimizer/preprocessor/bisection.cpp.o
+
+optimizer/preprocessor/bisection.i: optimizer/preprocessor/bisection.cpp.i
+
+.PHONY : optimizer/preprocessor/bisection.i
+
+# target to preprocess a source file
+optimizer/preprocessor/bisection.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/bisection.cpp.i
+.PHONY : optimizer/preprocessor/bisection.cpp.i
+
+optimizer/preprocessor/bisection.s: optimizer/preprocessor/bisection.cpp.s
+
+.PHONY : optimizer/preprocessor/bisection.s
+
+# target to generate assembly for a file
+optimizer/preprocessor/bisection.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/bisection.cpp.s
+.PHONY : optimizer/preprocessor/bisection.cpp.s
+
+optimizer/preprocessor/quadraticInterpolation.o: optimizer/preprocessor/quadraticInterpolation.cpp.o
+
+.PHONY : optimizer/preprocessor/quadraticInterpolation.o
+
+# target to build an object file
+optimizer/preprocessor/quadraticInterpolation.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/quadraticInterpolation.cpp.o
+.PHONY : optimizer/preprocessor/quadraticInterpolation.cpp.o
+
+optimizer/preprocessor/quadraticInterpolation.i: optimizer/preprocessor/quadraticInterpolation.cpp.i
+
+.PHONY : optimizer/preprocessor/quadraticInterpolation.i
+
+# target to preprocess a source file
+optimizer/preprocessor/quadraticInterpolation.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/quadraticInterpolation.cpp.i
+.PHONY : optimizer/preprocessor/quadraticInterpolation.cpp.i
+
+optimizer/preprocessor/quadraticInterpolation.s: optimizer/preprocessor/quadraticInterpolation.cpp.s
+
+.PHONY : optimizer/preprocessor/quadraticInterpolation.s
+
+# target to generate assembly for a file
+optimizer/preprocessor/quadraticInterpolation.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/quadraticInterpolation.cpp.s
+.PHONY : optimizer/preprocessor/quadraticInterpolation.cpp.s
+
+optimizer/step/Geometric.o: optimizer/step/Geometric.cpp.o
+
+.PHONY : optimizer/step/Geometric.o
+
+# target to build an object file
+optimizer/step/Geometric.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/step/Geometric.cpp.o
+.PHONY : optimizer/step/Geometric.cpp.o
+
+optimizer/step/Geometric.i: optimizer/step/Geometric.cpp.i
+
+.PHONY : optimizer/step/Geometric.i
+
+# target to preprocess a source file
+optimizer/step/Geometric.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/step/Geometric.cpp.i
+.PHONY : optimizer/step/Geometric.cpp.i
+
+optimizer/step/Geometric.s: optimizer/step/Geometric.cpp.s
+
+.PHONY : optimizer/step/Geometric.s
+
+# target to generate assembly for a file
+optimizer/step/Geometric.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/step/Geometric.cpp.s
+.PHONY : optimizer/step/Geometric.cpp.s
+
+optimizer/step/Newton.o: optimizer/step/Newton.cpp.o
+
+.PHONY : optimizer/step/Newton.o
+
+# target to build an object file
+optimizer/step/Newton.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/step/Newton.cpp.o
+.PHONY : optimizer/step/Newton.cpp.o
+
+optimizer/step/Newton.i: optimizer/step/Newton.cpp.i
+
+.PHONY : optimizer/step/Newton.i
+
+# target to preprocess a source file
+optimizer/step/Newton.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/step/Newton.cpp.i
+.PHONY : optimizer/step/Newton.cpp.i
+
+optimizer/step/Newton.s: optimizer/step/Newton.cpp.s
+
+.PHONY : optimizer/step/Newton.s
+
+# target to generate assembly for a file
+optimizer/step/Newton.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/step/Newton.cpp.s
+.PHONY : optimizer/step/Newton.cpp.s
 
 plotting.o: plotting.cpp.o
 
@@ -395,27 +665,57 @@ help:
 	@echo "... edit_cache"
 	@echo "... HeartValveModel"
 	@echo "... Parallel"
-	@echo "... bezier/bezier.o"
-	@echo "... bezier/bezier.i"
-	@echo "... bezier/bezier.s"
-	@echo "... bezier/bicubicsrf.o"
-	@echo "... bezier/bicubicsrf.i"
-	@echo "... bezier/bicubicsrf.s"
-	@echo "... bezier/cubiccrv.o"
-	@echo "... bezier/cubiccrv.i"
-	@echo "... bezier/cubiccrv.s"
+	@echo "... geometry/curve/bezier.o"
+	@echo "... geometry/curve/bezier.i"
+	@echo "... geometry/curve/bezier.s"
+	@echo "... geometry/curve/cubiccrv.o"
+	@echo "... geometry/curve/cubiccrv.i"
+	@echo "... geometry/curve/cubiccrv.s"
+	@echo "... geometry/curve/curve.o"
+	@echo "... geometry/curve/curve.i"
+	@echo "... geometry/curve/curve.s"
+	@echo "... geometry/maths/vec3d.o"
+	@echo "... geometry/maths/vec3d.i"
+	@echo "... geometry/maths/vec3d.s"
+	@echo "... geometry/surface/BottomParametric.o"
+	@echo "... geometry/surface/BottomParametric.i"
+	@echo "... geometry/surface/BottomParametric.s"
+	@echo "... geometry/surface/TopParametric.o"
+	@echo "... geometry/surface/TopParametric.i"
+	@echo "... geometry/surface/TopParametric.s"
+	@echo "... geometry/surface/bicubicsrf.o"
+	@echo "... geometry/surface/bicubicsrf.i"
+	@echo "... geometry/surface/bicubicsrf.s"
+	@echo "... geometry/surface/surface.o"
+	@echo "... geometry/surface/surface.i"
+	@echo "... geometry/surface/surface.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... maths/vec3d.o"
-	@echo "... maths/vec3d.i"
-	@echo "... maths/vec3d.s"
+	@echo "... measurements/measurements.o"
+	@echo "... measurements/measurements.i"
+	@echo "... measurements/measurements.s"
 	@echo "... model.o"
 	@echo "... model.i"
 	@echo "... model.s"
-	@echo "... parallel.o"
-	@echo "... parallel.i"
-	@echo "... parallel.s"
+	@echo "... old_code/parallel.o"
+	@echo "... old_code/parallel.i"
+	@echo "... old_code/parallel.s"
+	@echo "... optimizer/optimizer.o"
+	@echo "... optimizer/optimizer.i"
+	@echo "... optimizer/optimizer.s"
+	@echo "... optimizer/preprocessor/bisection.o"
+	@echo "... optimizer/preprocessor/bisection.i"
+	@echo "... optimizer/preprocessor/bisection.s"
+	@echo "... optimizer/preprocessor/quadraticInterpolation.o"
+	@echo "... optimizer/preprocessor/quadraticInterpolation.i"
+	@echo "... optimizer/preprocessor/quadraticInterpolation.s"
+	@echo "... optimizer/step/Geometric.o"
+	@echo "... optimizer/step/Geometric.i"
+	@echo "... optimizer/step/Geometric.s"
+	@echo "... optimizer/step/Newton.o"
+	@echo "... optimizer/step/Newton.i"
+	@echo "... optimizer/step/Newton.s"
 	@echo "... plotting.o"
 	@echo "... plotting.i"
 	@echo "... plotting.s"

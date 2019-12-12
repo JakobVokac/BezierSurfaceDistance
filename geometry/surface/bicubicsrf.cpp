@@ -18,7 +18,7 @@ int binom(int n, int i){
     return factorial(n)/(factorial(i)*factorial(n-i));
 }
 
-vec3d bicubicsrf::f(double u, double v){
+vec3d bicubicsrf::at(double u, double v){
     vec3d res = {0,0,0};
     for (int i = 0; i <= 3; ++i) {
         for (int j = 0; j <= 3; ++j) {
@@ -28,7 +28,7 @@ vec3d bicubicsrf::f(double u, double v){
     }
     return res;
 };
-vec3d bicubicsrf::fdu(double u, double v){
+vec3d bicubicsrf::atDerU(double u, double v){
     vec3d res = {0,0,0};
     for (int i = 0; i <= 2; ++i) {
         for (int j = 0; j <= 3; ++j) {
@@ -39,7 +39,7 @@ vec3d bicubicsrf::fdu(double u, double v){
     }
     return res;
 };
-vec3d bicubicsrf::fdv(double u, double v){
+vec3d bicubicsrf::atDerV(double u, double v){
     vec3d res = {0,0,0};
     for (int i = 0; i <= 2; ++i) {
         for (int j = 0; j <= 3; ++j) {
@@ -50,7 +50,7 @@ vec3d bicubicsrf::fdv(double u, double v){
     }
     return res;
 };
-vec3d bicubicsrf::fdudu(double u, double v){
+vec3d bicubicsrf::atDerUU(double u, double v){
     vec3d res = {0,0,0};
     for (int i = 0; i <= 1; ++i) {
         for (int j = 0; j <= 3; ++j) {
@@ -61,7 +61,7 @@ vec3d bicubicsrf::fdudu(double u, double v){
     }
     return res;
 };
-vec3d bicubicsrf::fdvdv(double u, double v){
+vec3d bicubicsrf::atDerVV(double u, double v){
     vec3d res = {0,0,0};
     for (int i = 0; i <= 3; ++i) {
         for (int j = 0; j <= 1; ++j) {
@@ -72,7 +72,7 @@ vec3d bicubicsrf::fdvdv(double u, double v){
     }
     return res;
 };
-vec3d bicubicsrf::fdudv(double u, double v){
+vec3d bicubicsrf::atDerUV(double u, double v){
     vec3d res = {0, 0, 0};
     for (int i = 0; i <= 2; ++i) {
         for (int j = 0; j <= 2; ++j) {
@@ -82,4 +82,22 @@ vec3d bicubicsrf::fdudv(double u, double v){
         }
     }
     return res;
+}
+
+curve &bicubicsrf::edgeU0() {
+    return U0;
+}
+
+curve &bicubicsrf::edgeU1() {
+    return U1;
+}
+
+curve &bicubicsrf::edgeV0() {
+    // TODO: check orientation because of parametric
+    return V0;
+}
+
+curve &bicubicsrf::edgeV1() {
+    // TODO: check orientation because of parametric
+    return V1;
 };

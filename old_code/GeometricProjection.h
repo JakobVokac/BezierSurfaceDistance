@@ -7,8 +7,8 @@
 
 #include <cmath>
 #include <vector>
-#include "../plotting.h"
-#include "../vectorMath.h"
+#include "plotting.h"
+#include "vectorMath.h"
 
 using namespace std;
 
