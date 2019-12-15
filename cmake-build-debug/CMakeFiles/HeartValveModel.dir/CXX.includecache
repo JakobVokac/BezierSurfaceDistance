@@ -6,28 +6,14 @@
 
 #IncludeRegexTransform: 
 
-/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/bezier.h
-vector
--
-cmath
--
-
 /home/s3179222/CLionProjects/HeartValveModel/geometry/curve/cubiccrv.h
 curve.h
 /home/s3179222/CLionProjects/HeartValveModel/geometry/curve/curve.h
 
 /home/s3179222/CLionProjects/HeartValveModel/geometry/curve/curve.h
-../maths/vec3d.h
-/home/s3179222/CLionProjects/HeartValveModel/geometry/maths/vec3d.h
+../vector/vec3d.h
+/home/s3179222/CLionProjects/HeartValveModel/geometry/vector/vec3d.h
 iostream
--
-
-/home/s3179222/CLionProjects/HeartValveModel/geometry/maths/vec3d.h
-cassert
--
-cmath
--
-ostream
 -
 
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/BottomParametric.h
@@ -43,28 +29,26 @@ surface.h
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.h
 
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.h
-../maths/vec3d.h
-/home/s3179222/CLionProjects/HeartValveModel/geometry/maths/vec3d.h
 ../curve/cubiccrv.h
 /home/s3179222/CLionProjects/HeartValveModel/geometry/curve/cubiccrv.h
+
+/home/s3179222/CLionProjects/HeartValveModel/geometry/vector/vec3d.h
+cassert
+-
+cmath
+-
+ostream
+-
 
 /home/s3179222/CLionProjects/HeartValveModel/main.cpp
 iostream
 -
 vector
 -
-chrono
--
 cmath
--
-cfloat
 -
 model.h
 /home/s3179222/CLionProjects/HeartValveModel/model.h
-vectorMath.h
-/home/s3179222/CLionProjects/HeartValveModel/vectorMath.h
-plotting.h
-/home/s3179222/CLionProjects/HeartValveModel/plotting.h
 optimizer/optimizer.h
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/optimizer.h
 optimizer/preprocessor/bisection.h
@@ -104,10 +88,6 @@ numpy/arrayobject.h
 opencv2/opencv.hpp
 -
 
-/home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.cpp
-measurements.h
-/home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.h
-
 /home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.h
 ../model.h
 /home/s3179222/CLionProjects/HeartValveModel/model.h
@@ -124,17 +104,13 @@ chrono
 ../optimizer/step/Newton.h
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Newton.h
 
-/home/s3179222/CLionProjects/HeartValveModel/model.cpp
-model.h
 /home/s3179222/CLionProjects/HeartValveModel/model.h
-
-/home/s3179222/CLionProjects/HeartValveModel/model.h
-geometry/curve/bezier.h
-/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/bezier.h
+old_code/bezier.h
+/home/s3179222/CLionProjects/HeartValveModel/old_code/bezier.h
 cmath
 -
-geometry/maths/vec3d.h
-/home/s3179222/CLionProjects/HeartValveModel/geometry/maths/vec3d.h
+geometry/vector/vec3d.h
+/home/s3179222/CLionProjects/HeartValveModel/geometry/vector/vec3d.h
 geometry/curve/cubiccrv.h
 /home/s3179222/CLionProjects/HeartValveModel/geometry/curve/cubiccrv.h
 geometry/surface/surface.h
@@ -146,9 +122,31 @@ geometry/surface/BottomParametric.h
 geometry/surface/bicubicsrf.h
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/bicubicsrf.h
 
-/home/s3179222/CLionProjects/HeartValveModel/optimizer/optimizer.cpp
-optimizer.h
-/home/s3179222/CLionProjects/HeartValveModel/optimizer/optimizer.h
+/home/s3179222/CLionProjects/HeartValveModel/old_code/bezier.h
+vector
+-
+cmath
+-
+
+/home/s3179222/CLionProjects/HeartValveModel/old_code/plotting.h
+../model.h
+/home/s3179222/CLionProjects/HeartValveModel/model.h
+../matplotlibcpp.h
+/home/s3179222/CLionProjects/HeartValveModel/matplotlibcpp.h
+vectorMath.h
+/home/s3179222/CLionProjects/HeartValveModel/old_code/vectorMath.h
+../model.h
+/home/s3179222/CLionProjects/HeartValveModel/model.h
+vector
+-
+
+/home/s3179222/CLionProjects/HeartValveModel/old_code/vectorMath.h
+vector
+-
+cmath
+-
+assert.h
+-
 
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/optimizer.h
 ../geometry/surface/surface.h
@@ -161,8 +159,8 @@ step/step.h
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/step/step.h
 cstdlib
 -
-../plotting.h
-/home/s3179222/CLionProjects/HeartValveModel/plotting.h
+../old_code/plotting.h
+/home/s3179222/CLionProjects/HeartValveModel/old_code/plotting.h
 
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/bisection.h
 preprocessor.h
@@ -193,30 +191,6 @@ step.h
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/states.h
 ../../geometry/surface/surface.h
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.h
-
-/home/s3179222/CLionProjects/HeartValveModel/plotting.cpp
-plotting.h
-/home/s3179222/CLionProjects/HeartValveModel/plotting.h
-
-/home/s3179222/CLionProjects/HeartValveModel/plotting.h
-model.h
-/home/s3179222/CLionProjects/HeartValveModel/model.h
-matplotlibcpp.h
-/home/s3179222/CLionProjects/HeartValveModel/matplotlibcpp.h
-vectorMath.h
-/home/s3179222/CLionProjects/HeartValveModel/vectorMath.h
-model.h
-/home/s3179222/CLionProjects/HeartValveModel/model.h
-vector
--
-
-/home/s3179222/CLionProjects/HeartValveModel/vectorMath.h
-vector
--
-cmath
--
-assert.h
--
 
 /usr/include/python2.7/Python.h
 patchlevel.h

@@ -101,3 +101,82 @@ curve &bicubicsrf::edgeV1() {
     // TODO: check orientation because of parametric
     return V1;
 };
+
+bool bicubicsrf::hasValidControlNet(){
+    for (int i = 0; i < 3; ++i) {
+        cubiccrv c = {ctrl[i*4 + 0],ctrl[i*4 + 1],ctrl[i*4 + 2],ctrl[i*4 + 3]};
+        if(!c.hasConvexPolygon())
+            return false;
+    }
+    for (int i = 0; i < 3; ++i) {
+        cubiccrv c = {ctrl[i + 0],ctrl[i + 4],ctrl[i + 8],ctrl[i + 12]};
+        if(!c.hasConvexPolygon())
+            return false;
+    }
+    return true;
+}
+
+bool bicubicsrf::closestPointInPatch(vec3d P){
+    bool flag = false;
+    for (int i = 0; i < 3; ++i) {
+        cubiccrv c = {ctrl[i*4 + 0],ctrl[i*4 + 1],ctrl[i*4 + 2],ctrl[i*4 + 3]};
+        if(c.closestPointInCurve(P)) {
+            flag = true;
+            break;
+        }
+    }
+    if(!flag)
+        return false;
+
+    flag = false;
+
+    for (int i = 0; i < 3; ++i) {
+        cubiccrv c = {ctrl[i + 0],ctrl[i + 4],ctrl[i + 8],ctrl[i + 12]};
+        if(c.closestPointInCurve(P)) {
+            flag = true;
+            break;
+        }
+    }
+
+    if(!flag)
+        return false;
+
+    return true;
+}
+
+void bicubicsrf::subdivide(bool dir, double t, bicubicsrf &srf1, bicubicsrf &srf2) {
+    if(dir){
+        // direction u
+        for (int i = 0; i < 4; ++i) {
+            cubiccrv c = {ctrl[i + 0], ctrl[i + 4], ctrl[i + 8], ctrl[i + 12]};
+            cubiccrv c1, c2;
+
+            c.subdivideAt(t, c1, c2);
+
+            for (int j = 0; j < 4; ++j) {
+                srf1.ctrl[i + 4 * j] = c1.getCtrlP(j);
+                srf2.ctrl[i + 4 * j] = c2.getCtrlP(j);
+            }
+        }
+    }else{
+        // direction v
+        for (int i = 0; i < 4; ++i) {
+            cubiccrv c = {ctrl[i*4 + 0], ctrl[i*4 + 1], ctrl[i*4 + 2], ctrl[i*4 + 3]};
+            cubiccrv c1, c2;
+            c.subdivideAt(t, c1, c2);
+            for (int j = 0; j < 4; ++j) {
+                srf1.ctrl[i + 4 * j] = c1.getCtrlP(j);
+                srf2.ctrl[i + 4 * j] = c2.getCtrlP(j);
+            }
+        }
+    }
+}
+
+vec3d bicubicsrf::ctrlP(int i) {
+    if(i < 0 || i > 15){
+        std::cout << "bicubic surface control point index out of bounds" << std::endl;
+        return {NAN,NAN,NAN};
+    }
+    return ctrl[i];
+}
+

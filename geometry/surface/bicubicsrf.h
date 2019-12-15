@@ -13,7 +13,7 @@ private:
     cubiccrv U0, V0, U1, V1;
 public:
     bicubicsrf() = default;
-    explicit bicubicsrf(vec3d ctrl[16]){
+    bicubicsrf(vec3d ctrl[16]){
         for (int i = 0; i < 16; ++i) {
             this->ctrl[i] = ctrl[i];
         }
@@ -36,6 +36,13 @@ public:
     curve & edgeU1() override;
     curve & edgeV0() override;
     curve & edgeV1() override;
+
+    vec3d ctrlP(int i);
+
+    bool hasValidControlNet();
+
+    bool closestPointInPatch(vec3d P);
+    void subdivide(bool dir, double t, bicubicsrf &srf1,  bicubicsrf &srf2);
 };
 
 

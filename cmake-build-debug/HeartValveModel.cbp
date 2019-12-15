@@ -132,14 +132,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/bezier.cpp">
-			<Option target="HeartValveModel"/>
-			<Option target="Parallel"/>
-		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/bezier.h">
-			<Option target="HeartValveModel"/>
-			<Option target="Parallel"/>
-		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/cubiccrv.cpp">
 			<Option target="HeartValveModel"/>
 		</Unit>
@@ -150,12 +142,6 @@
 			<Option target="HeartValveModel"/>
 		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/curve.h">
-			<Option target="HeartValveModel"/>
-		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/maths/vec3d.cpp">
-			<Option target="HeartValveModel"/>
-		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/maths/vec3d.h">
 			<Option target="HeartValveModel"/>
 		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/BottomParametric.cpp">
@@ -182,6 +168,12 @@
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.h">
 			<Option target="HeartValveModel"/>
 		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/vector/vec3d.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/vector/vec3d.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/main.cpp">
 			<Option target="HeartValveModel"/>
 		</Unit>
@@ -202,8 +194,28 @@
 			<Option target="HeartValveModel"/>
 			<Option target="Parallel"/>
 		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/bezier.cpp">
+			<Option target="HeartValveModel"/>
+			<Option target="Parallel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/bezier.h">
+			<Option target="HeartValveModel"/>
+			<Option target="Parallel"/>
+		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/parallel.cpp">
 			<Option target="Parallel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/plotting.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/plotting.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/vectorMath.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/vectorMath.h">
+			<Option target="HeartValveModel"/>
 		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/optimizer.cpp">
 			<Option target="HeartValveModel"/>
@@ -241,24 +253,18 @@
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Newton.h">
 			<Option target="HeartValveModel"/>
 		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/split.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/split.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/step.h">
 			<Option target="HeartValveModel"/>
 		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/parameters.h">
 			<Option target="HeartValveModel"/>
 			<Option target="Parallel"/>
-		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/plotting.cpp">
-			<Option target="HeartValveModel"/>
-		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/plotting.h">
-			<Option target="HeartValveModel"/>
-		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/vectorMath.cpp">
-			<Option target="HeartValveModel"/>
-		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/vectorMath.h">
-			<Option target="HeartValveModel"/>
 		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

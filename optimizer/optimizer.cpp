@@ -155,7 +155,6 @@ bool optimizer::cornerSearchSolution() {
     return cornerSearched;
 }
 
-
 bool optimizer::cornerSolution() {
     return cornerLoc;
 }

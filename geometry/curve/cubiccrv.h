@@ -35,12 +35,15 @@ public:
 
     vec3d curvePlaneNormal() override;
     vec3d getCtrlP(int i);
-    bool hasConvexPolygon();
 
     cubiccrv RotAxisZ(double rad);
     cubiccrv MirrorY();
 
     std::string asString() override;
+
+    bool hasConvexPolygon();
+    bool closestPointInCurve(vec3d P);
+    void subdivideAt(double t, cubiccrv &crv1, cubiccrv &crv2);
 };
 
 

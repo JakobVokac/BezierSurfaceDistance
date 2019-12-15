@@ -489,7 +489,7 @@ vector<double> FletcherReevesCG(Model model, vec3d A, double u, double v, double
     // p 0 <- - Grad f 0 = Grad f(u,v)
     dU2 = -model.squaredTopDistDerU(u,v,A);
     dV2 = -model.squaredTopDistDerV(u,v,A);
-//    maths<double> xs, ys, is, js,zs,ks;
+//    vector<double> xs, ys, is, js,zs,ks;
 //    xs.push_back(u);
 //    ys.push_back(v);
 //    zs.push_back(0);
@@ -2544,11 +2544,11 @@ int main() {
 //    OptState2D l = opt->optimizeForPoint(P);
 //    Grid Search: u: 0.626166 v: 0.944874 dist: 0.423042
 
-//    maths<double> A = {4,4,4};
-//    maths<maths<double>> u,v,dist;
+//    vector<double> A = {4,4,4};
+//    vector<vector<double>> u,v,dist;
 //    double min_dist = 100000;
 //    for (double i = -0; i <= 1; i += 0.05) {
-//        maths<double> uRow, vRow, distRow;
+//        vector<double> uRow, vRow, distRow;
 //        for (double j = -0; j <= 1; j += 0.05) {
 //            uRow.push_back(j);
 //            vRow.push_back(i);
@@ -2561,7 +2561,7 @@ int main() {
 //        dist.push_back(distRow);
 //    }
 //    double scale = 0.10;
-//    maths<double> x2,y2,z2,u2,v2,w2;
+//    vector<double> x2,y2,z2,u2,v2,w2;
 //    for (double i = -0; i <= 1; i += 0.05) {
 //        for (double j = -0; j <= 1; j += 0.05) {
 //            x2.push_back(j);
@@ -2576,8 +2576,8 @@ int main() {
 //        }
 //    }
 //    cout << "Rough expected distance: " << min_dist << endl;
-//    maths<maths<double>> CGus, CGvs, CGVs;
-//    maths<maths<double>> Nus, Nvs, NVs;
+//    vector<vector<double>> CGus, CGvs, CGVs;
+//    vector<vector<double>> Nus, Nvs, NVs;
 //
 //
 //    plt::plot_surface_with_vector_field(u,v,dist,x2,y2,z2,u2,v2,w2,0.03);

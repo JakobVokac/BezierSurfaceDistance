@@ -5,7 +5,6 @@
 #ifndef HEARTVALVEMODEL_SURFACE_H
 #define HEARTVALVEMODEL_SURFACE_H
 
-#include "../maths/vec3d.h"
 #include "../curve/cubiccrv.h"
 
 class surface {

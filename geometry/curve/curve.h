@@ -6,7 +6,7 @@
 #define HEARTVALVEMODEL_CURVE_H
 
 
-#include "../maths/vec3d.h"
+#include "../vector/vec3d.h"
 #include <iostream>
 
 class curve {

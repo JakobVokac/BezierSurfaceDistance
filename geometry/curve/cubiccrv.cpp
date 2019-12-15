@@ -76,15 +76,46 @@ vec3d cubiccrv::curvePlaneNormal() {
 }
 
 bool cubiccrv::hasConvexPolygon() {
-    vec3d n1 = c2-c0, n2 = c3-c1;
-    double nn1 =n1.dot(n1), nn2 = n2.dot(n2);
-    double t11 = n1.dot(c1-c0)/nn1, t12 = n1.dot(c3-c0)/nn1;
-    double t21 = n2.dot(c2-c1)/nn2, t22 = n2.dot(c0-c1)/nn2;
 
-    vec3d v11 = c0 + t11*n1, v12 = c0 + t12*n1;
-    vec3d v21 = c1 + t21*n2, v22 = c1 + t22*n2;
+    vec3d l1 = c2 - c0, l2 = c3 - c1;
+
+    double ll1 =l1.dot(l1), ll2 = l2.dot(l2);
+
+    double t11 = l1.dot(c1 - c0) / ll1, t12 = l1.dot(c3 - c0) / ll1;
+    double t21 = l2.dot(c2 - c1) / ll2, t22 = l2.dot(c0 - c1) / ll2;
+
+    vec3d v11 = c0 + t11 * l1, v12 = c0 + t12 * l1;
+    vec3d v21 = c1 + t21 * l2, v22 = c1 + t22 * l2;
+
+    v11 = c1 - v11;
+    v12 = c3 - v12;
+    v21 = c2 - v21;
+    v22 = c0 - v22;
 
     return !(v11.dot(v12) > 0 || v21.dot(v22) > 0);
 }
 
+bool cubiccrv::closestPointInCurve(vec3d P){
+
+    double R1 = (P-c0).dot(c1-c0);
+    double R2 = (c3-P).dot(c3-c2);
+    double R3 = (c0-c3).dot(P-c3);
+    double R4 = (c0-c3).dot(P-c0);
+
+    return !((R1 < 0 || R2 < 0) && R3 * R4 > 0);
+}
+
+void cubiccrv::subdivideAt(double t, cubiccrv &crv1, cubiccrv &crv2) {
+    vec3d c01{}, c12{}, c23{}, c02{}, c13{}, c03{};
+
+    c01 = (1-t)*c0 + t*c1;
+    c12 = (1-t)*c1 + t*c2;
+    c23 = (1-t)*c2 + t*c3;
+    c02 = (1-t)*c01 + t*c12;
+    c13 = (1-t)*c12 + t*c23;
+    c03 = (1-t)*c02 + t*c13;
+
+    crv1 = {c0,c01,c02,c03};
+    crv2 = {c03,c13,c23,c3};
+}
 

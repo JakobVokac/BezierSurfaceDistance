@@ -7,7 +7,7 @@
 
 #include "old_code/bezier.h"
 #include <cmath>
-#include "geometry/maths/vec3d.h"
+#include "geometry/vector/vec3d.h"
 #include "geometry/curve/cubiccrv.h"
 #include "geometry/surface/surface.h"
 #include "geometry/surface/TopParametric.h"
