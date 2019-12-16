@@ -43,7 +43,7 @@ public:
 
     bool hasConvexPolygon();
     bool closestPointInCurve(vec3d P);
-    void subdivideAt(double t, cubiccrv &crv1, cubiccrv &crv2);
+    void subdivide(double t, cubiccrv &crv1, cubiccrv &crv2);
 };
 
 

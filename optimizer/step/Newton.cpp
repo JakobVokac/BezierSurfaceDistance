@@ -32,8 +32,11 @@ OptState2D Newton::doStep(surface &sur, vec3d &P, OptState2D &loc) {
 }
 
 OptState1D Newton::doStep(curve &crv, vec3d &P, OptState1D &loc) {
+
     double dt = -crv.sqDistToDer1(loc.t,P)/crv.sqDistToDer2(loc.t,P);
+
     loc.t += dt;
+
     loc.dist = crv.distTo(loc.t,P);
     return loc;
 }

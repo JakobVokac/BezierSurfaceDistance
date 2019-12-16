@@ -291,18 +291,44 @@ CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.cpp -o CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.s
 
-CMakeFiles/HeartValveModel.dir/optimizer/step/split.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
-CMakeFiles/HeartValveModel.dir/optimizer/step/split.cpp.o: ../optimizer/step/split.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/HeartValveModel.dir/optimizer/step/split.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/optimizer/step/split.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/optimizer/step/split.cpp
+CMakeFiles/HeartValveModel.dir/splittingAlgorithm/splittingAlgorithm.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
+CMakeFiles/HeartValveModel.dir/splittingAlgorithm/splittingAlgorithm.cpp.o: ../splittingAlgorithm/splittingAlgorithm.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/HeartValveModel.dir/splittingAlgorithm/splittingAlgorithm.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/splittingAlgorithm/splittingAlgorithm.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/splittingAlgorithm/splittingAlgorithm.cpp
 
-CMakeFiles/HeartValveModel.dir/optimizer/step/split.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/optimizer/step/split.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/optimizer/step/split.cpp > CMakeFiles/HeartValveModel.dir/optimizer/step/split.cpp.i
+CMakeFiles/HeartValveModel.dir/splittingAlgorithm/splittingAlgorithm.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/splittingAlgorithm/splittingAlgorithm.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/splittingAlgorithm/splittingAlgorithm.cpp > CMakeFiles/HeartValveModel.dir/splittingAlgorithm/splittingAlgorithm.cpp.i
 
-CMakeFiles/HeartValveModel.dir/optimizer/step/split.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/optimizer/step/split.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/optimizer/step/split.cpp -o CMakeFiles/HeartValveModel.dir/optimizer/step/split.cpp.s
+CMakeFiles/HeartValveModel.dir/splittingAlgorithm/splittingAlgorithm.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/splittingAlgorithm/splittingAlgorithm.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/splittingAlgorithm/splittingAlgorithm.cpp -o CMakeFiles/HeartValveModel.dir/splittingAlgorithm/splittingAlgorithm.cpp.s
+
+CMakeFiles/HeartValveModel.dir/geometry/surface/compositeBicubicsrf.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
+CMakeFiles/HeartValveModel.dir/geometry/surface/compositeBicubicsrf.cpp.o: ../geometry/surface/compositeBicubicsrf.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/HeartValveModel.dir/geometry/surface/compositeBicubicsrf.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/geometry/surface/compositeBicubicsrf.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/compositeBicubicsrf.cpp
+
+CMakeFiles/HeartValveModel.dir/geometry/surface/compositeBicubicsrf.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/geometry/surface/compositeBicubicsrf.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/compositeBicubicsrf.cpp > CMakeFiles/HeartValveModel.dir/geometry/surface/compositeBicubicsrf.cpp.i
+
+CMakeFiles/HeartValveModel.dir/geometry/surface/compositeBicubicsrf.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/geometry/surface/compositeBicubicsrf.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/compositeBicubicsrf.cpp -o CMakeFiles/HeartValveModel.dir/geometry/surface/compositeBicubicsrf.cpp.s
+
+CMakeFiles/HeartValveModel.dir/geometry/surface/BezierSurface.cpp.o: CMakeFiles/HeartValveModel.dir/flags.make
+CMakeFiles/HeartValveModel.dir/geometry/surface/BezierSurface.cpp.o: ../geometry/surface/BezierSurface.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/HeartValveModel.dir/geometry/surface/BezierSurface.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HeartValveModel.dir/geometry/surface/BezierSurface.cpp.o -c /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/BezierSurface.cpp
+
+CMakeFiles/HeartValveModel.dir/geometry/surface/BezierSurface.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HeartValveModel.dir/geometry/surface/BezierSurface.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/BezierSurface.cpp > CMakeFiles/HeartValveModel.dir/geometry/surface/BezierSurface.cpp.i
+
+CMakeFiles/HeartValveModel.dir/geometry/surface/BezierSurface.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HeartValveModel.dir/geometry/surface/BezierSurface.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/BezierSurface.cpp -o CMakeFiles/HeartValveModel.dir/geometry/surface/BezierSurface.cpp.s
 
 # Object files for target HeartValveModel
 HeartValveModel_OBJECTS = \
@@ -324,7 +350,9 @@ HeartValveModel_OBJECTS = \
 "CMakeFiles/HeartValveModel.dir/optimizer/step/Geometric.cpp.o" \
 "CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/quadraticInterpolation.cpp.o" \
 "CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.o" \
-"CMakeFiles/HeartValveModel.dir/optimizer/step/split.cpp.o"
+"CMakeFiles/HeartValveModel.dir/splittingAlgorithm/splittingAlgorithm.cpp.o" \
+"CMakeFiles/HeartValveModel.dir/geometry/surface/compositeBicubicsrf.cpp.o" \
+"CMakeFiles/HeartValveModel.dir/geometry/surface/BezierSurface.cpp.o"
 
 # External object files for target HeartValveModel
 HeartValveModel_EXTERNAL_OBJECTS =
@@ -347,11 +375,13 @@ HeartValveModel: CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/bisection
 HeartValveModel: CMakeFiles/HeartValveModel.dir/optimizer/step/Geometric.cpp.o
 HeartValveModel: CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/quadraticInterpolation.cpp.o
 HeartValveModel: CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.o
-HeartValveModel: CMakeFiles/HeartValveModel.dir/optimizer/step/split.cpp.o
+HeartValveModel: CMakeFiles/HeartValveModel.dir/splittingAlgorithm/splittingAlgorithm.cpp.o
+HeartValveModel: CMakeFiles/HeartValveModel.dir/geometry/surface/compositeBicubicsrf.cpp.o
+HeartValveModel: CMakeFiles/HeartValveModel.dir/geometry/surface/BezierSurface.cpp.o
 HeartValveModel: CMakeFiles/HeartValveModel.dir/build.make
 HeartValveModel: /usr/lib/x86_64-linux-gnu/libpython2.7.so
 HeartValveModel: CMakeFiles/HeartValveModel.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable HeartValveModel"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Linking CXX executable HeartValveModel"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/HeartValveModel.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

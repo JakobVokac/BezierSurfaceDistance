@@ -83,7 +83,6 @@ OptState1D Geometric::doStep(curve &crv, vec3d &P, OptState1D &loc) {
 
     t += dt;
 
-
     p0 = crv.f(t);
 
     p0P = P - p0;

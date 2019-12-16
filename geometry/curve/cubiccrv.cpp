@@ -105,7 +105,7 @@ bool cubiccrv::closestPointInCurve(vec3d P){
     return !((R1 < 0 || R2 < 0) && R3 * R4 > 0);
 }
 
-void cubiccrv::subdivideAt(double t, cubiccrv &crv1, cubiccrv &crv2) {
+void cubiccrv::subdivide(double t, cubiccrv &crv1, cubiccrv &crv2) {
     vec3d c01{}, c12{}, c23{}, c02{}, c13{}, c03{};
 
     c01 = (1-t)*c0 + t*c1;

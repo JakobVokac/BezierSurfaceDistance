@@ -190,6 +190,33 @@ geometry/curve/curve.cpp.s:
 	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/curve/curve.cpp.s
 .PHONY : geometry/curve/curve.cpp.s
 
+geometry/surface/BezierSurface.o: geometry/surface/BezierSurface.cpp.o
+
+.PHONY : geometry/surface/BezierSurface.o
+
+# target to build an object file
+geometry/surface/BezierSurface.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/BezierSurface.cpp.o
+.PHONY : geometry/surface/BezierSurface.cpp.o
+
+geometry/surface/BezierSurface.i: geometry/surface/BezierSurface.cpp.i
+
+.PHONY : geometry/surface/BezierSurface.i
+
+# target to preprocess a source file
+geometry/surface/BezierSurface.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/BezierSurface.cpp.i
+.PHONY : geometry/surface/BezierSurface.cpp.i
+
+geometry/surface/BezierSurface.s: geometry/surface/BezierSurface.cpp.s
+
+.PHONY : geometry/surface/BezierSurface.s
+
+# target to generate assembly for a file
+geometry/surface/BezierSurface.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/BezierSurface.cpp.s
+.PHONY : geometry/surface/BezierSurface.cpp.s
+
 geometry/surface/BottomParametric.o: geometry/surface/BottomParametric.cpp.o
 
 .PHONY : geometry/surface/BottomParametric.o
@@ -270,6 +297,33 @@ geometry/surface/bicubicsrf.s: geometry/surface/bicubicsrf.cpp.s
 geometry/surface/bicubicsrf.cpp.s:
 	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/bicubicsrf.cpp.s
 .PHONY : geometry/surface/bicubicsrf.cpp.s
+
+geometry/surface/compositeBicubicsrf.o: geometry/surface/compositeBicubicsrf.cpp.o
+
+.PHONY : geometry/surface/compositeBicubicsrf.o
+
+# target to build an object file
+geometry/surface/compositeBicubicsrf.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/compositeBicubicsrf.cpp.o
+.PHONY : geometry/surface/compositeBicubicsrf.cpp.o
+
+geometry/surface/compositeBicubicsrf.i: geometry/surface/compositeBicubicsrf.cpp.i
+
+.PHONY : geometry/surface/compositeBicubicsrf.i
+
+# target to preprocess a source file
+geometry/surface/compositeBicubicsrf.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/compositeBicubicsrf.cpp.i
+.PHONY : geometry/surface/compositeBicubicsrf.cpp.i
+
+geometry/surface/compositeBicubicsrf.s: geometry/surface/compositeBicubicsrf.cpp.s
+
+.PHONY : geometry/surface/compositeBicubicsrf.s
+
+# target to generate assembly for a file
+geometry/surface/compositeBicubicsrf.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/compositeBicubicsrf.cpp.s
+.PHONY : geometry/surface/compositeBicubicsrf.cpp.s
 
 geometry/surface/surface.o: geometry/surface/surface.cpp.o
 
@@ -655,32 +709,32 @@ optimizer/step/Newton.cpp.s:
 	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/step/Newton.cpp.s
 .PHONY : optimizer/step/Newton.cpp.s
 
-optimizer/step/split.o: optimizer/step/split.cpp.o
+splittingAlgorithm/splittingAlgorithm.o: splittingAlgorithm/splittingAlgorithm.cpp.o
 
-.PHONY : optimizer/step/split.o
+.PHONY : splittingAlgorithm/splittingAlgorithm.o
 
 # target to build an object file
-optimizer/step/split.cpp.o:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/step/split.cpp.o
-.PHONY : optimizer/step/split.cpp.o
+splittingAlgorithm/splittingAlgorithm.cpp.o:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/splittingAlgorithm/splittingAlgorithm.cpp.o
+.PHONY : splittingAlgorithm/splittingAlgorithm.cpp.o
 
-optimizer/step/split.i: optimizer/step/split.cpp.i
+splittingAlgorithm/splittingAlgorithm.i: splittingAlgorithm/splittingAlgorithm.cpp.i
 
-.PHONY : optimizer/step/split.i
+.PHONY : splittingAlgorithm/splittingAlgorithm.i
 
 # target to preprocess a source file
-optimizer/step/split.cpp.i:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/step/split.cpp.i
-.PHONY : optimizer/step/split.cpp.i
+splittingAlgorithm/splittingAlgorithm.cpp.i:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/splittingAlgorithm/splittingAlgorithm.cpp.i
+.PHONY : splittingAlgorithm/splittingAlgorithm.cpp.i
 
-optimizer/step/split.s: optimizer/step/split.cpp.s
+splittingAlgorithm/splittingAlgorithm.s: splittingAlgorithm/splittingAlgorithm.cpp.s
 
-.PHONY : optimizer/step/split.s
+.PHONY : splittingAlgorithm/splittingAlgorithm.s
 
 # target to generate assembly for a file
-optimizer/step/split.cpp.s:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/optimizer/step/split.cpp.s
-.PHONY : optimizer/step/split.cpp.s
+splittingAlgorithm/splittingAlgorithm.cpp.s:
+	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/splittingAlgorithm/splittingAlgorithm.cpp.s
+.PHONY : splittingAlgorithm/splittingAlgorithm.cpp.s
 
 # Help Target
 help:
@@ -698,6 +752,9 @@ help:
 	@echo "... geometry/curve/curve.o"
 	@echo "... geometry/curve/curve.i"
 	@echo "... geometry/curve/curve.s"
+	@echo "... geometry/surface/BezierSurface.o"
+	@echo "... geometry/surface/BezierSurface.i"
+	@echo "... geometry/surface/BezierSurface.s"
 	@echo "... geometry/surface/BottomParametric.o"
 	@echo "... geometry/surface/BottomParametric.i"
 	@echo "... geometry/surface/BottomParametric.s"
@@ -707,6 +764,9 @@ help:
 	@echo "... geometry/surface/bicubicsrf.o"
 	@echo "... geometry/surface/bicubicsrf.i"
 	@echo "... geometry/surface/bicubicsrf.s"
+	@echo "... geometry/surface/compositeBicubicsrf.o"
+	@echo "... geometry/surface/compositeBicubicsrf.i"
+	@echo "... geometry/surface/compositeBicubicsrf.s"
 	@echo "... geometry/surface/surface.o"
 	@echo "... geometry/surface/surface.i"
 	@echo "... geometry/surface/surface.s"
@@ -749,9 +809,9 @@ help:
 	@echo "... optimizer/step/Newton.o"
 	@echo "... optimizer/step/Newton.i"
 	@echo "... optimizer/step/Newton.s"
-	@echo "... optimizer/step/split.o"
-	@echo "... optimizer/step/split.i"
-	@echo "... optimizer/step/split.s"
+	@echo "... splittingAlgorithm/splittingAlgorithm.o"
+	@echo "... splittingAlgorithm/splittingAlgorithm.i"
+	@echo "... splittingAlgorithm/splittingAlgorithm.s"
 .PHONY : help
 
 

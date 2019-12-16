@@ -76,3 +76,12 @@ The reason why Newton's method seems to jump so badly is probably because the va
 
 Tried quadratic interpolation for the start, but it seems to have issues at the very beginning. Can try 1st binary, then quadratic, then Newton.
 Binary search seems to do much better than quadratic interpolation for the start.
+
+
+
+
+
+Notes on composite and normal bezier surfaces:
+fix choices for pointers and non pointers (e.g. edges should have pointers to control points to save memory);
+
+

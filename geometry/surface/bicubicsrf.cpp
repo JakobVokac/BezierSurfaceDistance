@@ -144,14 +144,14 @@ bool bicubicsrf::closestPointInPatch(vec3d P){
     return true;
 }
 
-void bicubicsrf::subdivide(bool dir, double t, bicubicsrf &srf1, bicubicsrf &srf2) {
+void bicubicsrf::subdivideInDir(bool dir, double t, bicubicsrf &srf1, bicubicsrf &srf2) {
     if(dir){
         // direction u
         for (int i = 0; i < 4; ++i) {
             cubiccrv c = {ctrl[i + 0], ctrl[i + 4], ctrl[i + 8], ctrl[i + 12]};
             cubiccrv c1, c2;
 
-            c.subdivideAt(t, c1, c2);
+            c.subdivide(t, c1, c2);
 
             for (int j = 0; j < 4; ++j) {
                 srf1.ctrl[i + 4 * j] = c1.getCtrlP(j);
@@ -163,7 +163,7 @@ void bicubicsrf::subdivide(bool dir, double t, bicubicsrf &srf1, bicubicsrf &srf
         for (int i = 0; i < 4; ++i) {
             cubiccrv c = {ctrl[i*4 + 0], ctrl[i*4 + 1], ctrl[i*4 + 2], ctrl[i*4 + 3]};
             cubiccrv c1, c2;
-            c.subdivideAt(t, c1, c2);
+            c.subdivide(t, c1, c2);
             for (int j = 0; j < 4; ++j) {
                 srf1.ctrl[i + 4 * j] = c1.getCtrlP(j);
                 srf2.ctrl[i + 4 * j] = c2.getCtrlP(j);
@@ -179,4 +179,21 @@ vec3d bicubicsrf::ctrlP(int i) {
     }
     return ctrl[i];
 }
+
+void
+bicubicsrf::subdivide(BezierSurface *tl, BezierSurface *tr, BezierSurface *bl, BezierSurface *br) {
+    bicubicsrf *s1{}, *s2{}, *btl{}, *bbl{}, *btr{}, *bbr{};
+    subdivideInDir(true,0.5,*s1,*s2);
+    s1->subdivideInDir(false,0.5,*btl,*bbl);
+    tl = dynamic_cast<BezierSurface *>(btl);
+    bl = dynamic_cast<BezierSurface *>(bbl);
+    s2->subdivideInDir(false,0.5,*btr,*bbr);
+    tl = dynamic_cast<BezierSurface *>(btr);
+    bl = dynamic_cast<BezierSurface *>(bbr);
+
+    delete s1;
+    delete s2;
+}
+
+void bicubicsrf::controlNetSubdivide() {}
 

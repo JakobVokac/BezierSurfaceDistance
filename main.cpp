@@ -48,7 +48,7 @@ void curveSplitting(double tl, double tr, double &tf, cubiccrv c, cubiccrv &cf, 
         }
     }
     cubiccrv c1,c2;
-    c.subdivideAt(0.5,c1,c2);
+    c.subdivide(0.5, c1, c2);
     curveSplitting(tl, (tl+tr)/2, tf, c1, cf, P, eps, i + 1, limit);
     curveSplitting((tl+tr)/2, tr, tf, c2, cf, P, eps, i + 1, limit);
 }
@@ -70,7 +70,7 @@ void surfaceSplitting(int dir, double ul, double ur, double vl, double vr, doubl
     }
     bicubicsrf s1,s2;
 
-    s.subdivide(dir,0.5,s1,s2);
+    s.subdivideInDir(dir, 0.5, s1, s2);
 
 //    cout << "uvlr: " << ul << " " << ur << " " << vl << " " << vr << " i: " << i << endl;
 //    plotSurface(s1,0.1);
@@ -160,7 +160,7 @@ int main() {
 
     bicubicsrf s(ctrls);
 
-//    s.subdivide(false,0.5,s1,s2);
+//    s.subdivideInDir(false,0.5,s1,s2);
     plotSurface(s,0.1);
 //    plotSurface(s1,0.1);
 //    plotSurface(s2,0.1);
