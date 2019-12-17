@@ -46,26 +46,49 @@ double constraintFunc(double u, double v){
            + pow((v > 1 ? v-1 : 0),3.0);
 }
 
-void plotSurface(vec3d P, Model m, double ul = -.2, double vl = -.2, double ur = 1.2, double vr = 1.2, double dU = 0.1, double dV = 0.1, int withConst = 0){
-    vector<vector<double>> u,v,dist;
-    double min_dist = 100000;
-    for (double i = ul-dU; i < ur+dU; i += (ur+dU - (ul-dU))/10) {
-        vector<double> uRow, vRow, distRow;
-        for (double j = vl-dV; j < vr+dV; j += (vr+dV - (vl-dV))/10) {
-            uRow.push_back(j);
-            vRow.push_back(i);
-            double c = 0;
-            if(withConst)
-                c = 100*constraintFunc(j,i);
-            distRow.push_back(m.distanceToTopPoint(j,i,P) + c);
-            if(min_dist > m.distanceToTopPoint(j,i,P) + c)
-                min_dist = m.distanceToTopPoint(j,i,P) + c;
-        }
-        u.push_back(uRow);
-        v.push_back(vRow);
-        dist.push_back(distRow);
+//void plotSurface(vec3d P, Model m, double ul = -.2, double vl = -.2, double ur = 1.2, double vr = 1.2, double dU = 0.1, double dV = 0.1, int withConst = 0){
+//    vector<vector<double>> u,v,dist;
+//    double min_dist = 100000;
+//    for (double i = ul-dU; i < ur+dU; i += (ur+dU - (ul-dU))/10) {
+//        vector<double> uRow, vRow, distRow;
+//        for (double j = vl-dV; j < vr+dV; j += (vr+dV - (vl-dV))/10) {
+//            uRow.push_back(j);
+//            vRow.push_back(i);
+//            double c = 0;
+//            if(withConst)
+//                c = 100*constraintFunc(j,i);
+//            distRow.push_back(m.distanceToTopPoint(j,i,P) + c);
+//            if(min_dist > m.distanceToTopPoint(j,i,P) + c)
+//                min_dist = m.distanceToTopPoint(j,i,P) + c;
+//        }
+//        u.push_back(uRow);
+//        v.push_back(vRow);
+//        dist.push_back(distRow);
+//    }
+//    plt::plot_surface(u,v,dist);
+//}
+
+void plotSurface(surface &s, double eps){
+    if(eps >= 1){
+        cout << "surface plotting: eps needs to be a fraction of 1" << endl;
+        return;
     }
-    plt::plot_surface(u,v,dist);
+    vector<vector<double>> x,y,z;
+    for (double i = 0; i <= 1; i+=eps) {
+        vector<double> xr,yr,zr;
+        for (double j = 0; j <= 1; j+=eps) {
+            vec3d p = s.at(j,i);
+            xr.push_back(p.getx());
+            yr.push_back(p.gety());
+            zr.push_back(p.getz());
+        }
+        x.push_back(xr);
+        y.push_back(yr);
+        z.push_back(zr);
+    }
+//    plt::plot_surface_with_line_and_axes_set(x,y,z,{-1,5,-1,5,-1,5},{},{},{},{},{},{},0);
+    plt::plot_surface(x,y,z);
+    plt::show();
 }
 
 void drawFillTopWithLine(Model m, vector<double> line, vector<double> axes){

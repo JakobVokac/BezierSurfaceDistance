@@ -40,28 +40,6 @@ cmath
 ostream
 -
 
-/home/s3179222/CLionProjects/HeartValveModel/main.cpp
-iostream
--
-vector
--
-cmath
--
-model.h
-/home/s3179222/CLionProjects/HeartValveModel/model.h
-optimizer/optimizer.h
-/home/s3179222/CLionProjects/HeartValveModel/optimizer/optimizer.h
-optimizer/preprocessor/bisection.h
-/home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/bisection.h
-optimizer/step/Newton.h
-/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Newton.h
-optimizer/step/Geometric.h
-/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Geometric.h
-optimizer/preprocessor/quadraticInterpolation.h
-/home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/quadraticInterpolation.h
-measurements/measurements.h
-/home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.h
-
 /home/s3179222/CLionProjects/HeartValveModel/matplotlibcpp.h
 vector
 -
@@ -88,6 +66,10 @@ numpy/arrayobject.h
 opencv2/opencv.hpp
 -
 
+/home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.cpp
+measurements.h
+/home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.h
+
 /home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.h
 ../model.h
 /home/s3179222/CLionProjects/HeartValveModel/model.h
@@ -103,6 +85,8 @@ chrono
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Geometric.h
 ../optimizer/step/Newton.h
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Newton.h
+../splittingAlgorithm/splittingAlgorithm.h
+/home/s3179222/CLionProjects/HeartValveModel/splittingAlgorithm/splittingAlgorithm.h
 
 /home/s3179222/CLionProjects/HeartValveModel/model.h
 old_code/bezier.h
@@ -191,6 +175,12 @@ step.h
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/states.h
 ../../geometry/surface/surface.h
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.h
+
+/home/s3179222/CLionProjects/HeartValveModel/splittingAlgorithm/splittingAlgorithm.h
+../optimizer/states.h
+/home/s3179222/CLionProjects/HeartValveModel/optimizer/states.h
+../geometry/surface/bicubicsrf.h
+/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/bicubicsrf.h
 
 /usr/include/python2.7/Python.h
 patchlevel.h

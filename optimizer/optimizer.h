@@ -29,9 +29,11 @@ protected:
     int rcMax;
     OptState2D loc{};
     OptState1D eLoc{};
+    OptState2D tLoc{};
     bool edgeLoc = false;
     bool cornerLoc = false;
     bool cornerSearched = false;
+    bool edgesSearched = false;
 public:
     optimizer(
             preprocessor &prep2D,

@@ -73,7 +73,7 @@ void splittingAlgorithm::surfaceSplitting(int dir, double ul, double ur, double 
             }
         }
     }
-    bicubicsrf s1, s2;
+    bicubicsrf s1{}, s2{};
 
     s.subdivideInDir(dir, 0.5, s1, s2);
 

@@ -5,43 +5,53 @@
 #ifndef HEARTVALVEMODEL_COMPOSITEBICUBICSRF_H
 #define HEARTVALVEMODEL_COMPOSITEBICUBICSRF_H
 
+#include "bicubicsrf.h"
+#include "../../measurements/measurements.h"
 
-#include "BezierSurface.h"
 
-class compositeBicubicsrf : public BezierSurface {
+class compositeBicubicsrf {
 private:
-    BezierSurface *topLeft, *topRight, *bottomLeft, *bottomRight;
-    curve *v0{},*v1{},*u0{},*u1{};
+    bicubicsrf srf;
+    compositeBicubicsrf *topLeft = nullptr, *topRight = nullptr, *bottomLeft = nullptr, *bottomRight = nullptr;
 public:
     compositeBicubicsrf() = default;
-    explicit compositeBicubicsrf(BezierSurface *sur){
-        sur->subdivide(topLeft,topRight,bottomLeft,bottomRight);
-        *u0 = sur->edgeU0();
-        *v0 = sur->edgeV0();
-        *u1 = sur->edgeU1();
-        *v1 = sur->edgeV1();
+    explicit compositeBicubicsrf(bicubicsrf &sur){
+        srf = sur;
+        std::cout << srf.hasValidControlNet() << std::endl;
+        //plotSurface(srf);
+        if(!srf.hasValidControlNet()){
+            bicubicsrf tl, tr, bl, br;
+            srf.subdivide(tl,tr,bl,br);
+            topLeft = new compositeBicubicsrf(tl);
+            topRight = new compositeBicubicsrf(tr);
+            bottomLeft = new compositeBicubicsrf(bl);
+            bottomRight = new compositeBicubicsrf(br);
+        }
     }
-    ~compositeBicubicsrf() override = default;
+    ~compositeBicubicsrf(){
+        if(topLeft != nullptr){
+            delete topLeft;
+            delete topRight;
+            delete bottomLeft;
+            delete bottomRight;
+        }
+    };
 
-    vec3d at(double u, double v) override;
-    vec3d atDerU(double u, double v) override;
-    vec3d atDerV(double u, double v) override;
-    vec3d atDerUU(double u, double v) override;
-    vec3d atDerVV(double u, double v) override;
-    vec3d atDerUV(double u, double v) override;
+    vec3d at(double u, double v);
+    vec3d atDerU(double u, double v);
+    vec3d atDerV(double u, double v);
+    vec3d atDerUU(double u, double v);
+    vec3d atDerVV(double u, double v);
+    vec3d atDerUV(double u, double v);
 
-    curve & edgeU0() override;
-    curve & edgeU1() override;
-    curve & edgeV0() override;
-    curve & edgeV1() override;
+    curve & edgeU0();
+    curve & edgeU1();
+    curve & edgeV0();
+    curve & edgeV1();
 
 
-    bool hasValidControlNet() override;
-    void controlNetSubdivide() override;
-    bool closestPointInPatch(vec3d P) override;
-    void subdivide(BezierSurface *tl,  BezierSurface *tr, BezierSurface *bl, BezierSurface *br) override;
-
-    void recursiveControlNetSubdivide(BezierSurface *sur);
+    bool hasValidControlNet();
+    bool closestPointInPatch(vec3d P);
 };
 
 #endif //HEARTVALVEMODEL_COMPOSITEBICUBICSRF_H

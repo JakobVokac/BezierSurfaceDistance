@@ -55,19 +55,11 @@ vec3d cubiccrv::curvePlaneNormal() {
     vec3d c0c2 = c2-c0;
     vec3d c0c3 = c3-c0;
 
-    std::cout << " c0c1 " << c0c1 << std::endl;
-    std::cout << " c0c2 " << c0c2 << std::endl;
-    std::cout << " c0c3 " << c0c3 << std::endl;
-
     vec3d N = c0c1.cross(c0c2);
-
-    std::cout << " N " << N << std::endl;
 
     N /= N.mag();
 
     double dot = N.dot(c0c3);
-
-    std::cout << " N . c0c3 " << dot << std::endl;
 
     if(dot > 10*std::numeric_limits<double>::epsilon())
         return {0,0,0};

@@ -8,80 +8,23 @@
 #include "optimizer/step/Geometric.h"
 #include "optimizer/preprocessor/quadraticInterpolation.h"
 #include "measurements/measurements.h"
+#include "splittingAlgorithm/splittingAlgorithm.h"
+#include "geometry/surface/compositeBicubicsrf.h"
 
 
-void plotSurface(surface &s, double eps = 0.1){
-    if(eps >= 1){
-        cout << "surface plotting: eps needs to be a fraction of 1" << endl;
-        return;
-    }
-    vector<vector<double>> x,y,z;
-    for (double i = 0; i <= 1; i+=eps) {
-        vector<double> xr,yr,zr;
-        for (double j = 0; j <= 1; j+=eps) {
-            vec3d p = s.at(j,i);
-            xr.push_back(p.getx());
-            yr.push_back(p.gety());
-            zr.push_back(p.getz());
-        }
-        x.push_back(xr);
-        y.push_back(yr);
-        z.push_back(zr);
-    }
-//    plt::plot_surface_with_line_and_axes_set(x,y,z,{-1,5,-1,5,-1,5},{},{},{},{},{},{},0);
-    plt::plot_surface(x,y,z);
-    plt::show();
-}
-
-void curveSplitting(double tl, double tr, double &tf, cubiccrv c, cubiccrv &cf, vec3d P, double eps, int i = 0, int limit = 100){
-    bool valid = c.hasConvexPolygon();
-    if(valid){
-        if(!c.closestPointInCurve(P)){
-            return;
-        }else{
-            vec3d c0c3 = c.getCtrlP(3) - c.getCtrlP(0);
-            if(c0c3.mag() < eps || i > limit){
-                cf = c;
-                tf = (tl+tr)/2;
-                return;
-            }
+double compareSurfaces(TopParametric top, bicubicsrf bez){
+    double totalDist = 0;
+    for (double i = 0; i <= 1; i += 0.01) {
+        for (double j = 0; j <= 1; j += 0.01) {
+            vec3d p1, p2;
+            p1 = top.at(j,i);
+            p2 = bez.at(j,i);
+            cout << "param: " << p1 << endl;
+            cout << "bez: " << p2 << endl;
+            totalDist += p1.dist(p2);
         }
     }
-    cubiccrv c1,c2;
-    c.subdivide(0.5, c1, c2);
-    curveSplitting(tl, (tl+tr)/2, tf, c1, cf, P, eps, i + 1, limit);
-    curveSplitting((tl+tr)/2, tr, tf, c2, cf, P, eps, i + 1, limit);
-}
-
-void surfaceSplitting(int dir, double ul, double ur, double vl, double vr, double &uf, double &vf, bicubicsrf s, bicubicsrf &sf, vec3d P, double eps, int i = 0, int limit = 100){
-    bool valid = s.hasValidControlNet();
-    if(valid){
-        if(!s.closestPointInPatch(P)){
-            return;
-        }else{
-            vec3d diag = s.ctrlP(0) - s.ctrlP(15);
-            if(diag.mag() < eps || i > limit){
-                sf = s;
-                uf = (ul+ur)/2;
-                vf = (vl+vr)/2;
-                return;
-            }
-        }
-    }
-    bicubicsrf s1,s2;
-
-    s.subdivideInDir(dir, 0.5, s1, s2);
-
-//    cout << "uvlr: " << ul << " " << ur << " " << vl << " " << vr << " i: " << i << endl;
-//    plotSurface(s1,0.1);
-//    plotSurface(s2,0.1);
-    if(!dir){
-        surfaceSplitting((dir + 1)%2,ul,(ul+ur)/2,vl,vr,uf,vf,s1,sf,P,eps,i+1,limit);
-        surfaceSplitting((dir + 1)%2,(ul+ur)/2,ur,vl,vr,uf,vf,s2,sf,P,eps,i+1,limit);
-    }else{
-        surfaceSplitting((dir + 1)%2,ul,ur,vl,(vl+vr)/2,uf,vf,s1,sf,P,eps,i+1,limit);
-        surfaceSplitting((dir + 1)%2,ul,ur,(vl+vr)/2,vr,uf,vf,s2,sf,P,eps,i+1,limit);
-    }
+    return totalDist/10000;
 }
 
 int main() {
@@ -127,7 +70,7 @@ int main() {
     surface *sur = dynamic_cast<surface*>(&top);
     opt = new optimizer(
             *bisect,
-            *bisect,
+            *quad,
             *newton,
             *newton,
             *sur,
@@ -138,19 +81,9 @@ int main() {
     );
 
     //TestOptimizerPerformance(*opt,3,2,1,5,1000,0.00000001,0);
-    cubiccrv C =  {{0,0,0},{1,1.5,0},{2,1.5,0},{3,0,0}};
-    cubiccrv Cf;
-    vec3d P = {1,1.5,1};
-    double tf = -1;
-    curveSplitting(0,1,tf,C,Cf,P,0.00000001,0,100);
-    cout << Cf << endl;
-    cout << tf << endl;
-    vec3d v = C.f(tf);
-    cout << v.dist(P) << endl;
-    cout << Cf.f(0.5).dist(P) << endl;
-    cout << C.df(tf).dot(C.getCtrlP(1)-C.f(tf)) << endl;
 
-    bicubicsrf s1, s2;
+    vec3d P = {1,1.5,1};
+
     vec3d ctrls[16] = {
             {0,0,0},{1,1.5,0},{2,1.5,0},{3,0,0},
             {0,0,1},{1,2.5,1},{2,2.5,1},{3,0,1},
@@ -161,7 +94,7 @@ int main() {
     bicubicsrf s(ctrls);
 
 //    s.subdivideInDir(false,0.5,s1,s2);
-    plotSurface(s,0.1);
+//    plotSurface(s,0.1);
 //    plotSurface(s1,0.1);
 //    plotSurface(s2,0.1);
 //
@@ -169,21 +102,38 @@ int main() {
 //    cout << s1.closestPointInPatch(P) << endl;
 //    cout << s2.closestPointInPatch(P) << endl;
 
-    double uf,vf;
-    bicubicsrf sf;
     chrono::time_point<chrono::high_resolution_clock> t_start;
     chrono::time_point<chrono::high_resolution_clock> t_stop;
     chrono::microseconds t_duration;
 
     t_start = chrono::high_resolution_clock::now();
-    surfaceSplitting(1,0,1,0,1,uf,vf,s,sf,P,0.000000001,0,100);
+    cout << bez.hasValidControlNet() << endl;
+
+
+
+    OptState2D loc = splittingAlgorithm::optimize(bez,P,0.00000001);
     t_stop = chrono::high_resolution_clock::now();
+
+    cout << "loc: u: " << loc.u << " v: " << loc.v << " dist: " << loc.dist << endl;
 
     t_duration = chrono::duration_cast<chrono::microseconds>(t_stop - t_start);
 
     cout << t_duration.count() << " microseconds" << endl;
-    cout << "uv: " << uf << " " << vf << endl;
-    plotSurface(sf,0.1);
+
+    TestOptimizerPerformance(*opt,3,0,1,5,1000,0.00000001,0);
+    //TestSplitterPerformance(bez, 3, 0, 3.0, 1, 1000, 0.00000001, 0);
+
+//    cout << "param vs bez: " << compareSurfaces(top,bez) << endl;
+//
+//    compositeBicubicsrf b(bez);
+//
+//    cout << b.hasValidControlNet() << endl;
+
+    delete quad;
+    delete geometric;
+    delete opt;
+    delete bisect;
+    delete newton;
 }
 
 

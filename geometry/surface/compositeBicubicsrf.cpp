@@ -4,21 +4,25 @@
 
 #include "compositeBicubicsrf.h"
 
-void compositeBicubicsrf::subdivide(BezierSurface *tl, BezierSurface *tr, BezierSurface *bl, BezierSurface *br) {
-    tl = topLeft;
-    tr = topRight;
-    bl = bottomLeft;
-    br = bottomRight;
-}
 
 bool compositeBicubicsrf::closestPointInPatch(vec3d P) {
-    return  topLeft->closestPointInPatch(P) ||
-            topRight->closestPointInPatch(P) ||
-            bottomLeft->closestPointInPatch(P) ||
-            bottomRight->closestPointInPatch(P);
+    if(hasValidControlNet()) {
+
+        if(topLeft == nullptr)
+            return srf.closestPointInPatch(P);
+
+        return topLeft->closestPointInPatch(P) ||
+               topRight->closestPointInPatch(P) ||
+               bottomLeft->closestPointInPatch(P) ||
+               bottomRight->closestPointInPatch(P);
+    }
+    return false;
 }
 
 bool compositeBicubicsrf::hasValidControlNet() {
+    if(topLeft == nullptr)
+        return srf.hasValidControlNet();
+
     return topLeft->hasValidControlNet() ||
            topRight->hasValidControlNet() ||
            bottomLeft->hasValidControlNet() ||
@@ -26,6 +30,8 @@ bool compositeBicubicsrf::hasValidControlNet() {
 }
 
 vec3d compositeBicubicsrf::at(double u, double v) {
+    if(topLeft == nullptr)
+        return srf.at(u,v);
     if(u <= 0.5){
         if(v <= 0.5){
             return bottomLeft->at(u*2,v*2);
@@ -42,6 +48,8 @@ vec3d compositeBicubicsrf::at(double u, double v) {
 }
 
 vec3d compositeBicubicsrf::atDerU(double u, double v) {
+    if(topLeft == nullptr)
+        return srf.atDerU(u,v);
     if(u <= 0.5){
         if(v <= 0.5){
             return bottomLeft->atDerU(u*2,v*2);
@@ -58,6 +66,8 @@ vec3d compositeBicubicsrf::atDerU(double u, double v) {
 }
 
 vec3d compositeBicubicsrf::atDerV(double u, double v) {
+    if(topLeft == nullptr)
+        return srf.atDerV(u,v);
     if(u <= 0.5){
         if(v <= 0.5){
             return bottomLeft->atDerV(u*2,v*2);
@@ -74,6 +84,8 @@ vec3d compositeBicubicsrf::atDerV(double u, double v) {
 }
 
 vec3d compositeBicubicsrf::atDerUU(double u, double v) {
+    if(topLeft == nullptr)
+        return srf.atDerUU(u,v);
     if(u <= 0.5){
         if(v <= 0.5){
             return bottomLeft->atDerUU(u*2,v*2);
@@ -90,6 +102,8 @@ vec3d compositeBicubicsrf::atDerUU(double u, double v) {
 }
 
 vec3d compositeBicubicsrf::atDerVV(double u, double v) {
+    if(topLeft == nullptr)
+        return srf.atDerVV(u,v);
     if(u <= 0.5){
         if(v <= 0.5){
             return bottomLeft->atDerVV(u*2,v*2);
@@ -106,6 +120,8 @@ vec3d compositeBicubicsrf::atDerVV(double u, double v) {
 }
 
 vec3d compositeBicubicsrf::atDerUV(double u, double v) {
+    if(topLeft == nullptr)
+        return srf.atDerUV(u,v);
     if(u <= 0.5){
         if(v <= 0.5){
             return bottomLeft->atDerUV(u*2,v*2);
@@ -121,37 +137,21 @@ vec3d compositeBicubicsrf::atDerUV(double u, double v) {
     }
 }
 
-void compositeBicubicsrf::recursiveControlNetSubdivide(BezierSurface *sur) {
-    if(!sur->hasValidControlNet()){
-        auto *temp = new compositeBicubicsrf(sur);
-        delete sur;
-        sur = temp;
-        sur->controlNetSubdivide();
-    }
-}
 
-void compositeBicubicsrf::controlNetSubdivide() {
-    if(!hasValidControlNet()){
-        recursiveControlNetSubdivide(topLeft);
-        recursiveControlNetSubdivide(topRight);
-        recursiveControlNetSubdivide(bottomLeft);
-        recursiveControlNetSubdivide(bottomRight);
-    }
-}
 
 curve &compositeBicubicsrf::edgeU0() {
-    return *u0;
+    return srf.edgeU0();
 }
 
 curve &compositeBicubicsrf::edgeU1() {
-    return *u1;
+    return srf.edgeU1();
 }
 
 curve &compositeBicubicsrf::edgeV0() {
-    return *v0;
+    return srf.edgeV0();
 }
 
 curve &compositeBicubicsrf::edgeV1() {
-    return *v1;
+    return srf.edgeV1();
 }
 

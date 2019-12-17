@@ -6,6 +6,88 @@
 
 
 
+void TestSplitterPerformance(bicubicsrf &sur, int seed, int testType, double minDist, double distVar, int iterations, double eps, int plot){
+    cout << "Testing: ";
+    int reliability = 0;
+    double avgError = 0;
+    int sumIters = 0;
+    srand(seed);
+    time_t avgTime = 0;
+    OptState2D trueLoc;
+    OptState2D loc;
+    int onedimcalls = 0;
+    int count1D = 0;
+    int cornercalls = 0;
+    int countCor = 0;
+    bool edgeSolution, cornerSolution;
+
+    chrono::time_point<chrono::high_resolution_clock> t_start;
+    chrono::time_point<chrono::high_resolution_clock> t_stop;
+    chrono::microseconds t_duration;
+    std::default_random_engine generator;
+    std::uniform_real_distribution<double> distribution(0.0,1.0);
+
+    for (int i = 0; i < iterations; i++) {
+        cout << "iteration: " << i << endl;
+        edgeSolution = false, cornerSolution = false;
+        vec3d P;
+        if(testType == 0)
+            randomPointFromEdgeOrSurfaceNormal(sur, iterations, i, trueLoc, P, minDist, distVar, generator,
+                                               distribution);
+        else if(testType == 1)
+            randomPointFromSurfaceNormal(sur, trueLoc, P, minDist, distVar, generator, distribution);
+        else{
+            randomPointInSpace(sur, trueLoc, P, minDist, distVar, generator, distribution);
+            cout << "Random points test: distances are approximated by a grid search; not useful for precise measurements";
+        }
+
+        t_start = chrono::high_resolution_clock::now();
+        loc = splittingAlgorithm::optimize(sur,P,eps);
+        t_stop = chrono::high_resolution_clock::now();
+
+        if(loc.u == 0 || loc.u == 1){
+            if(loc.v == 0 || loc.v == 1){
+                cornerSolution = true;
+            }
+            edgeSolution = true;
+        }
+        if(loc.v == 0 || loc.v == 1){
+            edgeSolution = true;
+        }
+        t_duration = chrono::duration_cast<chrono::microseconds>(t_stop - t_start);
+        avgTime += t_duration.count();
+
+        onedimcalls += edgeSolution;
+        cornercalls += cornerSolution;
+
+        if(plot)
+            cout << "u: " << loc.u << " v: " << loc.v << " V: " << loc.dist << endl;
+
+        if(loc.dist <= trueLoc.dist + eps) {
+            reliability++;
+        }else{
+            avgError += (loc.dist - trueLoc.dist)/trueLoc.dist;
+            if(edgeSolution){
+                count1D++;
+            }
+            if(cornerSolution){
+                countCor++;
+            }
+            if(plot) {
+                cout << "Point: " << P.getx() << " " << P.gety() << " " << P.getz() << endl;
+                cout << "True location: u: " << trueLoc.u << " v: " << trueLoc.v << " True distance: " << trueLoc.dist << endl;
+
+                plotSurfaceDistance(P, sur);
+            }
+        }
+    }
+
+    cout << "reliability: " << double(reliability)/iterations << " average error: " << avgError/iterations << " average time: " << avgTime/iterations << " microseconds " << endl;
+    cout << "% onedimcalls: " << double(onedimcalls)/iterations << " error by 1D search %: " << double(count1D)/onedimcalls << endl;
+    cout << "% cornercalls: " << double(cornercalls)/iterations << " error by corner search %: " << double(countCor)/onedimcalls << endl;
+
+}
+
 void TestOptimizerPerformance(optimizer &opt, int seed, int testType, double minDist, double distVar, int iterations, double eps, int plot){
     cout << "Testing: ";
     int reliability = 0;
@@ -23,17 +105,21 @@ void TestOptimizerPerformance(optimizer &opt, int seed, int testType, double min
     chrono::time_point<chrono::high_resolution_clock> t_start;
     chrono::time_point<chrono::high_resolution_clock> t_stop;
     chrono::microseconds t_duration;
+    std::default_random_engine generator;
+    std::uniform_real_distribution<double> distribution(0.0,1.0);
 
-
+    if(testType == 2){
+        cout << "Random points test: distances are approximated by a grid search; not useful for precise measurements" << endl;
+    }
     for (int i = 0; i < iterations; i++) {
         vec3d P;
         if(testType == 0)
-            randomPointFromEdgeOrSurfaceNormal(opt.getSurface(), iterations, i, trueLoc, P, minDist, distVar);
+            randomPointFromEdgeOrSurfaceNormal(opt.getSurface(), iterations, i, trueLoc, P, minDist, distVar,
+                                               generator, distribution);
         else if(testType == 1)
-            randomPointFromSurfaceNormal(opt.getSurface(), trueLoc, P, minDist, distVar);
+            randomPointFromSurfaceNormal(opt.getSurface(), trueLoc, P, minDist, distVar, generator, distribution);
         else{
-            randomPointInSpace(opt.getSurface(), trueLoc, P, minDist, distVar);
-            cout << "Random points test: distances are approximated by a grid search; not useful for precise measurements";
+            randomPointInSpace(opt.getSurface(), trueLoc, P, minDist, distVar, generator, distribution);
         }
 
         t_start = chrono::high_resolution_clock::now();
@@ -70,7 +156,7 @@ void TestOptimizerPerformance(optimizer &opt, int seed, int testType, double min
         sumIters += opt.getIterations();
 
     }
-
+    cout << "total error: " << avgError << endl;
     cout << "reliability: " << double(reliability)/iterations << " average error: " << avgError/iterations << " average iterations: " << double(sumIters)/iterations << " average time: " << avgTime/iterations << " microseconds " << endl;
     cout << "% onedimcalls: " << double(onedimcalls)/iterations << " error by 1D search %: " << double(count1D)/onedimcalls << endl;
     cout << "% cornercalls: " << double(cornercalls)/iterations << " error by corner search %: " << double(countCor)/onedimcalls << endl;
@@ -152,13 +238,14 @@ void plotSurface(const vec3d &P, surface &sur, int derivative = 0) {
     }
 }
 
-void randomPointInSpace(surface &sur, OptState2D &trueLoc, vec3d &P, double minDist,
-                                  double distVariation) {
-    double x = (double(rand()) / RAND_MAX) * distVariation + minDist;
-    double y = (double(rand()) / RAND_MAX) * distVariation + minDist;
-    double z = (double(rand()) / RAND_MAX) * distVariation + minDist;
+void randomPointInSpace(surface &sur, OptState2D &trueLoc, vec3d &P, double minDist, double distVariation,
+                        default_random_engine &generator, uniform_real_distribution<double> &distribution) {
 
-    double u = double(rand())/RAND_MAX, v = double(rand())/RAND_MAX;
+    double x = distribution(generator) * distVariation + minDist;
+    double y = distribution(generator) * distVariation + minDist;
+    double z = distribution(generator) * distVariation + minDist;
+
+    double u = distribution(generator), v = distribution(generator);
     P = sur.at(u,v);
     P += {x,y,z};
     double dist = x+y+z;
@@ -179,10 +266,11 @@ void roughGridSearch(surface &sur, const vec3d &P, double dist, double &u, doubl
     }
 }
 
-void randomPointFromSurfaceNormal(surface &sur, OptState2D &trueLoc, vec3d &P, double minDist,
-                               double distVariation) {
-    double Pdist = (double(rand()) / RAND_MAX) * distVariation + minDist;
-    double u = double(rand())/RAND_MAX, v = double(rand())/RAND_MAX;
+void randomPointFromSurfaceNormal(surface &sur, OptState2D &trueLoc, vec3d &P, double minDist, double distVariation,
+                                  default_random_engine &generator, uniform_real_distribution<double> &distribution) {
+
+    double Pdist = distribution(generator) * distVariation + minDist;
+    double u = distribution(generator), v = distribution(generator);
     P = sur.at(u,v);
     vec3d Pu = sur.atDerU(u,v);
     vec3d Pv = sur.atDerV(u,v);
@@ -193,9 +281,12 @@ void randomPointFromSurfaceNormal(surface &sur, OptState2D &trueLoc, vec3d &P, d
 }
 
 
-void randomPointFromEdgeOrSurfaceNormal(surface &sur, int iterations, int i, OptState2D &trueLoc, vec3d &P, double minDist,
-                                        double distVariation) {
-    double Pdist= (double(rand()) / RAND_MAX) * distVariation + minDist;
+void
+randomPointFromEdgeOrSurfaceNormal(surface &sur, int iterations, int i, OptState2D &trueLoc, vec3d &P, double minDist,
+                                   double distVariation, default_random_engine &generator,
+                                   uniform_real_distribution<double> &distribution) {
+
+    double Pdist= distribution(generator) * distVariation + minDist;
     curve *c;
     vec3d dir{};
     double t;
@@ -215,15 +306,14 @@ void randomPointFromEdgeOrSurfaceNormal(surface &sur, int iterations, int i, Opt
             c = &sur.edgeU1();
             break;
         case 4:
-            randomPointFromSurfaceNormal(sur,trueLoc,P,minDist,distVariation);
+            randomPointFromSurfaceNormal(sur, trueLoc, P, minDist, distVariation, generator, distribution);
             return;
         default:
             break;
     }
 
     dir = c->curvePlaneNormal();
-
-    t = double(rand())/RAND_MAX;
+    t = distribution(generator);
     P1 = c->f(t) + dir * Pdist;
     P2 = c->f(t) - dir * Pdist;
 

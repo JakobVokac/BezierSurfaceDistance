@@ -170,6 +170,7 @@ void bicubicsrf::subdivideInDir(bool dir, double t, bicubicsrf &srf1, bicubicsrf
             }
         }
     }
+
 }
 
 vec3d bicubicsrf::ctrlP(int i) {
@@ -181,19 +182,14 @@ vec3d bicubicsrf::ctrlP(int i) {
 }
 
 void
-bicubicsrf::subdivide(BezierSurface *tl, BezierSurface *tr, BezierSurface *bl, BezierSurface *br) {
-    bicubicsrf *s1{}, *s2{}, *btl{}, *bbl{}, *btr{}, *bbr{};
-    subdivideInDir(true,0.5,*s1,*s2);
-    s1->subdivideInDir(false,0.5,*btl,*bbl);
-    tl = dynamic_cast<BezierSurface *>(btl);
-    bl = dynamic_cast<BezierSurface *>(bbl);
-    s2->subdivideInDir(false,0.5,*btr,*bbr);
-    tl = dynamic_cast<BezierSurface *>(btr);
-    bl = dynamic_cast<BezierSurface *>(bbr);
+bicubicsrf::subdivide(bicubicsrf &tl, bicubicsrf &tr, bicubicsrf &bl, bicubicsrf &br) {
+    bicubicsrf s1{},s2{};
 
-    delete s1;
-    delete s2;
+    subdivideInDir(true, 0.5, s1, s2);
+    s1.subdivideInDir(false, 0.5, tl, bl);
+
+    s2.subdivideInDir(false, 0.5, tr, br);
+
 }
 
-void bicubicsrf::controlNetSubdivide() {}
 

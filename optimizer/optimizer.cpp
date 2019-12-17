@@ -12,9 +12,17 @@ OptState2D optimizer::optimize() {
     do{
         distOld = loc.dist;
         loc = step2D.doStep(sur,P,loc);
-        checkEdges();
+        if(!edgesSearched) {
+            checkEdges();
+        }
         iter++;
-    }while(abs(distOld-loc.dist) > eps && iter < iterMax && !edgeLoc);
+    }while(abs(distOld-loc.dist) > eps && iter < iterMax);
+
+    if(loc.u < 0 || loc.v < 0 || loc.u > 1 || loc.v > 1)
+        return tLoc;
+
+    if(tLoc.dist < loc.dist)
+        return tLoc;
 
     return loc;
 }
@@ -27,7 +35,18 @@ OptState1D optimizer::optimizeEdge(curve &crv) {
         eLoc = step1D.doStep(crv, P, eLoc);
         checkCorner();
         iter++;
-    }while(abs(distOld - eLoc.dist) > eps && iter < iterMax && !cornerLoc);
+    }while(abs(distOld - eLoc.dist) > eps && iter < iterMax);
+
+    OptState1D lc, rc;
+    lc = {0,crv.distTo(0,P)};
+    rc = {1,crv.distTo(1,P)};
+    if(eLoc.t < 0 || eLoc.t > 1)
+        return (lc.dist < rc.dist ? lc : rc);
+
+    if(lc.dist < eLoc.dist)
+        eLoc = lc;
+    if(rc.dist < eLoc.dist)
+        eLoc = rc;
 
     return eLoc;
 }
@@ -42,12 +61,13 @@ void optimizer::checkEdges() {
             cornerSearch(0, 1);
         }else {
             OptState1D res = optimizeEdge(sur.edgeU0());
-            loc = {0, res.t, res.dist};
+            tLoc = {0, res.t, res.dist};
 
             plotEdge(sur.edgeU0());
         }
 
         edgeLoc = true;
+        edgesSearched = true;
 
     } else
         rangecount++;
@@ -60,11 +80,12 @@ void optimizer::checkEdges() {
             cornerSearch(1, 1);
         }else {
             OptState1D res = optimizeEdge(sur.edgeU1());
-            loc = {1, res.t, res.dist};
+            tLoc = {1, res.t, res.dist};
 
             plotEdge(sur.edgeU1());
         }
         edgeLoc = true;
+        edgesSearched = true;
 
     } else
         rangecount++;
@@ -72,11 +93,12 @@ void optimizer::checkEdges() {
     if (loc.v < 0 && rangecount > rcMax) {
 
         OptState1D res = optimizeEdge(sur.edgeV0());
-        loc = {res.t, 0, res.dist};
+        tLoc = {res.t, 0, res.dist};
 
         plotEdge(sur.edgeV0());
 
         edgeLoc = true;
+        edgesSearched = true;
 
     } else
         rangecount++;
@@ -84,11 +106,12 @@ void optimizer::checkEdges() {
     if (loc.v > 1 && rangecount > rcMax) {
 
         OptState1D res = optimizeEdge(sur.edgeV1());
-        loc = {res.t, 1, res.dist};
+        tLoc = {res.t, 1, res.dist};
 
         plotEdge(sur.edgeV1());
 
         edgeLoc = true;
+        edgesSearched = true;
 
     } else
         rangecount++;
@@ -104,9 +127,9 @@ void optimizer::cornerSearch(double u, double v) {
     plotEdge(sur.edgeV0());
 
     if (res1.dist < res2.dist)
-        loc = {res1.t, v, res1.dist};
+        tLoc = {res1.t, v, res1.dist};
     else
-        loc = {u, res2.t, res2.dist};
+        tLoc = {u, res2.t, res2.dist};
 
     edgeLoc = true;
     cornerSearched = true;
@@ -133,6 +156,7 @@ void optimizer::initialize() {
     edgeLoc = false;
     cornerLoc = false;
     cornerSearched = false;
+    edgesSearched = false;
     iter = 0;
     rangecount = 0;
 }

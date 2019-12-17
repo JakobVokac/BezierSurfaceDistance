@@ -5,11 +5,11 @@
 #ifndef HEARTVALVEMODEL_BICUBICSRF_H
 #define HEARTVALVEMODEL_BICUBICSRF_H
 
-#include "BezierSurface.h"
+#include "surface.h"
 
-class bicubicsrf : public BezierSurface {
+class bicubicsrf : public surface {
 private:
-    vec3d ctrl[16]{};
+    vec3d ctrl[16]{{0,0,0}};
     cubiccrv U0, V0, U1, V1;
 public:
     bicubicsrf() = default;
@@ -22,7 +22,7 @@ public:
         this->V1 = cubiccrv(ctrl[3],ctrl[7],ctrl[11],ctrl[15]);
         this->U1 = cubiccrv(ctrl[12],ctrl[13],ctrl[14],ctrl[15]);
     }
-    ~bicubicsrf() override = default;
+    ~bicubicsrf() = default;
 
     vec3d at(double u, double v) override;
     vec3d atDerU(double u, double v) override;
@@ -37,11 +37,10 @@ public:
     curve & edgeV1() override;
 
     vec3d ctrlP(int i);
-    bool hasValidControlNet() override;
-    bool closestPointInPatch(vec3d P) override;
-    void controlNetSubdivide() override;
+    bool hasValidControlNet();
+    bool closestPointInPatch(vec3d P);
     void subdivideInDir(bool dir, double t, bicubicsrf &srf1, bicubicsrf &srf2);
-    void subdivide(BezierSurface *tl,  BezierSurface *tr, BezierSurface *bl, BezierSurface*br) override;
+    void subdivide(bicubicsrf &tl, bicubicsrf &tr, bicubicsrf &bl, bicubicsrf &br);
 
 };
 

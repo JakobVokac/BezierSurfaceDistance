@@ -190,33 +190,6 @@ geometry/curve/curve.cpp.s:
 	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/curve/curve.cpp.s
 .PHONY : geometry/curve/curve.cpp.s
 
-geometry/surface/BezierSurface.o: geometry/surface/BezierSurface.cpp.o
-
-.PHONY : geometry/surface/BezierSurface.o
-
-# target to build an object file
-geometry/surface/BezierSurface.cpp.o:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/BezierSurface.cpp.o
-.PHONY : geometry/surface/BezierSurface.cpp.o
-
-geometry/surface/BezierSurface.i: geometry/surface/BezierSurface.cpp.i
-
-.PHONY : geometry/surface/BezierSurface.i
-
-# target to preprocess a source file
-geometry/surface/BezierSurface.cpp.i:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/BezierSurface.cpp.i
-.PHONY : geometry/surface/BezierSurface.cpp.i
-
-geometry/surface/BezierSurface.s: geometry/surface/BezierSurface.cpp.s
-
-.PHONY : geometry/surface/BezierSurface.s
-
-# target to generate assembly for a file
-geometry/surface/BezierSurface.cpp.s:
-	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/geometry/surface/BezierSurface.cpp.s
-.PHONY : geometry/surface/BezierSurface.cpp.s
-
 geometry/surface/BottomParametric.o: geometry/surface/BottomParametric.cpp.o
 
 .PHONY : geometry/surface/BottomParametric.o
@@ -752,9 +725,6 @@ help:
 	@echo "... geometry/curve/curve.o"
 	@echo "... geometry/curve/curve.i"
 	@echo "... geometry/curve/curve.s"
-	@echo "... geometry/surface/BezierSurface.o"
-	@echo "... geometry/surface/BezierSurface.i"
-	@echo "... geometry/surface/BezierSurface.s"
 	@echo "... geometry/surface/BottomParametric.o"
 	@echo "... geometry/surface/BottomParametric.i"
 	@echo "... geometry/surface/BottomParametric.s"
