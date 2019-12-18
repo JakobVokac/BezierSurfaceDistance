@@ -6,7 +6,6 @@
 #define HEARTVALVEMODEL_COMPOSITEBICUBICSRF_H
 
 #include "bicubicsrf.h"
-#include "../../measurements/measurements.h"
 
 
 class compositeBicubicsrf {

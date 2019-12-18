@@ -13,7 +13,14 @@
 #include "../optimizer/step/Geometric.h"
 #include "../optimizer/step/Newton.h"
 #include "../splittingAlgorithm/splittingAlgorithm.h"
+#include "../geometry/surface/compositeBicubicsrf.h"
+
 using namespace std;
+
+void TestEdgeDistTestValidity(surface &sur, double minDist, double distVar, int iterations);
+
+void TestEdgeSolutionDetection(TopParametric &sur, compositeBicubicsrf &bez, int seed, double minDist, double distVar, int iterations);
+
 void
 randomPointFromEdgeOrSurfaceNormal(surface &sur, int iterations, int i, OptState2D &trueLoc, vec3d &P, double minDist,
                                    double distVariation, default_random_engine &generator,
@@ -23,7 +30,7 @@ void randomPointFromSurfaceNormal(surface &sur, OptState2D &trueLoc, vec3d &P, d
 void randomPointInSpace(surface &sur, OptState2D &trueLoc, vec3d &P, double minDist, double distVariation,
                         default_random_engine &generator, uniform_real_distribution<double> &distribution);
 void roughCurveSearch(const vec3d &P, curve *c, const vec3d &dir, double &Pdist, double &t);
-void roughGridSearch(surface &sur, const vec3d &P, double dist, double &u, double &v);
+void roughGridSearch(surface &sur, const vec3d &P, double &dist, double &u, double &v);
 void plotSurfaceDistance(const vec3d &P, surface &sur);
 void TestOptimizerPerformance(optimizer &opt, int seed, int testType, double minDist, double distVar, int iterations = 1000,
                               double eps = 0.0000001, int plot = 0);

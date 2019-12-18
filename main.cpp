@@ -8,25 +8,44 @@
 #include "optimizer/step/Geometric.h"
 #include "optimizer/preprocessor/quadraticInterpolation.h"
 #include "measurements/measurements.h"
-#include "splittingAlgorithm/splittingAlgorithm.h"
-#include "geometry/surface/compositeBicubicsrf.h"
 
 
 double compareSurfaces(TopParametric top, bicubicsrf bez){
     double totalDist = 0;
+    int iterations = 0;
     for (double i = 0; i <= 1; i += 0.01) {
         for (double j = 0; j <= 1; j += 0.01) {
             vec3d p1, p2;
             p1 = top.at(j,i);
             p2 = bez.at(j,i);
-            cout << "param: " << p1 << endl;
-            cout << "bez: " << p2 << endl;
             totalDist += p1.dist(p2);
+            iterations++;
         }
     }
-    return totalDist/10000;
+    return totalDist/iterations;
 }
 
+double compareSurfaceEdges(TopParametric top, bicubicsrf bez){
+    double totalDist = 0;
+    int iterations = 0;
+    for (double i = 0; i <= 1; i += 0.01) {
+        vec3d p1, p2;
+        p1 = top.at(0,i);
+        p2 = bez.at(0,i);
+        totalDist += p1.dist(p2);
+        p1 = top.at(1,i);
+        p2 = bez.at(1,i);
+        totalDist += p1.dist(p2);
+        p1 = top.at(i,0);
+        p2 = bez.at(i,0);
+        totalDist += p1.dist(p2);
+        p1 = top.at(i,1);
+        p2 = bez.at(i,1);
+        totalDist += p1.dist(p2);
+        iterations += 4;
+    }
+    return totalDist/iterations;
+}
 int main() {
 
     Model model = Model(
@@ -102,32 +121,34 @@ int main() {
 //    cout << s1.closestPointInPatch(P) << endl;
 //    cout << s2.closestPointInPatch(P) << endl;
 
-    chrono::time_point<chrono::high_resolution_clock> t_start;
-    chrono::time_point<chrono::high_resolution_clock> t_stop;
-    chrono::microseconds t_duration;
-
-    t_start = chrono::high_resolution_clock::now();
-    cout << bez.hasValidControlNet() << endl;
-
-
-
-    OptState2D loc = splittingAlgorithm::optimize(bez,P,0.00000001);
-    t_stop = chrono::high_resolution_clock::now();
-
-    cout << "loc: u: " << loc.u << " v: " << loc.v << " dist: " << loc.dist << endl;
-
-    t_duration = chrono::duration_cast<chrono::microseconds>(t_stop - t_start);
-
-    cout << t_duration.count() << " microseconds" << endl;
-
-    TestOptimizerPerformance(*opt,3,0,1,5,1000,0.00000001,0);
-    //TestSplitterPerformance(bez, 3, 0, 3.0, 1, 1000, 0.00000001, 0);
-
-//    cout << "param vs bez: " << compareSurfaces(top,bez) << endl;
+//    chrono::time_point<chrono::high_resolution_clock> t_start;
+//    chrono::time_point<chrono::high_resolution_clock> t_stop;
+//    chrono::microseconds t_duration;
 //
-//    compositeBicubicsrf b(bez);
+//    t_start = chrono::high_resolution_clock::now();
+//    OptState2D loc = splittingAlgorithm::optimize(bez,P,0.00000001);
+//    t_stop = chrono::high_resolution_clock::now();
 //
-//    cout << b.hasValidControlNet() << endl;
+//    cout << "loc: u: " << loc.u << " v: " << loc.v << " dist: " << loc.dist << endl;
+//
+//    t_duration = chrono::duration_cast<chrono::microseconds>(t_stop - t_start);
+//
+//    cout << t_duration.count() << " microseconds" << endl;
+
+    TestOptimizerPerformance(*opt,3,2,10,1.5,1000,0.00000001,0);
+
+    cout << "param vs bez: " << compareSurfaces(top,bez) << endl;
+
+    cout << "edges: " << compareSurfaceEdges(top,bez) << endl;
+    compositeBicubicsrf b(bez);
+
+    cout << "composite Bezier surface control net is valid: "<< b.hasValidControlNet() << endl;
+    TestEdgeSolutionDetection(top,b,3,0.5,1.5,1000);
+
+//    TestEdgeDistTestValidity(top,0.5,1.5,1000);
+
+
+//    TestSplitterPerformance(bez, 3, 1, 3.0, 1, 1000, 0.00000001, 0);
 
     delete quad;
     delete geometric;

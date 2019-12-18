@@ -5,6 +5,71 @@
 #include "measurements.h"
 
 
+void TestEdgeDistTestValidity(surface &sur, double minDist, double distVar, int iterations){
+    vec3d P;
+    OptState2D trueLoc;
+    OptState2D gridLoc;
+    std::default_random_engine generator;
+    std::uniform_real_distribution<double> distribution(0.0,1.0);
+    bool edgeLoc;
+    int reliability = 0;
+
+    for (int i = 0; i < iterations; i++) {
+        randomPointFromEdgeOrSurfaceNormal(sur, iterations, i, trueLoc, P, minDist, distVar, generator,
+                                           distribution);
+
+        roughGridSearch(sur,P,trueLoc.dist,gridLoc.u,gridLoc.v);
+        gridLoc.dist = sur.distTo(gridLoc.u,gridLoc.v,P);
+
+        if(trueLoc.dist < gridLoc.dist && i/(iterations/5) != 4)
+            reliability++;
+
+        cout << i << endl;
+    }
+    plotSurface(sur);
+    cout << "Edge test reliability: " << double(reliability)/((iterations*4)/5) << endl;
+}
+
+bool onEdge(OptState2D s){
+    if(s.u < 1.0001 && s.u > 0.9999)
+        return true;
+    if(s.v < 1.0001 && s.v > 0.9999)
+        return true;
+    if(s.u < 0.0001 && s.u > -0.0001)
+        return true;
+    if(s.v < 0.0001 && s.v > -0.0001)
+        return true;
+    return false;
+}
+
+void TestEdgeSolutionDetection(TopParametric &sur, compositeBicubicsrf &bez, int seed, double minDist, double distVar, int iterations) {
+
+    vec3d P;
+    OptState2D trueLoc;
+    std::default_random_engine generator;
+    std::uniform_real_distribution<double> distribution(0.0,1.0);
+    bool edgeLoc;
+    int reliability = 0;
+
+    for (int i = 0; i < iterations; i++) {
+        randomPointInSpace(sur,trueLoc,P,  minDist, distVar, generator,
+                                           distribution);
+
+
+
+        if(!bez.closestPointInPatch(P) == onEdge(trueLoc))
+            reliability++;
+
+        if(i % 20 == 0){
+            cout << "iteration: " << i << endl;
+            cout << "point: " << P << endl;
+            cout << "edgeLoc: " << onEdge(trueLoc) << " u: " << trueLoc.u << " v: " << trueLoc.v << endl;
+            cout << "edge solution: " << !bez.closestPointInPatch(P) << endl;
+        }
+    }
+    plotSurface(sur);
+    cout << "Edge detection from Bezier surface reliability: " << double(reliability)/iterations << endl;
+}
 
 void TestSplitterPerformance(bicubicsrf &sur, int seed, int testType, double minDist, double distVar, int iterations, double eps, int plot){
     cout << "Testing: ";
@@ -250,12 +315,12 @@ void randomPointInSpace(surface &sur, OptState2D &trueLoc, vec3d &P, double minD
     P += {x,y,z};
     double dist = x+y+z;
     roughGridSearch(sur, P, dist, u, v);
-    trueLoc = {u,v,x+y+z};
+    trueLoc = {u,v,dist};
 }
 
-void roughGridSearch(surface &sur, const vec3d &P, double dist, double &u, double &v) {
-    for(double i = 0; i <= 1; i += 0.01){
-        for(double j = 0; j <= 1; j += 0.01){
+void roughGridSearch(surface &sur, const vec3d &P, double &dist, double &u, double &v) {
+    for(double i = 0; i <= 1.000001; i += 0.01){
+        for(double j = 0; j <= 1.000001; j += 0.01){
             double tDist = sur.distTo(i,j,P);
             if(tDist < dist){
                 u = i;
@@ -361,7 +426,6 @@ randomPointFromEdgeOrSurfaceNormal(surface &sur, int iterations, int i, OptState
         default:
             break;
     }
-
 }
 
 void roughCurveSearch(const vec3d &P, curve *c, const vec3d &dir, double &Pdist, double &t) {

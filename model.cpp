@@ -395,25 +395,25 @@ bicubicsrf Model::getTopBezier() {
     vec3d k01 = symC.getCtrlP(2);
     vec3d k10 = bC.getCtrlP(1);
     vec3d dUV00 = top.atDerUV(0,0);
-    vec3d k11 = k01 + k10 - k00;// - dUV00/100;
+    vec3d k11 = k01 + k10 - k00 + dUV00/9;
 
     vec3d k30 = bC.getCtrlP(3);
     vec3d k31 = sinC.getCtrlP(2);
     vec3d k20 = bC.getCtrlP(2);
     vec3d dUV10 = top.atDerUV(1,0);
-    vec3d k21 = k31 + k20 - k30;// - dUV10/100;
+    vec3d k21 = k31 + k20 - k30 + dUV10/9;
 
     vec3d k03 = lC.getCtrlP(0);
     vec3d k02 = symC.getCtrlP(1);
     vec3d k13 = lC.getCtrlP(1);
     vec3d dUV01 = top.atDerUV(0,1);
-    vec3d k12 = k02 + k13 - k03;// - dUV01/100;
+    vec3d k12 = k02 + k13 - k03 + dUV01/9;
 
     vec3d k33 = lC.getCtrlP(3);
     vec3d k32 = sinC.getCtrlP(1);
     vec3d k23 = lC.getCtrlP(2);
     vec3d dUV11 = top.atDerUV(1,1);
-    vec3d k22 = k32 + k23 - k33;// - dUV11/100;
+    vec3d k22 = k32 + k23 - k33 + dUV11/9;
 
     vec3d ctrls[16] ={k00,k01,k02,k03,
                       k10,k11,k12,k13,

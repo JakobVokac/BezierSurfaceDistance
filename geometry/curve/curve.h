@@ -20,6 +20,8 @@ public:
     double sqDistToDer2(double t, vec3d A);
 
     double distTo(double t, vec3d A);
+    double distToDer1(double t, vec3d A);
+    double distToDer2(double t, vec3d A);
 
     virtual std::string asString() = 0;
     friend std::ostream & operator << (std::ostream &out, curve &c);
