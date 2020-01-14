@@ -1,0 +1,1 @@
+/usr/local/cuda/bin/nvcc  -g -Xcompiler=-fPIC -Wno-deprecated-gpu-targets -shared -dlink CMakeFiles/Test.dir/test.cu.o CMakeFiles/Test.dir/geometry/vector/vec3d.cu.o CMakeFiles/Test.dir/testExternal.cu.o CMakeFiles/Test.dir/geometry/curve/curve.cu.o CMakeFiles/Test.dir/geometry/curve/cubiccrv.cu.o -o CMakeFiles/Test.dir/cmake_device_link.o 

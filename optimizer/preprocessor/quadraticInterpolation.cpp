@@ -80,7 +80,11 @@ OptState2D quadraticInterpolation::preprocess(surface &sur, const vec3d &P) {
 
         }
     }
-    return {unew,unew,sur.distTo(unew,vnew,P)};
+    if(std::isnan(unew))
+        unew = 0.5;
+    if(std::isnan(vnew))
+        vnew = 0.5;
+    return {unew,vnew,sur.distTo(unew,vnew,P)};
 }
 
 OptState1D quadraticInterpolation::preprocess(curve &crv, const vec3d &P) {
@@ -128,6 +132,9 @@ OptState1D quadraticInterpolation::preprocess(curve &crv, const vec3d &P) {
         tn = 1;
     if(tn < 0)
         tn = 0;
+
+    if(std::isnan(tn))
+        tn = 0.5;
 
     return {tn,crv.distTo(tn,P)};
 }

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="HeartValveModel"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/s3179222/CLionProjects/HeartValveModel"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/s3179222/CLionProjects/HeartValveModel"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/s3179222/CLionProjects/HeartValveModel"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="HeartValveModel">
+				<Option output="/home/s3179222/CLionProjects/HeartValveModel/HeartValveModel" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/s3179222/CLionProjects/HeartValveModel"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/python2.7"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 HeartValveModel"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="HeartValveModel/fast">
+				<Option output="/home/s3179222/CLionProjects/HeartValveModel/HeartValveModel" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/s3179222/CLionProjects/HeartValveModel"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/python2.7"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 HeartValveModel/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Parallel">
+				<Option output="/home/s3179222/CLionProjects/HeartValveModel/Parallel" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/s3179222/CLionProjects/HeartValveModel"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 Parallel"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Parallel/fast">
+				<Option output="/home/s3179222/CLionProjects/HeartValveModel/Parallel" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/s3179222/CLionProjects/HeartValveModel"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 Parallel/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/cubiccrv.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/cubiccrv.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/curve.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/curve.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/BottomParametric.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/BottomParametric.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/TopParametric.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/TopParametric.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/bicubicsrf.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/bicubicsrf.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/compositeBicubicsrf.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/compositeBicubicsrf.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/vector/vec3d.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/geometry/vector/vec3d.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/main.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/matplotlibcpp.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/model.cpp">
+			<Option target="HeartValveModel"/>
+			<Option target="Parallel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/model.h">
+			<Option target="HeartValveModel"/>
+			<Option target="Parallel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/bezier.cpp">
+			<Option target="HeartValveModel"/>
+			<Option target="Parallel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/bezier.h">
+			<Option target="HeartValveModel"/>
+			<Option target="Parallel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/parallel.cpp">
+			<Option target="Parallel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/plotting.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/plotting.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/vectorMath.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/vectorMath.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/optimizer.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/optimizer.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/bisection.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/bisection.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/preprocessor.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/quadraticInterpolation.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/quadraticInterpolation.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/states.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Geometric.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Geometric.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Newton.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Newton.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/step.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/parameters.h">
+			<Option target="HeartValveModel"/>
+			<Option target="Parallel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/splittingAlgorithm/splittingAlgorithm.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/splittingAlgorithm/splittingAlgorithm.h">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

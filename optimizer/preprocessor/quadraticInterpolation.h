@@ -8,6 +8,7 @@
 
 #include "preprocessor.h"
 
+
 class quadraticInterpolation : public preprocessor{
 public:
     explicit quadraticInterpolation(int iter) : preprocessor(iter){};

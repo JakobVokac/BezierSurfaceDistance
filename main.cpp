@@ -99,6 +99,17 @@ int main() {
             2
     );
 
+    for(int i = 0; i < 8; i++){
+        vec3d a = top.at(double(i)/8,double(i)/8);
+        vec3d du, dv;
+        du = top.atDerU(double(i)/8,double(i)/8);
+        dv = top.atDerV(double(i)/8,double(i)/8);
+        vec3d N = du.cross(dv);
+        N /= N.mag();
+        a = a + 0.5 * N;
+        cout << "dist at " << i << ": " << opt->optimizeForPoint(a).dist << endl;
+    }
+
     //TestOptimizerPerformance(*opt,3,2,1,5,1000,0.00000001,0);
 
     vec3d P = {1,1.5,1};
@@ -121,29 +132,35 @@ int main() {
 //    cout << s1.closestPointInPatch(P) << endl;
 //    cout << s2.closestPointInPatch(P) << endl;
 
-//    chrono::time_point<chrono::high_resolution_clock> t_start;
-//    chrono::time_point<chrono::high_resolution_clock> t_stop;
-//    chrono::microseconds t_duration;
-//
-//    t_start = chrono::high_resolution_clock::now();
-//    OptState2D loc = splittingAlgorithm::optimize(bez,P,0.00000001);
-//    t_stop = chrono::high_resolution_clock::now();
-//
+    chrono::time_point<chrono::high_resolution_clock> t_start;
+    chrono::time_point<chrono::high_resolution_clock> t_stop;
+    chrono::microseconds t_duration;
+
 //    cout << "loc: u: " << loc.u << " v: " << loc.v << " dist: " << loc.dist << endl;
 //
 //    t_duration = chrono::duration_cast<chrono::microseconds>(t_stop - t_start);
 //
 //    cout << t_duration.count() << " microseconds" << endl;
+    t_start = chrono::high_resolution_clock::now();
 
-    TestOptimizerPerformance(*opt,3,2,10,1.5,1000,0.00000001,0);
+    for (int i = 0; i < 10000; i++) {
 
-    cout << "param vs bez: " << compareSurfaces(top,bez) << endl;
+        vec3d a = {double(rand())*100/(RAND_MAX),double(rand())*100/(RAND_MAX),double(rand())*100/(RAND_MAX)};
 
-    cout << "edges: " << compareSurfaceEdges(top,bez) << endl;
-    compositeBicubicsrf b(bez);
+        opt->optimizeForPoint(a);
+    }
+    t_stop = chrono::high_resolution_clock::now();
+    t_duration = chrono::duration_cast<chrono::microseconds>(t_stop - t_start);
 
-    cout << "composite Bezier surface control net is valid: "<< b.hasValidControlNet() << endl;
-    TestEdgeSolutionDetection(top,b,3,0.5,1.5,1000);
+    cout << t_duration.count() << " microseconds" << endl;
+
+//    cout << "param vs bez: " << compareSurfaces(top,bez) << endl;
+//
+//    cout << "edges: " << compareSurfaceEdges(top,bez) << endl;
+//    compositeBicubicsrf b(bez);
+//
+//    cout << "composite Bezier surface control net is valid: "<< b.hasValidControlNet() << endl;
+//    TestEdgeSolutionDetection(top,b,3,0.5,1.5,1000);
 
 //    TestEdgeDistTestValidity(top,0.5,1.5,1000);
 

@@ -44,6 +44,7 @@ bool onEdge(OptState2D s){
 
 void TestEdgeSolutionDetection(TopParametric &sur, compositeBicubicsrf &bez, int seed, double minDist, double distVar, int iterations) {
 
+
     vec3d P;
     OptState2D trueLoc;
     std::default_random_engine generator;
@@ -157,6 +158,8 @@ void TestOptimizerPerformance(optimizer &opt, int seed, int testType, double min
     cout << "Testing: ";
     int reliability = 0;
     double avgError = 0;
+    double totalDistance = 0;
+    double trueTotalDist = 0;
     int sumIters = 0;
     srand(seed);
     time_t avgTime = 0;
@@ -199,6 +202,13 @@ void TestOptimizerPerformance(optimizer &opt, int seed, int testType, double min
         if(plot)
             cout << "u: " << loc.u << " v: " << loc.v << " V: " << loc.dist << " iterations: " << opt.getIterations() << endl;
 
+        if(isnan(loc.dist)){
+            cout << "Iteration: " << i << " u: " << loc.u << " v: " << loc.v << endl;
+        }
+        
+        totalDistance += loc.dist;
+        trueTotalDist += trueLoc.dist;
+
         if(loc.dist <= trueLoc.dist + eps) {
             reliability++;
         }else{
@@ -225,7 +235,7 @@ void TestOptimizerPerformance(optimizer &opt, int seed, int testType, double min
     cout << "reliability: " << double(reliability)/iterations << " average error: " << avgError/iterations << " average iterations: " << double(sumIters)/iterations << " average time: " << avgTime/iterations << " microseconds " << endl;
     cout << "% onedimcalls: " << double(onedimcalls)/iterations << " error by 1D search %: " << double(count1D)/onedimcalls << endl;
     cout << "% cornercalls: " << double(cornercalls)/iterations << " error by corner search %: " << double(countCor)/onedimcalls << endl;
-
+    cout << "Total distance: " << totalDistance << ", true total distance: " << trueTotalDist << endl;
 }
 
 void plotSurfaceDistance(const vec3d &P, surface &sur) {
@@ -430,7 +440,7 @@ randomPointFromEdgeOrSurfaceNormal(surface &sur, int iterations, int i, OptState
 
 void roughCurveSearch(const vec3d &P, curve *c, const vec3d &dir, double &Pdist, double &t) {
     if(dir == vec3d{0, 0, 0}){
-        cout << "true dist for edge can't be found analytically; true distance for this point is now a rough estimate" << endl;
+//        cout << "true dist for edge can't be found analytically; true distance for this point is now a rough estimate" << endl;
         for (double j = 0; j <= 1; j+=0.001) {
             double tDist = c->distTo(j,P);
             if(tDist < Pdist){

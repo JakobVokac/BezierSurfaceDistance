@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/s3179222/CLionProjects/HeartValveModel/geometry/vector/vec3d.h
+
+/home/s3179222/CLionProjects/HeartValveModel/testExternal.cpp
+testExternal.h
+/home/s3179222/CLionProjects/HeartValveModel/testExternal.h
+
+/home/s3179222/CLionProjects/HeartValveModel/testExternal.h
+geometry/vector/vec3d.h
+/home/s3179222/CLionProjects/HeartValveModel/geometry/vector/vec3d.h
+

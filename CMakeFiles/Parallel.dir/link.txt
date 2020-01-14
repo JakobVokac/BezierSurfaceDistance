@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/Parallel.dir/old_code/parallel.cpp.o CMakeFiles/Parallel.dir/model.cpp.o CMakeFiles/Parallel.dir/old_code/bezier.cpp.o  -o Parallel 
