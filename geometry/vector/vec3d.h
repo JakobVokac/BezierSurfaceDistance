@@ -10,9 +10,8 @@
 #include <ostream>
 
 class vec3d {
-private:
-    double x,y,z;
 public:
+    double x,y,z;
 
     vec3d () = default;
 

@@ -19,7 +19,7 @@ protected:
     preprocessor &prep1D;
     step &step2D;
     step &step1D;
-    surface &sur;
+    surface *sur;
     vec3d P{};
     double eps;
     double distOld = 0;
@@ -40,7 +40,7 @@ public:
             preprocessor &prep1D,
             step &step2D,
             step &step1D,
-            surface &sur,
+            surface *sur,
             vec3d P,
             double eps,
             int iterMax,
@@ -84,6 +84,10 @@ public:
     bool cornerSolution();
 
     bool cornerSearchSolution();
+
+    void setSur(surface *sur){
+        this->sur = sur;
+    }
 };
 
 #endif //HEARTVALVEMODEL_OPTIMIZER_H
