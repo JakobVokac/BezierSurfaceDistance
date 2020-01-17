@@ -11,42 +11,17 @@
 #include "measurements/measurements.h"
 
 
-double compareSurfaces(TopParametric top, bicubicsrf bez){
-    double totalDist = 0;
-    int iterations = 0;
-    for (double i = 0; i <= 1; i += 0.01) {
-        for (double j = 0; j <= 1; j += 0.01) {
-            vec3d p1, p2;
-            p1 = top.at(j,i);
-            p2 = bez.at(j,i);
-            totalDist += p1.dist(p2);
-            iterations++;
-        }
-    }
-    return totalDist/iterations;
-}
-
-double compareSurfaceEdges(TopParametric top, bicubicsrf bez){
-    double totalDist = 0;
-    int iterations = 0;
-    for (double i = 0; i <= 1; i += 0.01) {
-        vec3d p1, p2;
-        p1 = top.at(0,i);
-        p2 = bez.at(0,i);
-        totalDist += p1.dist(p2);
-        p1 = top.at(1,i);
-        p2 = bez.at(1,i);
-        totalDist += p1.dist(p2);
-        p1 = top.at(i,0);
-        p2 = bez.at(i,0);
-        totalDist += p1.dist(p2);
-        p1 = top.at(i,1);
-        p2 = bez.at(i,1);
-        totalDist += p1.dist(p2);
-        iterations += 4;
-    }
-    return totalDist/iterations;
-}
+/*
+ * This algorithm computes distances of points to the surface of a model of the aortic valve.
+ * The main function takes the 3D points in as input from the input.txt file, then creates the model
+ * from the specified parameters, which are passed as arguments to the Model class. The model class,
+ * then creates all of the parts and surfaces, which are used by the Optimizer to calculate distances to the points.
+ *
+ * The main function calculates, which surface is closest to the current point for all points and then passes that
+ * surface to the optimizer. It then computes the distance to the point and saves it.
+ *
+ * Once it has computed all of the distances it outputs the total sum and the average distance.
+ */
 int main() {
 
     std::vector<double> inputPoints;
