@@ -1,7 +1,17 @@
 //
 // Created by s3179222 on 12/16/19.
 //
-
+/*
+ * This class is an implementation of a Bezier surface, split into multiple patches. The main function of this class
+ * is to take in a Bezier surface and continually split it until all parts have valid control nets (see source below).
+ * Once the surface has been initialized, it can be used to check whether the whole Bezier surface has a closest point
+ * to a point P on the inside or on an edge.
+ *
+ * The net and edge detection algorithms were taken and implemented from:
+ *      Yingliang Ma & W. Terry Hewitt,
+ *      "Point inversion and projection for NURBS curve: Control polygon approach",
+ *      https://www.researchgate.net/publication/232638188_Point_inversion_and_projection_for_NURBS_curve_Control_polygon_approach
+ */
 #include "compositeBicubicsrf.h"
 
 
