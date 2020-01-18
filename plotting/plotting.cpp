@@ -1,7 +1,9 @@
 //
 // Created by s3179222 on 12/3/19.
 //
-
+/*
+ * This class contains functions that use the matplotlib extension to draw the model's surfaces and distance functions.
+ */
 #include "plotting.h"
 
 void DrawDist(Model &model, const vec3d &P) {

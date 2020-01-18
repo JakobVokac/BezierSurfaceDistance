@@ -1,7 +1,9 @@
 //
 // Created by s3179222 on 12/9/19.
 //
-
+/*
+ * This class is the implementation of the Newton-Raphson method for the numerical optimizer.
+ */
 #ifndef HEARTVALVEMODEL_NEWTON_H
 #define HEARTVALVEMODEL_NEWTON_H
 

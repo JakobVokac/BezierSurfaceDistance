@@ -1,7 +1,12 @@
 //
 // Created by s3179222 on 12/9/19.
 //
-
+/*
+ * This is the interface class for the numerical optimization step, which is mean't to represent one step in an optimization
+ * technique such as the Newton-Raphson method.
+ *
+ * The interface requires the method be implemented for both 2D (surface search) and 1D (edge search).
+ */
 #ifndef HEARTVALVEMODEL_STEP_H
 #define HEARTVALVEMODEL_STEP_H
 

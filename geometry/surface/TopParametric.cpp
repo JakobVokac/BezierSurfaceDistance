@@ -1,7 +1,13 @@
 //
 // Created by s3179222 on 12/8/19.
 //
-
+/*
+ * This is the implementation of the top part of each leaf in the model. The class contains all of the corners and edges
+ * (see model.h), which include the bending curve, the leaf curve, the top half of the symmetry curve and the top half
+ * of the sinusoidal curve.
+ *
+ * The surface itself is a bilinear interpolation of the 4 edges.
+ */
 #include "TopParametric.h"
 
 TopParametric::TopParametric(cubiccrv leafCurve, cubiccrv bendCurve, cubiccrv symCurve, cubiccrv sinCurve,

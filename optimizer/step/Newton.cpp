@@ -1,7 +1,9 @@
 //
 // Created by s3179222 on 12/9/19.
 //
-
+/*
+ * This class is the implementation of the Newton-Raphson method for the numerical optimizer.
+ */
 #include "Newton.h"
 
 OptState2D Newton::doStep(surface &sur, vec3d &P, OptState2D &loc) {

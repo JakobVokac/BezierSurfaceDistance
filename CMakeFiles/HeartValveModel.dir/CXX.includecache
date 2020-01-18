@@ -6,7 +6,17 @@
 
 #IncludeRegexTransform: 
 
+/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/cubiccrv.cpp
+limits
+-
+cubiccrv.h
 /home/s3179222/CLionProjects/HeartValveModel/geometry/curve/cubiccrv.h
+
+/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/cubiccrv.h
+curve.h
+/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/curve.h
+
+/home/s3179222/CLionProjects/HeartValveModel/geometry/curve/curve.cpp
 curve.h
 /home/s3179222/CLionProjects/HeartValveModel/geometry/curve/curve.h
 
@@ -16,25 +26,51 @@ curve.h
 iostream
 -
 
+/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/BottomParametric.cpp
+BottomParametric.h
+/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/BottomParametric.h
+
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/BottomParametric.h
 surface.h
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.h
+
+/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/TopParametric.cpp
+TopParametric.h
+/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/TopParametric.h
 
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/TopParametric.h
 surface.h
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.h
 
+/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/bicubicsrf.cpp
+bicubicsrf.h
+/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/bicubicsrf.h
+
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/bicubicsrf.h
 surface.h
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.h
+
+/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/compositeBicubicsrf.cpp
+compositeBicubicsrf.h
+/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/compositeBicubicsrf.h
 
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/compositeBicubicsrf.h
 bicubicsrf.h
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/bicubicsrf.h
 
+/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.cpp
+surface.h
+/home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.h
+
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.h
 ../curve/cubiccrv.h
 /home/s3179222/CLionProjects/HeartValveModel/geometry/curve/cubiccrv.h
+
+/home/s3179222/CLionProjects/HeartValveModel/geometry/vector/vec3d.cpp
+cstdlib
+-
+vec3d.h
+/home/s3179222/CLionProjects/HeartValveModel/geometry/vector/vec3d.h
 
 /home/s3179222/CLionProjects/HeartValveModel/geometry/vector/vec3d.h
 cassert
@@ -94,6 +130,10 @@ numpy/arrayobject.h
 opencv2/opencv.hpp
 -
 
+/home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.cpp
+measurements.h
+/home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.h
+
 /home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.h
 ../model.h
 /home/s3179222/CLionProjects/HeartValveModel/model.h
@@ -114,9 +154,11 @@ chrono
 ../geometry/surface/compositeBicubicsrf.h
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/compositeBicubicsrf.h
 
+/home/s3179222/CLionProjects/HeartValveModel/model.cpp
+model.h
 /home/s3179222/CLionProjects/HeartValveModel/model.h
-old_code/bezier.h
-/home/s3179222/CLionProjects/HeartValveModel/old_code/bezier.h
+
+/home/s3179222/CLionProjects/HeartValveModel/model.h
 cmath
 -
 geometry/vector/vec3d.h
@@ -132,31 +174,9 @@ geometry/surface/BottomParametric.h
 geometry/surface/bicubicsrf.h
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/bicubicsrf.h
 
-/home/s3179222/CLionProjects/HeartValveModel/old_code/bezier.h
-vector
--
-cmath
--
-
-/home/s3179222/CLionProjects/HeartValveModel/old_code/plotting.h
-../model.h
-/home/s3179222/CLionProjects/HeartValveModel/model.h
-../matplotlibcpp.h
-/home/s3179222/CLionProjects/HeartValveModel/matplotlibcpp.h
-vectorMath.h
-/home/s3179222/CLionProjects/HeartValveModel/old_code/vectorMath.h
-../model.h
-/home/s3179222/CLionProjects/HeartValveModel/model.h
-vector
--
-
-/home/s3179222/CLionProjects/HeartValveModel/old_code/vectorMath.h
-vector
--
-cmath
--
-assert.h
--
+/home/s3179222/CLionProjects/HeartValveModel/optimizer/optimizer.cpp
+optimizer.h
+/home/s3179222/CLionProjects/HeartValveModel/optimizer/optimizer.h
 
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/optimizer.h
 ../geometry/surface/surface.h
@@ -169,8 +189,12 @@ step/step.h
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/step/step.h
 cstdlib
 -
-../old_code/plotting.h
-/home/s3179222/CLionProjects/HeartValveModel/old_code/plotting.h
+../plotting/plotting.h
+/home/s3179222/CLionProjects/HeartValveModel/plotting/plotting.h
+
+/home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/bisection.cpp
+bisection.h
+/home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/bisection.h
 
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/bisection.h
 preprocessor.h
@@ -182,15 +206,27 @@ preprocessor.h
 ../../geometry/surface/surface.h
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.h
 
+/home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/quadraticInterpolation.cpp
+quadraticInterpolation.h
+/home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/quadraticInterpolation.h
+
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/quadraticInterpolation.h
 preprocessor.h
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/preprocessor.h
 
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/states.h
 
+/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Geometric.cpp
+Geometric.h
+/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Geometric.h
+
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Geometric.h
 step.h
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/step/step.h
+
+/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Newton.cpp
+Newton.h
+/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Newton.h
 
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Newton.h
 step.h
@@ -201,6 +237,24 @@ step.h
 /home/s3179222/CLionProjects/HeartValveModel/optimizer/states.h
 ../../geometry/surface/surface.h
 /home/s3179222/CLionProjects/HeartValveModel/geometry/surface/surface.h
+
+/home/s3179222/CLionProjects/HeartValveModel/plotting/plotting.cpp
+plotting.h
+/home/s3179222/CLionProjects/HeartValveModel/plotting/plotting.h
+
+/home/s3179222/CLionProjects/HeartValveModel/plotting/plotting.h
+../model.h
+/home/s3179222/CLionProjects/HeartValveModel/model.h
+../matplotlibcpp.h
+/home/s3179222/CLionProjects/HeartValveModel/matplotlibcpp.h
+../model.h
+/home/s3179222/CLionProjects/HeartValveModel/model.h
+vector
+-
+
+/home/s3179222/CLionProjects/HeartValveModel/splittingAlgorithm/splittingAlgorithm.cpp
+splittingAlgorithm.h
+/home/s3179222/CLionProjects/HeartValveModel/splittingAlgorithm/splittingAlgorithm.h
 
 /home/s3179222/CLionProjects/HeartValveModel/splittingAlgorithm/splittingAlgorithm.h
 ../optimizer/states.h

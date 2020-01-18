@@ -54,13 +54,11 @@ CMAKE_BINARY_DIR = /home/s3179222/CLionProjects/HeartValveModel
 
 # The main recursive "all" target.
 all: CMakeFiles/HeartValveModel.dir/all
-all: CMakeFiles/Parallel.dir/all
 
 .PHONY : all
 
 # The main recursive "clean" target.
 clean: CMakeFiles/HeartValveModel.dir/clean
-clean: CMakeFiles/Parallel.dir/clean
 
 .PHONY : clean
 
@@ -76,12 +74,12 @@ preinstall:
 CMakeFiles/HeartValveModel.dir/all:
 	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/depend
 	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21 "Built target HeartValveModel"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19 "Built target HeartValveModel"
 .PHONY : CMakeFiles/HeartValveModel.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/HeartValveModel.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/s3179222/CLionProjects/HeartValveModel/CMakeFiles 21
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/s3179222/CLionProjects/HeartValveModel/CMakeFiles 19
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/HeartValveModel.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/s3179222/CLionProjects/HeartValveModel/CMakeFiles 0
 .PHONY : CMakeFiles/HeartValveModel.dir/rule
@@ -95,33 +93,6 @@ HeartValveModel: CMakeFiles/HeartValveModel.dir/rule
 CMakeFiles/HeartValveModel.dir/clean:
 	$(MAKE) -f CMakeFiles/HeartValveModel.dir/build.make CMakeFiles/HeartValveModel.dir/clean
 .PHONY : CMakeFiles/HeartValveModel.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/Parallel.dir
-
-# All Build rule for target.
-CMakeFiles/Parallel.dir/all:
-	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/depend
-	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/s3179222/CLionProjects/HeartValveModel/CMakeFiles --progress-num=22,23,24,25 "Built target Parallel"
-.PHONY : CMakeFiles/Parallel.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/Parallel.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/s3179222/CLionProjects/HeartValveModel/CMakeFiles 4
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Parallel.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/s3179222/CLionProjects/HeartValveModel/CMakeFiles 0
-.PHONY : CMakeFiles/Parallel.dir/rule
-
-# Convenience name for target.
-Parallel: CMakeFiles/Parallel.dir/rule
-
-.PHONY : Parallel
-
-# clean rule for target.
-CMakeFiles/Parallel.dir/clean:
-	$(MAKE) -f CMakeFiles/Parallel.dir/build.make CMakeFiles/Parallel.dir/clean
-.PHONY : CMakeFiles/Parallel.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

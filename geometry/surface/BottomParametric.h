@@ -1,6 +1,14 @@
 //
 // Created by s3179222 on 12/8/19.
 //
+/*
+ * This is the implementation of the top part of each leaf in the model. The class contains all of the corners and edges
+ * (see model.h), which include the bending curve, the bottom half of the symmetry curve and the bottom half
+ * of the sinusoidal curve.
+ *
+ * The surface is an interpolation between the 3 edges. It also has a subclass such that the bottom corner can be passed
+ * as an edge, which is required by the surface interface. The bottom corner then outputs the same value every time.
+ */
 
 #ifndef HEARTVALVEMODEL_BOTTOMPARAMETRIC_H
 #define HEARTVALVEMODEL_BOTTOMPARAMETRIC_H

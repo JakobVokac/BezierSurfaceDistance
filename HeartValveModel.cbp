@@ -27,16 +27,6 @@
 					<DistClean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/home/s3179222/CLionProjects/HeartValveModel"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="HeartValveModel">
 				<Option output="/home/s3179222/CLionProjects/HeartValveModel/HeartValveModel" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/s3179222/CLionProjects/HeartValveModel"/>
@@ -69,29 +59,11 @@
 					<DistClean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="Parallel">
-				<Option output="/home/s3179222/CLionProjects/HeartValveModel/Parallel" prefix_auto="0" extension_auto="0"/>
+			<Target title="edit_cache">
 				<Option working_dir="/home/s3179222/CLionProjects/HeartValveModel"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler/>
+				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 Parallel"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="Parallel/fast">
-				<Option output="/home/s3179222/CLionProjects/HeartValveModel/Parallel" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/s3179222/CLionProjects/HeartValveModel"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 Parallel/fast"/>
+					<Build command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 edit_cache"/>
 					<CompileFile command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -f &quot;/home/s3179222/CLionProjects/HeartValveModel/Makefile&quot;  VERBOSE=1 clean"/>
@@ -160,33 +132,8 @@
 		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/model.cpp">
 			<Option target="HeartValveModel"/>
-			<Option target="Parallel"/>
 		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/model.h">
-			<Option target="HeartValveModel"/>
-			<Option target="Parallel"/>
-		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/bezier.cpp">
-			<Option target="HeartValveModel"/>
-			<Option target="Parallel"/>
-		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/bezier.h">
-			<Option target="HeartValveModel"/>
-			<Option target="Parallel"/>
-		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/parallel.cpp">
-			<Option target="Parallel"/>
-		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/plotting.cpp">
-			<Option target="HeartValveModel"/>
-		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/plotting.h">
-			<Option target="HeartValveModel"/>
-		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/vectorMath.cpp">
-			<Option target="HeartValveModel"/>
-		</Unit>
-		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/old_code/vectorMath.h">
 			<Option target="HeartValveModel"/>
 		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/optimizer/optimizer.cpp">
@@ -230,7 +177,12 @@
 		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/parameters.h">
 			<Option target="HeartValveModel"/>
-			<Option target="Parallel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/plotting/plotting.cpp">
+			<Option target="HeartValveModel"/>
+		</Unit>
+		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/plotting/plotting.h">
+			<Option target="HeartValveModel"/>
 		</Unit>
 		<Unit filename="/home/s3179222/CLionProjects/HeartValveModel/splittingAlgorithm/splittingAlgorithm.cpp">
 			<Option target="HeartValveModel"/>

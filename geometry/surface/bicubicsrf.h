@@ -1,6 +1,16 @@
 //
 // Created by s3179222 on 12/4/19.
 //
+/*
+ * This is an implementation of a 3rd degree Bezier surface. Which contains all of the 16 control points, the actual functions,
+ * and some additional function for detection whether its control net is valid as well as a function for checking
+ * whether the closest point on the surface to a point P is inside the surface or on an edge.
+ *
+ * The net and edge detection algorithms were taken and implemented from:
+ *      Yingliang Ma & W. Terry Hewitt,
+ *      "Point inversion and projection for NURBS curve: Control polygon approach",
+ *      https://www.researchgate.net/publication/232638188_Point_inversion_and_projection_for_NURBS_curve_Control_polygon_approach
+ */
 
 #ifndef HEARTVALVEMODEL_BICUBICSRF_H
 #define HEARTVALVEMODEL_BICUBICSRF_H

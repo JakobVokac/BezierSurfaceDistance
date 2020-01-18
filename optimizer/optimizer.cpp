@@ -1,7 +1,17 @@
 //
 // Created by s3179222 on 12/9/19.
 //
-
+/*
+ * This is the main numerical optimizer class. It implements the skeleton of the numerical optimization, which includes:
+ *  - calling the preprocessing method for the surface search (prep2D)
+ *  - iterating through the surface search with a specified step (step2D),
+ *  - checking if the optimization has been outsize of the domain ((u,v) e [0,1]^2) for 2 or more iterations (rangecount)
+ *    in which case an edge or corner search is called,
+ *  - calling the preprocessing method for the edge search (prep1D)
+ *  - iterating through the edge with a specified step (step1D)
+ *  - choosing the most appropirate solution between the surface and edge searches,
+ *  - keeping track of the number of iterations
+ */
 #include "optimizer.h"
 
 using namespace std;

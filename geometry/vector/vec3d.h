@@ -1,6 +1,13 @@
 //
 // Created by s3179222 on 12/4/19.
 //
+/*
+ * This is a simple implementation of a vector with doubles for higher precision.
+ * It overrides all of the basic operators and adds the dot product, cross product, an output function for cout.
+ *
+ * There is also an implementation for solving a system of 3 linear equations, which is useful for finding the
+ * parameters in a linear combination of vectors for another vector.
+ */
 
 #ifndef HEARTVALVEMODEL_VEC3D_H
 #define HEARTVALVEMODEL_VEC3D_H

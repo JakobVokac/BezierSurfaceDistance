@@ -1,7 +1,14 @@
 //
 // Created by s3179222 on 12/8/19.
 //
-
+/*
+ * This class implements the surface interface, which is used by the optimizer, such that it can use any type of surface.
+ *
+ * The interface imeplements all of the distance equations, leaving the actual surface function to be implemented by
+ * concrete subclasses.
+ *
+ * Each class must also be able to provide all of its edges for edge searches.
+ */
 #include "surface.h"
 
 

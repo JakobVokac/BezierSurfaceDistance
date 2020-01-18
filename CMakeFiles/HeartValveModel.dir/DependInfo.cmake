@@ -15,14 +15,12 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/s3179222/CLionProjects/HeartValveModel/main.cpp" "/home/s3179222/CLionProjects/HeartValveModel/CMakeFiles/HeartValveModel.dir/main.cpp.o"
   "/home/s3179222/CLionProjects/HeartValveModel/measurements/measurements.cpp" "/home/s3179222/CLionProjects/HeartValveModel/CMakeFiles/HeartValveModel.dir/measurements/measurements.cpp.o"
   "/home/s3179222/CLionProjects/HeartValveModel/model.cpp" "/home/s3179222/CLionProjects/HeartValveModel/CMakeFiles/HeartValveModel.dir/model.cpp.o"
-  "/home/s3179222/CLionProjects/HeartValveModel/old_code/bezier.cpp" "/home/s3179222/CLionProjects/HeartValveModel/CMakeFiles/HeartValveModel.dir/old_code/bezier.cpp.o"
-  "/home/s3179222/CLionProjects/HeartValveModel/old_code/plotting.cpp" "/home/s3179222/CLionProjects/HeartValveModel/CMakeFiles/HeartValveModel.dir/old_code/plotting.cpp.o"
-  "/home/s3179222/CLionProjects/HeartValveModel/old_code/vectorMath.cpp" "/home/s3179222/CLionProjects/HeartValveModel/CMakeFiles/HeartValveModel.dir/old_code/vectorMath.cpp.o"
   "/home/s3179222/CLionProjects/HeartValveModel/optimizer/optimizer.cpp" "/home/s3179222/CLionProjects/HeartValveModel/CMakeFiles/HeartValveModel.dir/optimizer/optimizer.cpp.o"
   "/home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/bisection.cpp" "/home/s3179222/CLionProjects/HeartValveModel/CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/bisection.cpp.o"
   "/home/s3179222/CLionProjects/HeartValveModel/optimizer/preprocessor/quadraticInterpolation.cpp" "/home/s3179222/CLionProjects/HeartValveModel/CMakeFiles/HeartValveModel.dir/optimizer/preprocessor/quadraticInterpolation.cpp.o"
   "/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Geometric.cpp" "/home/s3179222/CLionProjects/HeartValveModel/CMakeFiles/HeartValveModel.dir/optimizer/step/Geometric.cpp.o"
   "/home/s3179222/CLionProjects/HeartValveModel/optimizer/step/Newton.cpp" "/home/s3179222/CLionProjects/HeartValveModel/CMakeFiles/HeartValveModel.dir/optimizer/step/Newton.cpp.o"
+  "/home/s3179222/CLionProjects/HeartValveModel/plotting/plotting.cpp" "/home/s3179222/CLionProjects/HeartValveModel/CMakeFiles/HeartValveModel.dir/plotting/plotting.cpp.o"
   "/home/s3179222/CLionProjects/HeartValveModel/splittingAlgorithm/splittingAlgorithm.cpp" "/home/s3179222/CLionProjects/HeartValveModel/CMakeFiles/HeartValveModel.dir/splittingAlgorithm/splittingAlgorithm.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

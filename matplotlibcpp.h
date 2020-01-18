@@ -1,3 +1,12 @@
+/*
+ * This class is taken from: https://github.com/lava/matplotlib-cpp/blob/master/matplotlibcpp.h
+ * It has been altered in some places to fit the needs of the project.
+ *
+ * It is a an adapter class for using the Matplotlib in Python for plotting.
+ */
+
+
+
 #pragma once
 
 #include <vector>

@@ -1,7 +1,16 @@
 //
 // Created by s3179222 on 12/8/19.
 //
-
+/*
+ * This class is an interface for a curve in 3D space. The interface exists for future work, if any kind of curve
+ * that is not a normal Bezier curve should be implemented (such as splines). The interface implements the distance functions
+ * and leaves the actual curve functions to be implemented by concrete classes.
+ *
+ * It also half way implements an output function for testing and debugging.
+ *
+ * It also contains a virtual function to be implemented for checking whether a curve sits on a plane, which is useful
+ * in certain optimization applications such as the Geometric search.
+ */
 #include "curve.h"
 
 double curve::sqDistTo(double t, class vec3d A){
